@@ -1,10 +1,11 @@
-package com.android.orc.ocrapplication;
+package com.android.orc.ocrapplication.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dashboard.DashBoardActivity;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
