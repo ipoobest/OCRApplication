@@ -7,15 +7,12 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-import com.android.orc.ocrapplication.activity.LoginActivity;
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.activity.LoginActivity;
 import com.android.orc.ocrapplication.dashboard.fragment.CameraFragment;
 import com.android.orc.ocrapplication.dashboard.fragment.GalleryFragment;
 import com.android.orc.ocrapplication.dashboard.fragment.HomeFragment;
-import com.facebook.login.LoginManager;
 
 
 
@@ -23,7 +20,7 @@ public class DashBoardActivity extends AppCompatActivity implements ViewPager.On
 
 
     BottomNavigationView bottomNavigationView;
-    Button logout_facebook;
+//    Button logout_facebook;
 
     //This is our viewPager
     private ViewPager viewPager;
@@ -53,7 +50,7 @@ public class DashBoardActivity extends AppCompatActivity implements ViewPager.On
 //            goLoginScreen();
 //        }
 
-        logout_facebook = findViewById(R.id.logout_facebook);
+//        logout_facebook = findViewById(R.id.logout_facebook);
 
         //Initializing viewPager
         viewPager = findViewById(R.id.viewpager);
@@ -85,15 +82,15 @@ public class DashBoardActivity extends AppCompatActivity implements ViewPager.On
 
         bottomNavigationView.setSelectedItemId(R.id.action_home);
 
-        logout_facebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (v == logout_facebook){
-                    LoginManager.getInstance().logOut();
-                    goLoginScreen();
-                }
-            }
-        });
+//        logout_facebook.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (v == logout_facebook){
+//                    LoginManager.getInstance().logOut();
+//                    goLoginScreen();
+//                }
+//            }
+//        });
 
     }
 
