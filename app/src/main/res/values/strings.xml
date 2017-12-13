@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">OcrApplication</string>
+    <string name="open_drawer">open menu</string>
+    <string name="close_drawer">close menu</string>
+    <string name="facebook_app_id">129072184509617</string>
+    <string name="fb_login_protocol_scheme">fb129072184509617</string>
+    <string name="cancel_login">cancel</string>
+    <string name="error_login">error</string>
+    <string name="logout_facebook">Logout</string>
+</resources>
