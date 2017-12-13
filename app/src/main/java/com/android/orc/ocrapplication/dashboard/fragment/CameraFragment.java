@@ -43,7 +43,7 @@ public class CameraFragment extends Fragment implements View.OnClickListener {
         fragment.setArguments(args);
         return fragment;
     }
-
+//first time visit
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
 
