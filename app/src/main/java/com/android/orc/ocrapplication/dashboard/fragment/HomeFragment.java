@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.orc.ocrapplication.activity.LoginActivity;
+import com.android.orc.ocrapplication.LoginActivity;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.MenuListAdapter;
 import com.android.orc.ocrapplication.dashboard.DescriptionActivity;

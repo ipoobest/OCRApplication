@@ -1,9 +1,7 @@
-package com.android.orc.ocrapplication.activity;
+package com.android.orc.ocrapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.android.orc.ocrapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 

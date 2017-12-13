@@ -10,11 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.android.orc.ocrapplication.activity.LoginActivity;
+import com.android.orc.ocrapplication.LoginActivity;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dashboard.fragment.CameraFragment;
 import com.android.orc.ocrapplication.dashboard.fragment.GalleryFragment;
 import com.android.orc.ocrapplication.dashboard.fragment.HomeFragment;
+import com.facebook.AccessToken;
 import com.facebook.login.LoginManager;
 
 

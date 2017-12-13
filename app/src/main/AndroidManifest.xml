@@ -54,7 +54,7 @@
         </activity>
 
         <activity android:name=".activity.SplashScreenActivity" />
-        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".search.SearchActivity" />
         <activity android:name=".dashboard.DescriptionActivity" />
         <activity android:name=".camera.CameraActivity"></activity>
