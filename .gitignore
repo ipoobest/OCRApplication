@@ -50,10 +50,5 @@ captures/
 # Google Services (e.g. APIs or Firebase)
 google-services.json
 
-# Freeline
-freeline.py
-freeline/
-freeline_project_description.json
-cloudvision/libs/
-cloudvision/src/main/java/
-cloudvision/src/main/res/drawable/
+
+
