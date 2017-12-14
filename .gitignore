@@ -54,3 +54,6 @@ google-services.json
 freeline.py
 freeline/
 freeline_project_description.json
+cloudvision/libs/
+cloudvision/src/main/java/
+cloudvision/src/main/res/drawable/
