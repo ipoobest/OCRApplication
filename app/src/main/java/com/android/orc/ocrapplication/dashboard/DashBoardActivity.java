@@ -4,31 +4,32 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.activity.LoginActivity;
-import com.android.orc.ocrapplication.dashboard.fragment.CameraFragment;
-import com.android.orc.ocrapplication.dashboard.fragment.GalleryFragment;
+import com.android.orc.ocrapplication.camera.CameraActivity;
+import com.android.orc.ocrapplication.dashboard.fragment.FavoriteFragment;
 import com.android.orc.ocrapplication.dashboard.fragment.HomeFragment;
 
 
-
-public class DashBoardActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
+public class DashBoardActivity extends AppCompatActivity
+        implements ViewPager.OnPageChangeListener, View.OnClickListener {
 
 
     BottomNavigationView bottomNavigationView;
+    FloatingActionButton floatingCameraButton;
 //    Button logout_facebook;
 
     //This is our viewPager
     private ViewPager viewPager;
 
-
     //Fragments
-    CameraFragment cameraFragment;
-    GalleryFragment galleryFragment;
+    FavoriteFragment favoriteFragment;
     HomeFragment homeFragment;
 
     MenuItem prevMenuItem;
@@ -43,6 +44,7 @@ public class DashBoardActivity extends AppCompatActivity implements ViewPager.On
 
     }
 
+
     private void initInstance() {
 
         //Login Facebook
@@ -52,26 +54,28 @@ public class DashBoardActivity extends AppCompatActivity implements ViewPager.On
 
 //        logout_facebook = findViewById(R.id.logout_facebook);
 
-        //Initializing viewPager
         viewPager = findViewById(R.id.viewpager);
-
-        //Initializing the bottomNavigationView
+        floatingCameraButton = findViewById(R.id.dashboard_camera);
+        floatingCameraButton.setOnClickListener(this);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.action_camera:
+                            case R.id.action_home:
                                 viewPager.setCurrentItem(0);
                                 break;
-                            case R.id.action_home:
+                            case R.id.action_gallery:
                                 viewPager.setCurrentItem(1);
                                 break;
-                            case R.id.action_gallery:
-                                viewPager.setCurrentItem(2);
-                                break;
+//                            case R.id.action_gallery:
+////                                viewPager.setCurrentItem(2);
+//                                Intent intent = new Intent(DashBoardActivity.this,
+//                                        CameraActivity.class);
+//                                startActivity(intent);
+//
+//                                break;
                         }
                         return false;
                     }
@@ -104,12 +108,10 @@ public class DashBoardActivity extends AppCompatActivity implements ViewPager.On
 
     private void setupViewPager(ViewPager viewPager) {
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
-        cameraFragment = new CameraFragment();
         homeFragment = new HomeFragment();
-        galleryFragment = new GalleryFragment();
-        adapter.addFragment(cameraFragment);
+        favoriteFragment = new FavoriteFragment();
         adapter.addFragment(homeFragment);
-        adapter.addFragment(galleryFragment);
+        adapter.addFragment(favoriteFragment);
         viewPager.setAdapter(adapter);
     }
 
@@ -146,5 +148,14 @@ public class DashBoardActivity extends AppCompatActivity implements ViewPager.On
 //        });
 //
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == floatingCameraButton){
+            Intent intent = new Intent(DashBoardActivity.this,
+                    CameraActivity.class);
+            startActivity(intent);
+        }
     }
 }
