@@ -2,12 +2,17 @@
   <library name="com.android.support:customtabs-25.3.1">
     <CLASSES>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/customtabs-25.3.1.aar/43901cffb25ffebd1286d59cad3833df/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/customtabs-25.3.1.aar/43901cffb25ffebd1286d59cad3833df/jars/classes.jar!/" />
 =======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/customtabs-25.3.1.aar/9f8347a37838104a7e11befe73c8d0fc/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/customtabs-25.3.1.aar/9f8347a37838104a7e11befe73c8d0fc/jars/classes.jar!/" />
 >>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/customtabs-25.3.1.aar/9f8347a37838104a7e11befe73c8d0fc/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/customtabs-25.3.1.aar/9f8347a37838104a7e11befe73c8d0fc/jars/classes.jar!/" />
+>>>>>>> feature/camera
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -2,12 +2,17 @@
   <library name="com.google.android.gms:play-services-tasks-11.6.2">
     <CLASSES>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.6.2.aar/0be5aebd78b8c94b7df351d899e2dee4/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.6.2.aar/0be5aebd78b8c94b7df351d899e2dee4/res" />
 =======
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.6.2.aar/c6f126c958fe6185e3680e6a23622fc8/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.6.2.aar/c6f126c958fe6185e3680e6a23622fc8/res" />
 >>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.6.2.aar/c6f126c958fe6185e3680e6a23622fc8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-11.6.2.aar/c6f126c958fe6185e3680e6a23622fc8/res" />
+>>>>>>> feature/camera
     </CLASSES>
     <JAVADOC />
     <SOURCES />

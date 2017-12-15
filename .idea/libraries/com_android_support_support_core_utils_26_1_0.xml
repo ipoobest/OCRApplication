@@ -2,12 +2,17 @@
   <library name="com.android.support:support-core-utils-26.1.0">
     <CLASSES>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/3120912afd452ba1127dbe70c0cd312b/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/3120912afd452ba1127dbe70c0cd312b/res" />
 =======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/9a2fc33ea8fb75f1fd34757a14de282d/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/9a2fc33ea8fb75f1fd34757a14de282d/jars/classes.jar!/" />
 >>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/9a2fc33ea8fb75f1fd34757a14de282d/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/9a2fc33ea8fb75f1fd34757a14de282d/jars/classes.jar!/" />
+>>>>>>> feature/camera
     </CLASSES>
     <JAVADOC />
     <SOURCES>

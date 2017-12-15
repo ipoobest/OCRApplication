@@ -2,12 +2,17 @@
   <library name="com.google.firebase:firebase-iid-license-11.6.2">
     <CLASSES>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-iid-license-11.6.2.aar/e782368a0343e569c4c71b0fda2eaff9/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-iid-license-11.6.2.aar/e782368a0343e569c4c71b0fda2eaff9/res" />
 =======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-iid-license-11.6.2.aar/a12f7005291266cd5ec17dd09c8d290c/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-iid-license-11.6.2.aar/a12f7005291266cd5ec17dd09c8d290c/jars/classes.jar!/" />
 >>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-iid-license-11.6.2.aar/a12f7005291266cd5ec17dd09c8d290c/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-iid-license-11.6.2.aar/a12f7005291266cd5ec17dd09c8d290c/jars/classes.jar!/" />
+>>>>>>> feature/camera
     </CLASSES>
     <JAVADOC />
     <SOURCES />

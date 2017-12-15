@@ -2,12 +2,17 @@
   <library name="com.android.support:appcompat-v7-26.1.0">
     <CLASSES>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/c22bc42a8f1b6b2ce61c9400c34f4118/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/c22bc42a8f1b6b2ce61c9400c34f4118/jars/classes.jar!/" />
 =======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/d3b7c9c6881ea4fe888e4b0952fca357/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/d3b7c9c6881ea4fe888e4b0952fca357/jars/classes.jar!/" />
 >>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/d3b7c9c6881ea4fe888e4b0952fca357/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/d3b7c9c6881ea4fe888e4b0952fca357/jars/classes.jar!/" />
+>>>>>>> feature/camera
     </CLASSES>
     <JAVADOC />
     <SOURCES>

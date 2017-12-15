@@ -2,12 +2,17 @@
   <library name="com.bartoszlipinski:viewpropertyobjectanimator-1.2.0">
     <CLASSES>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/12214de1f9035d774d770ae62827a474/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/12214de1f9035d774d770ae62827a474/jars/classes.jar!/" />
 =======
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/3087c81f64674b41de8f520c5693752a/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/3087c81f64674b41de8f520c5693752a/res" />
 >>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/3087c81f64674b41de8f520c5693752a/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/3087c81f64674b41de8f520c5693752a/res" />
+>>>>>>> feature/camera
     </CLASSES>
     <JAVADOC />
     <SOURCES>

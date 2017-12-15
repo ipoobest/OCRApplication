@@ -2,12 +2,17 @@
   <library name="com.google.firebase:firebase-core-11.6.2">
     <CLASSES>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-core-11.6.2.aar/90d125fe8a1dec43f4bd6ab010112a7e/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-core-11.6.2.aar/90d125fe8a1dec43f4bd6ab010112a7e/jars/classes.jar!/" />
 =======
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-core-11.6.2.aar/c5c2042e150a1b68db3947c402ddaedf/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-core-11.6.2.aar/c5c2042e150a1b68db3947c402ddaedf/res" />
 >>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-core-11.6.2.aar/c5c2042e150a1b68db3947c402ddaedf/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-core-11.6.2.aar/c5c2042e150a1b68db3947c402ddaedf/res" />
+>>>>>>> feature/camera
     </CLASSES>
     <JAVADOC />
     <SOURCES />

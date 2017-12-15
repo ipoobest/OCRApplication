@@ -2,12 +2,17 @@
   <library name="com.android.support:animated-vector-drawable-26.1.0">
     <CLASSES>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/b1875ca9f505ace608ea2498fce9596c/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/b1875ca9f505ace608ea2498fce9596c/jars/classes.jar!/" />
 =======
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/d71cdcd92487489d3d564fc3d0bd8ded/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/d71cdcd92487489d3d564fc3d0bd8ded/res" />
 >>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/d71cdcd92487489d3d564fc3d0bd8ded/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-26.1.0.aar/d71cdcd92487489d3d564fc3d0bd8ded/res" />
+>>>>>>> feature/camera
     </CLASSES>
     <JAVADOC />
     <SOURCES>
