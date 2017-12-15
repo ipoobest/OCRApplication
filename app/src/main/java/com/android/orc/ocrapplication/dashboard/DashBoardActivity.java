@@ -13,7 +13,7 @@ import android.view.View;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.activity.LoginActivity;
 import com.android.orc.ocrapplication.camera.CameraActivity;
-import com.android.orc.ocrapplication.dashboard.fragment.GalleryFragment;
+import com.android.orc.ocrapplication.dashboard.fragment.FavoriteFragment;
 import com.android.orc.ocrapplication.dashboard.fragment.HomeFragment;
 
 
@@ -29,7 +29,7 @@ public class DashBoardActivity extends AppCompatActivity
     private ViewPager viewPager;
 
     //Fragments
-    GalleryFragment galleryFragment;
+    FavoriteFragment favoriteFragment;
     HomeFragment homeFragment;
 
     MenuItem prevMenuItem;
@@ -109,9 +109,9 @@ public class DashBoardActivity extends AppCompatActivity
     private void setupViewPager(ViewPager viewPager) {
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
         homeFragment = new HomeFragment();
-        galleryFragment = new GalleryFragment();
+        favoriteFragment = new FavoriteFragment();
         adapter.addFragment(homeFragment);
-        adapter.addFragment(galleryFragment);
+        adapter.addFragment(favoriteFragment);
         viewPager.setAdapter(adapter);
     }
 
