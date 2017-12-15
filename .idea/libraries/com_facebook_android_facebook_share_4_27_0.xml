@@ -1,23 +1,8 @@
 <component name="libraryTable">
   <library name="com.facebook.android:facebook-share-4.27.0">
     <CLASSES>
-<<<<<<< HEAD
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-share-4.27.0.aar/bcd9bff1898b1240fd8c3473a6c6ad94/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-share-4.27.0.aar/bcd9bff1898b1240fd8c3473a6c6ad94/jars/classes.jar!/" />
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-share-4.27.0.aar/395b801bdfb632f1cddfc14d7c54a6de/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-share-4.27.0.aar/395b801bdfb632f1cddfc14d7c54a6de/res" />
-=======
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-share-4.27.0.aar/22320195737ee117a2bdc23c92e78d1a/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-share-4.27.0.aar/22320195737ee117a2bdc23c92e78d1a/jars/classes.jar!/" />
->>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
-=======
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-share-4.27.0.aar/22320195737ee117a2bdc23c92e78d1a/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-share-4.27.0.aar/22320195737ee117a2bdc23c92e78d1a/jars/classes.jar!/" />
->>>>>>> feature/camera
->>>>>>> 7701ae274a59e997e6bece4c4fdbb9822f04588b
     </CLASSES>
     <JAVADOC />
     <SOURCES>
