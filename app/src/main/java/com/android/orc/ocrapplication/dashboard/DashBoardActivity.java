@@ -11,10 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.activity.LoginActivity;
+import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.camera.CameraActivity;
-import com.android.orc.ocrapplication.dashboard.fragment.FavoriteFragment;
-import com.android.orc.ocrapplication.dashboard.fragment.HomeFragment;
 
 
 public class DashBoardActivity extends AppCompatActivity

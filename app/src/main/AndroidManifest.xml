@@ -6,8 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
-
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -23,7 +21,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".dashboard.DashBoardActivity"
+        <activity
+            android:name=".dashboard.DashBoardActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,7 +39,6 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
@@ -53,12 +51,11 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activity.SplashScreenActivity" />
-        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".SplashScreenActivity" />
+        <activity android:name=".login.LoginActivity" />
         <activity android:name=".search.SearchActivity" />
-        <activity android:name=".dashboard.DescriptionActivity" />
-        <activity android:name=".camera.CameraActivity"/>
+        <activity android:name=".description.DescriptionActivity" />
+        <activity android:name=".camera.CameraActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -67,10 +64,10 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
+
+        <activity android:name=".result.ResultActivity"></activity>
     </application>
-
-
 
 </manifest>
