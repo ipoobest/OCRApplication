@@ -54,8 +54,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initInstances() {
-        btnTakePhoto = (Button) findViewById(R.id.btnTakePhoto);
-        ivPreview = (ImageView) findViewById(R.id.ivPreview);
+        btnTakePhoto =  findViewById(R.id.btn_take_photo);
+        ivPreview =  findViewById(R.id.ivPreview);
 
         btnTakePhoto.setOnClickListener(this);
     }
