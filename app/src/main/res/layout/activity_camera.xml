@@ -1,38 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context="com.android.orc.ocrapplication.camera.CameraActivity">
 
-    <TextureView
-        android:id="@+id/textureViewCamera"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <LinearLayout
+    <Button
+        android:id="@+id/btnTakePhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_margin="8dp">
+        android:layout_gravity="center_horizontal"
+        android:text="Take a Photo" />
 
-        <Button
-            android:id="@+id/buttonCapture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/capture" />
+    <ImageView
+        android:id="@+id/ivPreview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true" />
 
-        <Button
-            android:id="@+id/buttonFocus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/focus" />
-
-        <ToggleButton
-            android:id="@+id/toggleButtonFlash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textOff="@string/negative_off"
-            android:textOn="@string/negative_on" />
-
-    </LinearLayout>
-
-</FrameLayout>
+</LinearLayout>

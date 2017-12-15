@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.activity.LoginActivity;
@@ -16,10 +18,11 @@ import com.android.orc.ocrapplication.dashboard.fragment.HomeFragment;
 
 
 public class DashBoardActivity extends AppCompatActivity
-        implements ViewPager.OnPageChangeListener {
+        implements ViewPager.OnPageChangeListener, View.OnClickListener {
 
 
     BottomNavigationView bottomNavigationView;
+    FloatingActionButton floatingCameraButton;
 //    Button logout_facebook;
 
     //This is our viewPager
@@ -51,12 +54,10 @@ public class DashBoardActivity extends AppCompatActivity
 
 //        logout_facebook = findViewById(R.id.logout_facebook);
 
-        //Initializing viewPager
         viewPager = findViewById(R.id.viewpager);
-
-        //Initializing the bottomNavigationView
+        floatingCameraButton = findViewById(R.id.dashboard_camera);
+        floatingCameraButton.setOnClickListener(this);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -147,5 +148,14 @@ public class DashBoardActivity extends AppCompatActivity
 //        });
 //
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == floatingCameraButton){
+            Intent intent = new Intent(DashBoardActivity.this,
+                    CameraActivity.class);
+            startActivity(intent);
+        }
     }
 }
