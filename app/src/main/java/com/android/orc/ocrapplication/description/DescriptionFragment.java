@@ -33,7 +33,7 @@ public class DescriptionFragment extends Fragment {
     private TextView text_name_menu_description;
     private String urlImage;
     ImageView image_menu_description;
-    String item, key;
+    String item, key, nameMenu;
 
     public DescriptionFragment() {
         super();
@@ -56,6 +56,7 @@ public class DescriptionFragment extends Fragment {
             onRestoreInstanceState(savedInstanceState);
 
         item = getActivity().getIntent().getStringExtra("result");
+        nameMenu = getActivity().getIntent().getStringExtra("recyclerMenu");
 
         initFirebase();
     }
@@ -86,28 +87,49 @@ public class DescriptionFragment extends Fragment {
         text_name_menu_description = rootView.findViewById(R.id.text_name_menu_description);
         text_description_description = rootView.findViewById(R.id.text_description_description);
 
-        myRef.orderByChild("name")
-                .equalTo("" + item)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
-                            key = childSnapshot.getKey();
+        if (nameMenu != null) {
+            myRef.orderByChild("name")
+                    .equalTo("" + nameMenu)
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                                key = childSnapshot.getKey();
 //                            Toast.makeText(getContext(), "" + key, Toast.LENGTH_LONG).show();
-                            initQueryFirebase();
+                                initQueryFirebase();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+        if (item != null) {
+            myRef.orderByChild("name")
+                    .equalTo("" + item)
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                                key = childSnapshot.getKey();
+//                            Toast.makeText(getContext(), "" + key, Toast.LENGTH_LONG).show();
+                                initQueryFirebase();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
     }
 
     private void initQueryFirebase() {
 
-        Query query = myRef.child(""+key);
+        Query query = myRef.child("" + key);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
