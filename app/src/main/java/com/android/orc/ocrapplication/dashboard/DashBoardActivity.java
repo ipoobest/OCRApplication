@@ -10,13 +10,13 @@ import android.view.MenuItem;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.activity.LoginActivity;
-import com.android.orc.ocrapplication.dashboard.fragment.CameraFragment;
+import com.android.orc.ocrapplication.camera.CameraActivity;
 import com.android.orc.ocrapplication.dashboard.fragment.GalleryFragment;
 import com.android.orc.ocrapplication.dashboard.fragment.HomeFragment;
 
 
-
-public class DashBoardActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
+public class DashBoardActivity extends AppCompatActivity
+        implements ViewPager.OnPageChangeListener {
 
 
     BottomNavigationView bottomNavigationView;
@@ -25,9 +25,7 @@ public class DashBoardActivity extends AppCompatActivity implements ViewPager.On
     //This is our viewPager
     private ViewPager viewPager;
 
-
     //Fragments
-    CameraFragment cameraFragment;
     GalleryFragment galleryFragment;
     HomeFragment homeFragment;
 
@@ -42,6 +40,7 @@ public class DashBoardActivity extends AppCompatActivity implements ViewPager.On
         initInstance();
 
     }
+
 
     private void initInstance() {
 
@@ -63,15 +62,19 @@ public class DashBoardActivity extends AppCompatActivity implements ViewPager.On
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.action_camera:
+                            case R.id.action_home:
                                 viewPager.setCurrentItem(0);
                                 break;
-                            case R.id.action_home:
+                            case R.id.action_gallery:
                                 viewPager.setCurrentItem(1);
                                 break;
-                            case R.id.action_gallery:
-                                viewPager.setCurrentItem(2);
-                                break;
+//                            case R.id.action_gallery:
+////                                viewPager.setCurrentItem(2);
+//                                Intent intent = new Intent(DashBoardActivity.this,
+//                                        CameraActivity.class);
+//                                startActivity(intent);
+//
+//                                break;
                         }
                         return false;
                     }
@@ -104,10 +107,8 @@ public class DashBoardActivity extends AppCompatActivity implements ViewPager.On
 
     private void setupViewPager(ViewPager viewPager) {
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
-        cameraFragment = new CameraFragment();
         homeFragment = new HomeFragment();
         galleryFragment = new GalleryFragment();
-        adapter.addFragment(cameraFragment);
         adapter.addFragment(homeFragment);
         adapter.addFragment(galleryFragment);
         viewPager.setAdapter(adapter);

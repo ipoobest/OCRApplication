@@ -7,4 +7,9 @@
     <string name="cancel_login">cancel</string>
     <string name="error_login">error</string>
     <string name="logout_facebook">Logout</string>
+    <string name="capture">capture</string>
+    <string name="focus">focus</string>
+    <string name="negative_off">negative_off</string>
+    <string name="negative_on">negative on</string>
+    <string name="negative_color_effect_unavailable">Negative color effect is unavailable on this device</string>
 </resources>
