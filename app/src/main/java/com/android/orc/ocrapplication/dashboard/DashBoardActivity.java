@@ -66,7 +66,7 @@ public class DashBoardActivity extends AppCompatActivity
                             case R.id.action_home:
                                 viewPager.setCurrentItem(0);
                                 break;
-                            case R.id.action_gallery:
+                            case R.id.action_favorite:
                                 viewPager.setCurrentItem(1);
                                 break;
 //                            case R.id.action_gallery:
