@@ -1,10 +1,9 @@
-package com.android.orc.ocrapplication.dashboard;
+package com.android.orc.ocrapplication.description;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.dashboard.fragment.DescriptionFragment;
 
 
 public class DescriptionActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.android.orc.ocrapplication.dashboard.fragment;
+package com.android.orc.ocrapplication.dashboard;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,18 +9,19 @@ import android.view.ViewGroup;
 
 import com.android.orc.ocrapplication.R;
 
+
 /**
  * Created by j.poobest on 9/24/2017 AD.
  */
 
-public class FragmentTemplateFull extends Fragment {
+public class FavoriteFragment extends Fragment {
 
-    public FragmentTemplateFull() {
+    public FavoriteFragment() {
         super();
     }
 
-    public static FragmentTemplateFull newInstance() {
-        FragmentTemplateFull fragment = new FragmentTemplateFull();
+    public static FavoriteFragment newInstance() {
+        FavoriteFragment fragment = new FavoriteFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -38,7 +39,7 @@ public class FragmentTemplateFull extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home_dashboard, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_favorte_dashboard, container, false);
         initInstances(rootView, savedInstanceState);
         return rootView;
     }

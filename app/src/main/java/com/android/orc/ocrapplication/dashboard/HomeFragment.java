@@ -1,4 +1,4 @@
-package com.android.orc.ocrapplication.dashboard.fragment;
+package com.android.orc.ocrapplication.dashboard;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,10 +17,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.orc.ocrapplication.activity.LoginActivity;
+import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.MenuListAdapter;
-import com.android.orc.ocrapplication.dashboard.DescriptionActivity;
+import com.android.orc.ocrapplication.description.DescriptionActivity;
 import com.android.orc.ocrapplication.model.dao.MenuListItem;
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;

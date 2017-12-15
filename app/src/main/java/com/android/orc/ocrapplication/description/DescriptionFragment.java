@@ -1,4 +1,4 @@
-package com.android.orc.ocrapplication.dashboard.fragment;
+package com.android.orc.ocrapplication.description;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

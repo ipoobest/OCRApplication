@@ -1,4 +1,4 @@
-package com.android.orc.ocrapplication.activity;
+package com.android.orc.ocrapplication.login;
 
 import android.content.Intent;
 import android.os.Bundle;
