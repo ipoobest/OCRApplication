@@ -1,8 +1,23 @@
 <component name="libraryTable">
   <library name="com.google.android.gms:play-services-tasks-license-11.6.2">
     <CLASSES>
+<<<<<<< HEAD
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.6.2.aar/ca77798d36619f2b3c832f0640310623/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.6.2.aar/ca77798d36619f2b3c832f0640310623/jars/classes.jar!/" />
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.6.2.aar/9f642bbdf8ec0f0a76004d17dd90344b/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.6.2.aar/9f642bbdf8ec0f0a76004d17dd90344b/res" />
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.6.2.aar/e884776b67b1c7699ee55c9d82748e93/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.6.2.aar/e884776b67b1c7699ee55c9d82748e93/res" />
+>>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.6.2.aar/e884776b67b1c7699ee55c9d82748e93/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-tasks-license-11.6.2.aar/e884776b67b1c7699ee55c9d82748e93/res" />
+>>>>>>> feature/camera
+>>>>>>> 7701ae274a59e997e6bece4c4fdbb9822f04588b
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -1,8 +1,23 @@
 <component name="libraryTable">
   <library name="com.android.support:support-vector-drawable-26.1.0">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/1811ddb9d34a2e51cec06e20f5b94f69/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/1811ddb9d34a2e51cec06e20f5b94f69/res" />
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/35e1d777d445f334e2e8a0d181385e95/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/35e1d777d445f334e2e8a0d181385e95/res" />
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/b7007b125dfd921fd9c171b5d119b28c/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/b7007b125dfd921fd9c171b5d119b28c/res" />
+>>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/b7007b125dfd921fd9c171b5d119b28c/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-26.1.0.aar/b7007b125dfd921fd9c171b5d119b28c/res" />
+>>>>>>> feature/camera
+>>>>>>> 7701ae274a59e997e6bece4c4fdbb9822f04588b
     </CLASSES>
     <JAVADOC />
     <SOURCES>

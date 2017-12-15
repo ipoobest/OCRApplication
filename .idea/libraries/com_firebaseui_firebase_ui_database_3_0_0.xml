@@ -1,8 +1,23 @@
 <component name="libraryTable">
   <library name="com.firebaseui:firebase-ui-database-3.0.0">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-ui-database-3.0.0.aar/e36da4b50ae23aacbdd160db53bc8cf9/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-ui-database-3.0.0.aar/e36da4b50ae23aacbdd160db53bc8cf9/res" />
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-ui-database-3.0.0.aar/027a43ae6b1cea1bc0fdda2ba737b00c/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-ui-database-3.0.0.aar/027a43ae6b1cea1bc0fdda2ba737b00c/res" />
+=======
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-ui-database-3.0.0.aar/0cc2162aead77a8969a24503dfb99b87/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-ui-database-3.0.0.aar/0cc2162aead77a8969a24503dfb99b87/jars/classes.jar!/" />
+>>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-ui-database-3.0.0.aar/0cc2162aead77a8969a24503dfb99b87/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-ui-database-3.0.0.aar/0cc2162aead77a8969a24503dfb99b87/jars/classes.jar!/" />
+>>>>>>> feature/camera
+>>>>>>> 7701ae274a59e997e6bece4c4fdbb9822f04588b
     </CLASSES>
     <JAVADOC />
     <SOURCES>

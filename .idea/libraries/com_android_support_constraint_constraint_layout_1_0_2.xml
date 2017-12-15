@@ -1,8 +1,23 @@
 <component name="libraryTable">
   <library name="com.android.support.constraint:constraint-layout-1.0.2">
     <CLASSES>
+<<<<<<< HEAD
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/bf422f88f0436d34565391e89d828689/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/bf422f88f0436d34565391e89d828689/jars/classes.jar!/" />
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/d91ed939b323f3a25ab3e1e8d3bafd7d/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/d91ed939b323f3a25ab3e1e8d3bafd7d/res" />
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/2106255eb4f2964413f95158290ef802/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/2106255eb4f2964413f95158290ef802/res" />
+>>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/2106255eb4f2964413f95158290ef802/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/2106255eb4f2964413f95158290ef802/res" />
+>>>>>>> feature/camera
+>>>>>>> 7701ae274a59e997e6bece4c4fdbb9822f04588b
     </CLASSES>
     <JAVADOC />
     <SOURCES />

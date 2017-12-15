@@ -39,7 +39,7 @@ public class FavoriteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_favorte_dashboard, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_favorite_dashboard, container, false);
         initInstances(rootView, savedInstanceState);
         return rootView;
     }

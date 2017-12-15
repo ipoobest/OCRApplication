@@ -1,8 +1,23 @@
 <component name="libraryTable">
   <library name="com.android.support:support-core-ui-26.1.0">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/9636a293d35bfc3a4e2013682bcfbdfe/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/9636a293d35bfc3a4e2013682bcfbdfe/res" />
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/e091b3e1e22e97c449da3e265dd2b0d7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/e091b3e1e22e97c449da3e265dd2b0d7/res" />
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/f8fe0ebaada527fa8e9464aeb46e6baf/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/f8fe0ebaada527fa8e9464aeb46e6baf/res" />
+>>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/f8fe0ebaada527fa8e9464aeb46e6baf/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/f8fe0ebaada527fa8e9464aeb46e6baf/res" />
+>>>>>>> feature/camera
+>>>>>>> 7701ae274a59e997e6bece4c4fdbb9822f04588b
     </CLASSES>
     <JAVADOC />
     <SOURCES>

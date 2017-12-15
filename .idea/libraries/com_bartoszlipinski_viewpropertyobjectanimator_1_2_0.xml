@@ -1,8 +1,23 @@
 <component name="libraryTable">
   <library name="com.bartoszlipinski:viewpropertyobjectanimator-1.2.0">
     <CLASSES>
+<<<<<<< HEAD
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/debd163a7126869c85d82398c953f079/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/debd163a7126869c85d82398c953f079/res" />
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/12214de1f9035d774d770ae62827a474/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/12214de1f9035d774d770ae62827a474/jars/classes.jar!/" />
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/3087c81f64674b41de8f520c5693752a/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/3087c81f64674b41de8f520c5693752a/res" />
+>>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
+=======
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/3087c81f64674b41de8f520c5693752a/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/viewpropertyobjectanimator-1.2.0.aar/3087c81f64674b41de8f520c5693752a/res" />
+>>>>>>> feature/camera
+>>>>>>> 7701ae274a59e997e6bece4c4fdbb9822f04588b
     </CLASSES>
     <JAVADOC />
     <SOURCES>

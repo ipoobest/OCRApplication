@@ -9,7 +9,7 @@
         android:title="home"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_gallery"
+        android:id="@+id/action_favorite"
         android:checked="false"
         android:icon="@drawable/ic_bottom_navigation_favorite"
         android:title="favorite"
