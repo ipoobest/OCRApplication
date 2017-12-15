@@ -1,18 +1,8 @@
 <component name="libraryTable">
   <library name="com.google.firebase:firebase-auth-11.6.2">
     <CLASSES>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-11.6.2.aar/eb4fdca7fc4c06b4910cd0ce37e80eaf/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-11.6.2.aar/eb4fdca7fc4c06b4910cd0ce37e80eaf/res" />
-=======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-11.6.2.aar/cafe2ddc71eff15c4d9577315fab71b6/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-11.6.2.aar/cafe2ddc71eff15c4d9577315fab71b6/jars/classes.jar!/" />
->>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
-=======
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-11.6.2.aar/cafe2ddc71eff15c4d9577315fab71b6/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/firebase-auth-11.6.2.aar/cafe2ddc71eff15c4d9577315fab71b6/jars/classes.jar!/" />
->>>>>>> feature/camera
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -1,18 +1,8 @@
 <component name="libraryTable">
   <library name="com.facebook.android:facebook-messenger-4.27.0">
     <CLASSES>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-messenger-4.27.0.aar/d96a60c002b1f992333b607ecb4f79fb/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-messenger-4.27.0.aar/d96a60c002b1f992333b607ecb4f79fb/res" />
-=======
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-messenger-4.27.0.aar/881f449debc81bd40892031efa2f4c15/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-messenger-4.27.0.aar/881f449debc81bd40892031efa2f4c15/jars/classes.jar!/" />
->>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
-=======
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-messenger-4.27.0.aar/881f449debc81bd40892031efa2f4c15/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-messenger-4.27.0.aar/881f449debc81bd40892031efa2f4c15/jars/classes.jar!/" />
->>>>>>> feature/camera
     </CLASSES>
     <JAVADOC />
     <SOURCES>

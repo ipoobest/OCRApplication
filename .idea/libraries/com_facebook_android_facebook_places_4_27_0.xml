@@ -1,18 +1,8 @@
 <component name="libraryTable">
   <library name="com.facebook.android:facebook-places-4.27.0">
     <CLASSES>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-places-4.27.0.aar/5375f8c9478d51a3e442e43b32d67986/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-places-4.27.0.aar/5375f8c9478d51a3e442e43b32d67986/res" />
-=======
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-places-4.27.0.aar/c69b71e7bb0d88ea45a68e093a26596d/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-places-4.27.0.aar/c69b71e7bb0d88ea45a68e093a26596d/res" />
->>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
-=======
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-places-4.27.0.aar/c69b71e7bb0d88ea45a68e093a26596d/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/facebook-places-4.27.0.aar/c69b71e7bb0d88ea45a68e093a26596d/res" />
->>>>>>> feature/camera
     </CLASSES>
     <JAVADOC />
     <SOURCES>

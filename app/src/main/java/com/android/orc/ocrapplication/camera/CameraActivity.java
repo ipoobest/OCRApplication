@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import com.android.orc.ocrapplication.BuildConfig;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dashboard.DashBoardActivity;
+import com.android.orc.ocrapplication.result.ResultActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,6 +41,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     private static final int REQUEST_TAKE_PHOTO = 1;
 
     Button btnTakePhoto;
+    Button btnProcessPhoto;
     ImageView ivPreview;
 
     String mCurrentPhotoPath;
@@ -54,10 +56,12 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initInstances() {
-        btnTakePhoto =  findViewById(R.id.btn_take_photo);
-        ivPreview =  findViewById(R.id.ivPreview);
+        btnTakePhoto = findViewById(R.id.btn_take_photo);
+        btnProcessPhoto = findViewById(R.id.btn_process_photo);
+        ivPreview = findViewById(R.id.ivPreview);
 
         btnTakePhoto.setOnClickListener(this);
+        btnProcessPhoto.setOnClickListener(this);
     }
 
     /////////////////////
@@ -68,6 +72,12 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         if (view == btnTakePhoto) {
             CameraActivityPermissionsDispatcher.startCameraWithCheck(this);
+        }
+        else if (view == btnProcessPhoto) {
+            Intent intent = new Intent(CameraActivity.this,
+                    ResultActivity.class);
+
+            startActivity(intent);
         }
     }
 
@@ -110,6 +120,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             Uri imageUri = Uri.parse(mCurrentPhotoPath);
             File file = new File(imageUri.getPath());
             try {
+                //TODO sent ims to Result Acitvity.
                 InputStream ims = new FileInputStream(file);
                 ivPreview.setImageBitmap(BitmapFactory.decodeStream(ims));
                 //CODE BELOW USE WITH VISION CLOUD

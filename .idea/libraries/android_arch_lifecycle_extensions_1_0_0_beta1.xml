@@ -1,18 +1,8 @@
 <component name="libraryTable">
   <library name="android.arch.lifecycle:extensions-1.0.0-beta1">
     <CLASSES>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/extensions-1.0.0-beta1.aar/f34b331384eaabf2bae66b1716244152/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/extensions-1.0.0-beta1.aar/f34b331384eaabf2bae66b1716244152/jars/classes.jar!/" />
-=======
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/extensions-1.0.0-beta1.aar/4a9a0149f8f761d34e98271cdb97709a/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/extensions-1.0.0-beta1.aar/4a9a0149f8f761d34e98271cdb97709a/res" />
->>>>>>> 7255561a0f664c5d649308951d22e3d2373f3537
-=======
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/extensions-1.0.0-beta1.aar/4a9a0149f8f761d34e98271cdb97709a/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/extensions-1.0.0-beta1.aar/4a9a0149f8f761d34e98271cdb97709a/res" />
->>>>>>> feature/camera
     </CLASSES>
     <JAVADOC />
     <SOURCES>
