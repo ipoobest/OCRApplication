@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.android.orc.cloudvision.CloudVision;
 import com.android.orc.ocrapplication.BuildConfig;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dashboard.DashBoardActivity;
@@ -77,9 +78,14 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         else if (view == btnProcessPhoto) {
             Intent intent = new Intent(CameraActivity.this,
                     ResultActivity.class);
+//
+//            Bitmap bitmap = BitmapFactory.decodeStream(ims);
+//            String data = CloudVision.convertBitmapToBase64String(bitmap);
 
-            Bitmap bitmap = BitmapFactory.decodeStream(ims);
-            intent.putExtra("BitmapImage", bitmap);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sample_th2);
+            String data = CloudVision.convertBitmapToBase64String(bitmap);
+
+            intent.putExtra("BitmapImage", data);
             startActivity(intent);
         }
     }
@@ -123,7 +129,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             Uri imageUri = Uri.parse(mCurrentPhotoPath);
             File file = new File(imageUri.getPath());
             try {
-                //TODO sent ims to Result Acitvity.
                 ims = new FileInputStream(file);
                 ivPreview.setImageBitmap(BitmapFactory.decodeStream(ims));
                 //CODE BELOW USE WITH VISION CLOUD
