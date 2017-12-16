@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.orc.cloudvision.CloudVision;
 import com.android.orc.ocrapplication.BuildConfig;
@@ -45,8 +46,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     Button btnTakePhoto;
     Button btnProcessPhoto;
     ImageView ivPreview;
-    InputStream ims;
     String mCurrentPhotoPath;
+    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,17 +75,16 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         if (view == btnTakePhoto) {
             CameraActivityPermissionsDispatcher.startCameraWithCheck(this);
-        }
-        else if (view == btnProcessPhoto) {
+        } else if (view == btnProcessPhoto) {
             Intent intent = new Intent(CameraActivity.this,
                     ResultActivity.class);
 //
 //            Bitmap bitmap = BitmapFactory.decodeStream(ims);
 //            String data = CloudVision.convertBitmapToBase64String(bitmap);
 
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sample_th2);
+//            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sample_th2);
             String data = CloudVision.convertBitmapToBase64String(bitmap);
-
+            Toast.makeText(this, data, Toast.LENGTH_LONG).show();
             intent.putExtra("BitmapImage", data);
             startActivity(intent);
         }
@@ -129,10 +129,15 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             Uri imageUri = Uri.parse(mCurrentPhotoPath);
             File file = new File(imageUri.getPath());
             try {
-                ims = new FileInputStream(file);
+                InputStream ims = new FileInputStream(file);
                 ivPreview.setImageBitmap(BitmapFactory.decodeStream(ims));
+
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                bitmap = BitmapFactory.decodeFile(imageUri.getPath(), options);
+
                 //CODE BELOW USE WITH VISION CLOUD
-                // Bitmap bitmap = BitmapFactory.decodeStream(ims);
+//                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(file,imageUri);
             } catch (FileNotFoundException e) {
                 return;
             }

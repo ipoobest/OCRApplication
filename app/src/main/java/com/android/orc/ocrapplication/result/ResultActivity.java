@@ -37,7 +37,7 @@ public class ResultActivity extends AppCompatActivity implements CloudVision.Cal
     private void startDetect() {
 
         Intent intent = getIntent();
-        String data = intent.getStringExtra("bitmap array");
+        String data = intent.getStringExtra("BitmapImage");
 //        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sample_th2);
 //        String data = CloudVision.convertBitmapToBase64String(bitmap);
 
