@@ -19,18 +19,15 @@ public class DashBoardActivity extends AppCompatActivity
         implements ViewPager.OnPageChangeListener, View.OnClickListener {
 
 
-    BottomNavigationView bottomNavigationView;
-    FloatingActionButton floatingCameraButton;
-//    Button logout_facebook;
-
     //This is our viewPager
     private ViewPager viewPager;
-
-    //Fragments
+    BottomNavigationView bottomNavigationView;
+    MenuItem prevMenuItem;
+    FloatingActionButton floatingCameraButton;
     FavoriteFragment favoriteFragment;
     HomeFragment homeFragment;
+    //    Button logout_facebook;
 
-    MenuItem prevMenuItem;
 
 
     @Override
@@ -53,8 +50,6 @@ public class DashBoardActivity extends AppCompatActivity
 //        logout_facebook = findViewById(R.id.logout_facebook);
 
         viewPager = findViewById(R.id.viewpager);
-        floatingCameraButton = findViewById(R.id.dashboard_camera);
-        floatingCameraButton.setOnClickListener(this);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -67,17 +62,12 @@ public class DashBoardActivity extends AppCompatActivity
                             case R.id.action_favorite:
                                 viewPager.setCurrentItem(1);
                                 break;
-//                            case R.id.action_gallery:
-////                                viewPager.setCurrentItem(2);
-//                                Intent intent = new Intent(DashBoardActivity.this,
-//                                        CameraActivity.class);
-//                                startActivity(intent);
-//
-//                                break;
                         }
                         return false;
                     }
                 });
+        floatingCameraButton = findViewById(R.id.dashboard_camera);
+        floatingCameraButton.setOnClickListener(this);
 
         viewPager.addOnPageChangeListener(this);
         setupViewPager(viewPager);

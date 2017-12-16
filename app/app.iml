@@ -98,6 +98,10 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javaPrecompile" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
+<<<<<<< HEAD
+=======
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/prebuild" />
+>>>>>>> feature/setImage
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/processing-tools" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/reload-dex" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
@@ -113,6 +117,7 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 26 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="com.squareup.retrofit2:converter-gson:2.3.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-media-compat-26.1.0" level="project" />
     <orderEntry type="library" name="com.facebook.android:facebook-places-4.27.0" level="project" />
     <orderEntry type="library" name="com.android.support:recyclerview-v7-26.1.0" level="project" />
@@ -160,6 +165,7 @@
     <orderEntry type="library" name="com.google.android.gms:play-services-base-11.6.2" level="project" />
     <orderEntry type="library" name="com.facebook.android:facebook-applinks-4.27.0" level="project" />
     <orderEntry type="library" name="com.android.support:customtabs-25.3.1" level="project" />
+    <orderEntry type="library" name="com.squareup.okhttp3:logging-interceptor:3.9.0@jar" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-analytics-impl-11.6.2" level="project" />
     <orderEntry type="library" name="com.github.arimorty:floatingsearchview-2.1.1" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-iid-license-11.6.2" level="project" />
@@ -175,8 +181,11 @@
     <orderEntry type="library" name="com.parse.bolts:bolts-applinks:1.4.0@jar" level="project" />
     <orderEntry type="library" name="com.android.support:support-core-utils-26.1.0" level="project" />
     <orderEntry type="library" name="com.github.bumptech.glide:disklrucache:4.2.0@jar" level="project" />
+    <orderEntry type="library" name="com.google.code.gson:gson:2.7@jar" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-analytics-11.6.2" level="project" />
+    <orderEntry type="library" name="com.squareup.okio:okio:1.13.0@jar" level="project" />
     <orderEntry type="library" scope="TEST" name="com.android.support.test:rules-1.0.1" level="project" />
+    <orderEntry type="library" name="com.squareup.retrofit2:retrofit:2.3.0@jar" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-database-connection-11.6.2" level="project" />
     <orderEntry type="library" name="com.parse.bolts:bolts-android:1.4.0@jar" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-database-license-11.6.2" level="project" />
@@ -185,9 +194,14 @@
     <orderEntry type="library" name="com.android.support:animated-vector-drawable-26.1.0" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-database-11.6.2" level="project" />
     <orderEntry type="library" name="com.facebook.android:facebook-core-4.27.0" level="project" />
+    <orderEntry type="library" name="com.squareup.okhttp3:okhttp:3.9.0@jar" level="project" />
     <orderEntry type="library" name="com.github.bumptech.glide:glide:4.2.0@jar" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-analytics-license-11.6.2" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-analytics-impl-license-11.6.2" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-tasks-license-11.6.2" level="project" />
+<<<<<<< HEAD
+=======
+    <orderEntry type="module" module-name="cloudvision" />
+>>>>>>> feature/setImage
   </component>
 </module>
