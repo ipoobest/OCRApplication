@@ -4,6 +4,7 @@ package com.android.orc.ocrapplication.camera;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -43,7 +44,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     Button btnTakePhoto;
     Button btnProcessPhoto;
     ImageView ivPreview;
-
+    InputStream ims;
     String mCurrentPhotoPath;
 
     @Override
@@ -77,6 +78,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             Intent intent = new Intent(CameraActivity.this,
                     ResultActivity.class);
 
+            Bitmap bitmap = BitmapFactory.decodeStream(ims);
+            intent.putExtra("BitmapImage", bitmap);
             startActivity(intent);
         }
     }
@@ -121,7 +124,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             File file = new File(imageUri.getPath());
             try {
                 //TODO sent ims to Result Acitvity.
-                InputStream ims = new FileInputStream(file);
+                ims = new FileInputStream(file);
                 ivPreview.setImageBitmap(BitmapFactory.decodeStream(ims));
                 //CODE BELOW USE WITH VISION CLOUD
                 // Bitmap bitmap = BitmapFactory.decodeStream(ims);
