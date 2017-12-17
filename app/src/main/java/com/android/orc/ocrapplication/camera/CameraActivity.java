@@ -4,6 +4,7 @@ package com.android.orc.ocrapplication.camera;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -16,10 +17,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.android.orc.cloudvision.CloudVision;
 import com.android.orc.ocrapplication.BuildConfig;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dashboard.DashBoardActivity;
+import com.android.orc.ocrapplication.result.ResultActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,9 +44,10 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     private static final int REQUEST_TAKE_PHOTO = 1;
 
     Button btnTakePhoto;
+    Button btnProcessPhoto;
     ImageView ivPreview;
-
     String mCurrentPhotoPath;
+    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +59,13 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initInstances() {
-        btnTakePhoto = (Button) findViewById(R.id.btnTakePhoto);
-        ivPreview = (ImageView) findViewById(R.id.ivPreview);
+
+        btnTakePhoto = findViewById(R.id.btn_take_photo);
+        btnProcessPhoto = findViewById(R.id.btn_process_photo);
+        ivPreview = findViewById(R.id.ivPreview);
 
         btnTakePhoto.setOnClickListener(this);
+        btnProcessPhoto.setOnClickListener(this);
     }
 
     /////////////////////
@@ -68,6 +76,18 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         if (view == btnTakePhoto) {
             CameraActivityPermissionsDispatcher.startCameraWithCheck(this);
+        } else if (view == btnProcessPhoto) {
+            Intent intent = new Intent(CameraActivity.this,
+                    ResultActivity.class);
+//
+//            Bitmap bitmap = BitmapFactory.decodeStream(ims);
+//            String data = CloudVision.convertBitmapToBase64String(bitmap);
+
+//            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sample_th2);
+            String data = CloudVision.convertBitmapToBase64String(bitmap);
+            Toast.makeText(this, data, Toast.LENGTH_LONG).show();
+            intent.putExtra("BitmapImage", data);
+            startActivity(intent);
         }
     }
 
@@ -112,8 +132,13 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             try {
                 InputStream ims = new FileInputStream(file);
                 ivPreview.setImageBitmap(BitmapFactory.decodeStream(ims));
+
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                bitmap = BitmapFactory.decodeFile(imageUri.getPath(), options);
+
                 //CODE BELOW USE WITH VISION CLOUD
-                // Bitmap bitmap = BitmapFactory.decodeStream(ims);
+//                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(file,imageUri);
             } catch (FileNotFoundException e) {
                 return;
             }
