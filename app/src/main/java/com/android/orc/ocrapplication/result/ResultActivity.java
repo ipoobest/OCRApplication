@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 
 import com.android.orc.cloudvision.CVRequest;
@@ -23,6 +24,7 @@ public class ResultActivity extends AppCompatActivity implements CloudVision.Cal
 
 
     CVRequest.ImageContext.LatLongRect latLongRect;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +40,9 @@ public class ResultActivity extends AppCompatActivity implements CloudVision.Cal
 
         Intent intent = getIntent();
         String data = intent.getStringExtra("BitmapImage");
-//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.sample_th2);
-//        String data = CloudVision.convertBitmapToBase64String(bitmap);
 
-
+        textView = findViewById(R.id.tv_base64);
+        textView.setText(data);
 
         CVRequest request = createCVRequest(data);
         CloudVision.runImageDetection(apiKey, request, this);
