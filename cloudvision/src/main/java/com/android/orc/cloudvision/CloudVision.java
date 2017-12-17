@@ -44,7 +44,7 @@ public class CloudVision {
 
     private static byte[] convertBitmapToByteArray(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream); //bm is the bitmap object
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream); //bm is the bitmap object
         return byteArrayOutputStream.toByteArray();
     }
 
