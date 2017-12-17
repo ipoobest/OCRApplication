@@ -33,7 +33,9 @@ public class DescriptionFragment extends Fragment {
     private TextView text_name_menu_description;
     private String urlImage;
     ImageView image_menu_description;
-    String item, key, nameMenu;
+    String item, key, nameMenu, data;
+    String[] name;
+    String datas;
 
     public DescriptionFragment() {
         super();
@@ -57,6 +59,14 @@ public class DescriptionFragment extends Fragment {
 
         item = getActivity().getIntent().getStringExtra("result");
         nameMenu = getActivity().getIntent().getStringExtra("recyclerMenu");
+        data = getActivity().getIntent().getStringExtra("DAO");
+
+        name = data.split("\n");
+
+        for (int i = 0; i < name.length; i++) {
+            datas = name[i];
+        }
+
 
         initFirebase();
     }
@@ -105,10 +115,27 @@ public class DescriptionFragment extends Fragment {
                             Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
                         }
                     });
-        }
-        if (item != null) {
+        } else if (item != null) {
             myRef.orderByChild("name")
                     .equalTo("" + item)
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                                key = childSnapshot.getKey();
+//                            Toast.makeText(getContext(), "" + key, Toast.LENGTH_LONG).show();
+                                initQueryFirebase();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        } else if (datas != null) {
+            myRef.orderByChild("nameThai")
+                    .equalTo("" + datas)
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {

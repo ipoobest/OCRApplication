@@ -1,11 +1,8 @@
 package com.android.orc.ocrapplication.result;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
 
@@ -31,9 +28,14 @@ public class ResultActivity extends AppCompatActivity implements CloudVision.Cal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("DAO");
 
-        showLoading();
-        startDetect();
+        textView = findViewById(R.id.tv_menu);
+        textView.setText(name);
+
+//        showLoading();
+//        startDetect();
     }
 
     private void startDetect() {
@@ -41,7 +43,7 @@ public class ResultActivity extends AppCompatActivity implements CloudVision.Cal
         Intent intent = getIntent();
         String data = intent.getStringExtra("BitmapImage");
 
-        textView = findViewById(R.id.tv_base64);
+        textView = findViewById(R.id.tv_menu);
         textView.setText(data);
 
         CVRequest request = createCVRequest(data);

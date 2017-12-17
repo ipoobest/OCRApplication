@@ -16,6 +16,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,6 +28,7 @@ import com.android.orc.cloudvision.CloudVision;
 import com.android.orc.ocrapplication.BuildConfig;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dashboard.DashBoardActivity;
+import com.android.orc.ocrapplication.description.DescriptionActivity;
 import com.android.orc.ocrapplication.result.ResultActivity;
 
 import java.io.File;
@@ -51,6 +53,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     private final static String apiKey = "AIzaSyA7NoRiu-JttOEg2pJVGuw2jEnalNHRDKY";
     private static final int REQUEST_TAKE_PHOTO = 1;
     CVRequest.ImageContext.LatLongRect latLongRect;
+
 
 
     Button btnTakePhoto;
@@ -105,7 +108,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
 
         CVRequest request = createCVRequest(data);
-        Toast.makeText(this, data, Toast.LENGTH_LONG).show();
         CloudVision.runImageDetection(apiKey, request, this);
     }
 
@@ -259,8 +261,20 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     private void setCVResponse(CVResponse cvResponse) {
         if (cvResponse != null && cvResponse.isResponsesAvailable()) {
             CVResponse.Response response = cvResponse.getResponse(0);
-            if (response.isLabelAvailable()) {
+            if (response.isTextAvailable()) {
+                List<CVResponse.EntityAnnotation> testDao = response.getTexts();
+                String data = testDao.get(0).getDescription();
 
+
+                Intent intent = new Intent(CameraActivity.this,
+                        DescriptionActivity.class);
+                intent.putExtra("DAO", data);
+                startActivity(intent);
+
+//                textView.setText(testDao.get(0).getDescription());
+//                LabelAdapter adapter = new LabelAdapter(response.getTexts());
+//                lvLabel.setAdapter(adapter);
+//                hideLoading();
             }
         }
     }
