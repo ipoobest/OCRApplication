@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
@@ -101,6 +102,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
     private void startDetect() {
         String data = CloudVision.convertBitmapToBase64String(bitmap);
+
+
         CVRequest request = createCVRequest(data);
         Toast.makeText(this, data, Toast.LENGTH_LONG).show();
         CloudVision.runImageDetection(apiKey, request, this);
@@ -151,16 +154,21 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 InputStream ims = new FileInputStream(file);
                 ivPreview.setImageBitmap(BitmapFactory.decodeStream(ims));
 
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+                 bitmap = MediaStore.Images.Media.getBitmap(cr,imageUri);
 
-                bitmap = BitmapFactory.decodeFile(imageUri.getPath(), options);
-                
+//                BitmapFactory.Options options = new BitmapFactory.Options();
+//                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+
+//                bitmap = BitmapFactory.decodeFile(imageUri.getPath(), options);
+
+
 
                 //CODE BELOW USE WITH VISION CLOUD
 //                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(file,imageUri);
             } catch (FileNotFoundException e) {
                 return;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
 
             // ScanFile so it will be appeared on Gallery
