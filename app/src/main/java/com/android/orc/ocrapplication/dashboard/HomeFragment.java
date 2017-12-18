@@ -1,4 +1,4 @@
-package com.android.orc.ocrapplication.dashboard.fragment;
+package com.android.orc.ocrapplication.dashboard;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,10 +17,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.android.orc.ocrapplication.activity.LoginActivity;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.MenuListAdapter;
-import com.android.orc.ocrapplication.dashboard.DescriptionActivity;
+import com.android.orc.ocrapplication.description.DescriptionActivity;
+import com.android.orc.ocrapplication.login.LoginActivity;
+import com.android.orc.ocrapplication.model.ItemClickCallback;
 import com.android.orc.ocrapplication.model.dao.MenuListItem;
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
@@ -29,7 +30,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +117,15 @@ public class HomeFragment extends Fragment
 
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-        adapter = new MenuListAdapter(getContext(), listResult);
+        ItemClickCallback listener = (view, position) -> {
+            Intent intent = new Intent(getActivity(),DescriptionActivity.class);
+//            Toast.makeText(getContext(),""+listResult.get(position).getName(),Toast.LENGTH_LONG).show();
+            intent.putExtra("recyclerMenu", listResult.get(position).getName());
+            startActivity(intent);
+
+        };
+
+        adapter = new MenuListAdapter(getContext(), listResult, listener);
         recyclerView.setAdapter(adapter);
 
         updateList();

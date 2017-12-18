@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.holder.MenuHolder;
+import com.android.orc.ocrapplication.model.ItemClickCallback;
 import com.android.orc.ocrapplication.model.dao.MenuListItem;
 import com.bumptech.glide.Glide;
 
@@ -17,17 +18,20 @@ import java.util.List;
 
 public class MenuListAdapter extends RecyclerView.Adapter<MenuHolder> {
 
+    private ItemClickCallback mListener;
     private List<MenuListItem> list;
     private Context context;
 
-    public MenuListAdapter(Context context, List<MenuListItem> list) {
+    public MenuListAdapter(Context context, List<MenuListItem> list, ItemClickCallback listener) {
         this.list = list;
         this.context = context;
+        this.mListener = listener;
     }
 
     @Override
     public MenuHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MenuHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_list_item, parent, false));
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.menu_list_item, parent, false);
+        return new MenuHolder(v, mListener);
     }
 
     @Override
