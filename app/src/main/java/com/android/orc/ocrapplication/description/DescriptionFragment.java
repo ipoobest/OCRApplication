@@ -61,11 +61,9 @@ public class DescriptionFragment extends Fragment {
         nameMenu = getActivity().getIntent().getStringExtra("recyclerMenu");
         data = getActivity().getIntent().getStringExtra("DAO");
 
-        name = data.split("\n");
 
-        for (int i = 0; i < name.length; i++) {
-            datas = name[i];
-        }
+        //TODO:: initzeting
+
 
 
         initFirebase();
@@ -134,6 +132,11 @@ public class DescriptionFragment extends Fragment {
                         }
                     });
         } else if (datas != null) {
+            name = data.split("\n");
+
+            for (int i = 0; i < name.length; i++) {
+                datas = name[i];
+            }
             myRef.orderByChild("nameThai")
                     .equalTo("" + datas)
                     .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -151,6 +154,9 @@ public class DescriptionFragment extends Fragment {
                             Toast.makeText(getContext(), "error", Toast.LENGTH_SHORT).show();
                         }
                     });
+            //TODO If can't match the menu
+        }else {
+            getActivity().finish();
         }
     }
 
