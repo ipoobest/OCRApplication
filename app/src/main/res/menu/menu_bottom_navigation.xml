@@ -3,15 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_review"
+        android:checked="false"
+        android:icon="@drawable/ic_bottom_navigation_favorite"
+        android:title="review"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_home"
         android:checked="false"
         android:icon="@drawable/ic_bottom_navigation_home"
         android:title="home"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_favorite"
+        android:id="@+id/action_map"
         android:checked="false"
-        android:icon="@drawable/ic_bottom_navigation_favorite"
-        android:title="favorite"
+        android:icon="@drawable/ic_gallery"
+        android:title="map"
         app:showAsAction="ifRoom" />
 </menu>
