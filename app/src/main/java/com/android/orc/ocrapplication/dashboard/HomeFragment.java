@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment
 
         // set firebase
         database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("menu");
+        myRef = database.getReference("menues");
 
         // set floatingView
         mDrawer = rootView.findViewById(R.id.drawer_layout);
