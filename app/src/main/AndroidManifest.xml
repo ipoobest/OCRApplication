@@ -20,9 +20,7 @@
         android:glEsVersion="0x00020000"
         android:required="true"/>
 
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyCRkqa6SIrkfQw3w81ja6FywOwKe3opDZU"/>
+
 
     <application
         android:name=".OrcApplication"
@@ -34,13 +32,23 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".dashboard.DashBoardActivity"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:hardwareAccelerated="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCRkqa6SIrkfQw3w81ja6FywOwKe3opDZU"/>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

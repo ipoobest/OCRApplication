@@ -8,19 +8,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.orc.ocrapplication.R;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 /**
  * Created by RUNGNUENG on 30/1/2561.
  */
 
-public class MapFragment extends Fragment {
+public class MapSuggestFragment extends Fragment implements OnMapReadyCallback {
 
-    public MapFragment(){
+    public MapSuggestFragment(){
         super();
     }
 
-    public static MapFragment newInstance() {
-        MapFragment fragment = new MapFragment();
+    public static MapSuggestFragment newInstance() {
+        MapSuggestFragment fragment = new MapSuggestFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -40,7 +46,16 @@ public class MapFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_map_dashboard, container, false);
         initInstances(rootView, savedInstanceState);
+
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
     @SuppressWarnings("UnusedParameters")
@@ -53,6 +68,7 @@ public class MapFragment extends Fragment {
         // Init 'View' instance(s) with rootView.findViewById here
         // Note: State of variable initialized here could not be saved
         //       in onSavedInstanceState
+
     }
 
     @Override
@@ -67,4 +83,8 @@ public class MapFragment extends Fragment {
     }
 
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+    }
 }

@@ -1,5 +1,6 @@
 package com.android.orc.ocrapplication.dashboard;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -26,7 +27,7 @@ public class DashBoardActivity extends AppCompatActivity
     FloatingActionButton floatingCameraButton;
     ReviewFragment reviewFragment;
     HomeFragment homeFragment;
-    MapFragment mapFragment;
+    MapSuggestFragment mapSuggestFragment;
     //    Button logout_facebook;
 
 
@@ -101,10 +102,10 @@ public class DashBoardActivity extends AppCompatActivity
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
         reviewFragment = new ReviewFragment();
         homeFragment = new HomeFragment();
-        mapFragment = new MapFragment();
+        mapSuggestFragment = new MapSuggestFragment();
         adapter.addFragment(reviewFragment);
         adapter.addFragment(homeFragment);
-        adapter.addFragment(mapFragment);
+        adapter.addFragment(mapSuggestFragment);
         viewPager.setAdapter(adapter);
     }
 
