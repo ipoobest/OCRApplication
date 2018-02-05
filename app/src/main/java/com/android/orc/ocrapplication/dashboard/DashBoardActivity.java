@@ -24,8 +24,9 @@ public class DashBoardActivity extends AppCompatActivity
     BottomNavigationView bottomNavigationView;
     MenuItem prevMenuItem;
     FloatingActionButton floatingCameraButton;
-    FavoriteFragment favoriteFragment;
+    ReviewFragment reviewFragment;
     HomeFragment homeFragment;
+    MapFragment mapFragment;
     //    Button logout_facebook;
 
 
@@ -56,12 +57,14 @@ public class DashBoardActivity extends AppCompatActivity
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.action_home:
+                            case R.id.action_review:
                                 viewPager.setCurrentItem(0);
                                 break;
-                            case R.id.action_favorite:
+                            case R.id.action_home:
                                 viewPager.setCurrentItem(1);
                                 break;
+                            case R.id.action_map:
+                                viewPager.setCurrentItem(2);
                         }
                         return false;
                     }
@@ -96,10 +99,12 @@ public class DashBoardActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager) {
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
+        reviewFragment = new ReviewFragment();
         homeFragment = new HomeFragment();
-        favoriteFragment = new FavoriteFragment();
+        mapFragment = new MapFragment();
+        adapter.addFragment(reviewFragment);
         adapter.addFragment(homeFragment);
-        adapter.addFragment(favoriteFragment);
+        adapter.addFragment(mapFragment);
         viewPager.setAdapter(adapter);
     }
 

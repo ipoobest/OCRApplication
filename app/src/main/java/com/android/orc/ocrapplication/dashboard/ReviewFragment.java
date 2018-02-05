@@ -14,14 +14,14 @@ import com.android.orc.ocrapplication.R;
  * Created by j.poobest on 9/24/2017 AD.
  */
 
-public class FavoriteFragment extends Fragment {
+public class ReviewFragment extends Fragment {
 
-    public FavoriteFragment() {
+    public ReviewFragment() {
         super();
     }
 
-    public static FavoriteFragment newInstance() {
-        FavoriteFragment fragment = new FavoriteFragment();
+    public static ReviewFragment newInstance() {
+        ReviewFragment fragment = new ReviewFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -39,7 +39,7 @@ public class FavoriteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_favorite_dashboard, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_review_dashboard, container, false);
         initInstances(rootView, savedInstanceState);
         return rootView;
     }
