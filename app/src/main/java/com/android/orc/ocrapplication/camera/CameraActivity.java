@@ -61,6 +61,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     ImageView ivPreview;
     String mCurrentPhotoPath;
     Bitmap bitmap;
+    Intent CropIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,12 +147,12 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-
             getContentResolver().notifyChange(Uri.parse(mCurrentPhotoPath), null);
             ContentResolver cr = getContentResolver();
             // Show the thumbnail on ImageView
             Uri imageUri = Uri.parse(mCurrentPhotoPath);
             File file = new File(imageUri.getPath());
+
             try {
                 InputStream ims = new FileInputStream(file);
                 ivPreview.setImageBitmap(BitmapFactory.decodeStream(ims));
@@ -206,6 +207,33 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         return image;
     }
 
+
+    public void crop(Uri uri) {
+        com.android.orc.ocrapplication.camera.CameraActivity.this.grantUriPermission("com.android.camera",uri,
+                Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        intent.setDataAndType(uri, "image/*");
+        //Android N need set permission to uri otherwise system camera don't has permission to access file wait crop
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        intent.putExtra("crop", "true");
+        //The proportion of the crop box is 1:1
+        intent.putExtra("aspectX", 1);
+        intent.putExtra("aspectY", 1);
+        //Crop the output image size
+        intent.putExtra("outputX", 800);
+        intent.putExtra("outputY", 800);
+        //image type
+        intent.putExtra("outputFormat", "JPEG");
+        intent.putExtra("noFaceDetection", true);
+        //true - don't return uri |  false - return uri
+        intent.putExtra("return-data", true);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+        startActivityForResult(intent, REQUEST_TAKE_PHOTO);
+    }
+
+
+
     private void dispatchTakePictureIntent() throws IOException {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -225,10 +253,19 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                         BuildConfig.APPLICATION_ID + ".provider",
                         createImageFile());
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+
+                crop(photoURI);
+
+
+
+
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+
+               // startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
     }
+
 
     @Override
     public void onImageDetectionSuccess(boolean isSuccess, int statusCode, Headers headers, CVResponse cvResponse) {
