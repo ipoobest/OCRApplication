@@ -70,7 +70,7 @@ public class DescriptionFragment extends Fragment {
     }
 
     private void initFirebase() {
-        myRef = FirebaseDatabase.getInstance().getReference("menu");
+        myRef = FirebaseDatabase.getInstance().getReference("menues");
     }
 
 

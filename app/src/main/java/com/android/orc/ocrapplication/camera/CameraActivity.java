@@ -29,6 +29,7 @@ import com.android.orc.ocrapplication.BuildConfig;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dashboard.DashBoardActivity;
 import com.android.orc.ocrapplication.description.DescriptionActivity;
+import com.android.orc.ocrapplication.description.DescriptionFragment;
 import com.android.orc.ocrapplication.result.ResultActivity;
 import com.theartofdev.edmodo.cropper.CropImage;
 
@@ -281,9 +282,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 List<CVResponse.EntityAnnotation> testDao = response.getTexts();
                 String data = testDao.get(0).getDescription();
 
-
-                Intent intent = new Intent(CameraActivity.this,
-                        DescriptionActivity.class);
+                Toast.makeText(this,"response ok", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, DescriptionActivity.class);
                 intent.putExtra("DAO", data);
                 startActivity(intent);
 
