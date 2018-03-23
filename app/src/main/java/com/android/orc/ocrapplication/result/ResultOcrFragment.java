@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.android.orc.ocrapplication.manager.HttpManager;
 import com.bumptech.glide.Glide;
@@ -77,21 +78,22 @@ public class ResultOcrFragment extends Fragment {
     }
 
     private void callQuery() {
-        Call<List<MenuItemDao>> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
-        call.enqueue(new Callback<List<MenuItemDao>>() {
+        Call<MenuDao> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
+        call.enqueue(new Callback<MenuDao>() {
             @Override
-            public void onResponse(Call<List<MenuItemDao>> call, Response<List<MenuItemDao>> response) {
+            public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
                 if (response.isSuccessful()) {
-                    List<MenuItemDao> dao = response.body();
+                    MenuDao dao = response.body();
                     //ดึง dao
-                    tvNameMenu.setText(dao.get(0).getName());
-
-
-//                    Toast.makeText(getContext(),
-//                            dao.get(5).getImgUrl(),
-//                            Toast.LENGTH_SHORT).show();
+                    tvNameMenu.setText(dao.getName());
+                    tvDescription.setText(dao.getDescription());
+                    tvIngredient.setText(dao.getIngredient());
+                    Glide.with(ResultOcrFragment.this)
+                            .load(dao.getImgUrl())
+                            .into(imgMenu);
                 } else {
                     try {
+                        tvIngredient.setText(response.errorBody().string());
                         Toast.makeText(getContext(),
                                 response.errorBody().string(),
                                 Toast.LENGTH_SHORT).show();
@@ -102,9 +104,43 @@ public class ResultOcrFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<MenuItemDao>> call, Throwable t) {
+            public void onFailure(Call<MenuDao> call, Throwable t) {
 
             }
         });
     }
+//        Call<MenuDao> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
+//        call.enqueue(new Callback<MenuDao>() {
+//            @Override
+//            public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
+//                if (response.isSuccessful()) {
+//                    MenuDao dao = response.body();
+//                    //ดึง dao
+////                    tvNameMenu.setText(dao.getName());
+//                    Toast.makeText(getContext(),
+//                            dao.getImgUrl(),
+//                            Toast.LENGTH_SHORT).show();
+//                } else {
+//                    try {
+//                        tvIngredient.setText(response.errorBody().string());
+//                        Toast.makeText(getContext(),
+//                                response.errorBody().string(),
+//                                Toast.LENGTH_SHORT).show();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<MenuDao> call, Throwable t) {
+//                tvIngredient.setText(t.toString());
+//                Toast.makeText(getContext(),
+//                        t.toString(),
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+
+
 }
