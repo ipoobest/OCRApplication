@@ -1,4 +1,4 @@
-package com.android.orc.ocrapplication.model.dao;
+package com.android.orc.ocrapplication.dao;
 
 /**
  * Created by j.poobest on 9/24/2017 AD.

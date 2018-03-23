@@ -31,6 +31,8 @@ import com.android.orc.ocrapplication.dashboard.DashBoardActivity;
 import com.android.orc.ocrapplication.description.DescriptionActivity;
 import com.android.orc.ocrapplication.description.DescriptionFragment;
 import com.android.orc.ocrapplication.result.ResultActivity;
+import com.android.orc.ocrapplication.result.ResultOcrActivity;
+import com.android.orc.ocrapplication.result.ResultOcrFragment;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.File;
@@ -283,8 +285,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 String data = testDao.get(0).getDescription();
 
                 Toast.makeText(this,"response ok", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, DescriptionActivity.class);
-                intent.putExtra("DAO", data);
+                Intent intent = new Intent(this, ResultOcrActivity.class);
+                intent.putExtra("stringRequest", data);
                 startActivity(intent);
 
 //                textView.setText(testDao.get(0).getDescription());
