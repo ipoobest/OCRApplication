@@ -1,4 +1,4 @@
-package com.android.orc.ocrapplication.model.dao;
+package com.android.orc.ocrapplication.dao;
 
 public class MenuListItem {
 

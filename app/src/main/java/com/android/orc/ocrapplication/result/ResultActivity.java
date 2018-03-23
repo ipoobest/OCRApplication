@@ -10,7 +10,7 @@ import com.android.orc.cloudvision.CVRequest;
 import com.android.orc.cloudvision.CVResponse;
 import com.android.orc.cloudvision.CloudVision;
 import com.android.orc.ocrapplication.R;
-import com.bumptech.glide.load.model.Headers;
+import com.android.orc.ocrapplication.dao.MenuItemDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ResultActivity extends AppCompatActivity implements CloudVision.Callback {
     private final static String apiKey = "AIzaSyA7NoRiu-JttOEg2pJVGuw2jEnalNHRDKY";
-
+//    MenuItemDao dao = getIntent().getParcelableExtra("dao");
 
     CVRequest.ImageContext.LatLongRect latLongRect;
     TextView textView;

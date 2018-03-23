@@ -12,4 +12,5 @@
     <string name="negative_off">negative_off</string>
     <string name="negative_on">negative on</string>
     <string name="negative_color_effect_unavailable">Negative color effect is unavailable on this device</string>
+    <string name="title_activity_result_ocr">ResultOCRActivity</string>
 </resources>

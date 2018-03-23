@@ -11,12 +11,16 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.callback.FragmentListener;
 import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.camera.CameraActivity;
+import com.android.orc.ocrapplication.dao.MenuItemDao;
+import com.android.orc.ocrapplication.result.ResultActivity;
+import com.android.orc.ocrapplication.result.ResultItemActivity;
 
 
 public class DashBoardActivity extends AppCompatActivity
-        implements ViewPager.OnPageChangeListener, View.OnClickListener {
+        implements ViewPager.OnPageChangeListener, View.OnClickListener, FragmentListener {
 
 
     //This is our viewPager
@@ -150,5 +154,13 @@ public class DashBoardActivity extends AppCompatActivity
                     CameraActivity.class);
             startActivity(intent);
         }
+    }
+
+    @Override
+    public void onMenuItemClick(MenuItemDao dao) {
+        Intent intent = new Intent(getBaseContext(), ResultItemActivity.class);
+
+        intent.putExtra("dao", dao);
+        startActivity(intent);
     }
 }
