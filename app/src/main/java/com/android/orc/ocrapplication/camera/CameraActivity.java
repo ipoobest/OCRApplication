@@ -52,12 +52,11 @@ import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
 @RuntimePermissions
-public class CameraActivity extends AppCompatActivity implements View.OnClickListener, CloudVision.Callback{
+public class CameraActivity extends AppCompatActivity implements View.OnClickListener, CloudVision.Callback {
 
     private final static String apiKey = "AIzaSyA7NoRiu-JttOEg2pJVGuw2jEnalNHRDKY";
     private static final int REQUEST_TAKE_PHOTO = 1;
     CVRequest.ImageContext.LatLongRect latLongRect;
-
 
 
     Button btnTakePhoto;
@@ -99,7 +98,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             startDetect();
 //            Intent intent = new Intent(CameraActivity.this,
 //                    ResultActivity.class);
-
 
 
 //            Toast.makeText(this, data, Toast.LENGTH_LONG).show();
@@ -152,7 +150,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
                 && resultCode == RESULT_OK
-               ) {
+                ) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             getContentResolver().notifyChange(Uri.parse(mCurrentPhotoPath), null);
             ContentResolver cr = getContentResolver();
@@ -164,13 +162,12 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 InputStream ims = new FileInputStream(file);
                 ivPreview.setImageBitmap(BitmapFactory.decodeStream(ims));
 
-                 bitmap = MediaStore.Images.Media.getBitmap(cr,imageUri);
+                bitmap = MediaStore.Images.Media.getBitmap(cr, imageUri);
 
 //                BitmapFactory.Options options = new BitmapFactory.Options();
 //                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 
 //                bitmap = BitmapFactory.decodeFile(imageUri.getPath(), options);
-
 
 
                 //CODE BELOW USE WITH VISION CLOUD
@@ -215,8 +212,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-
-
     private void dispatchTakePictureIntent() throws IOException {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -238,8 +233,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
                 CropImage.activity(photoURI).start(this);
-
-
 
 
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
@@ -284,7 +277,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 List<CVResponse.EntityAnnotation> testDao = response.getTexts();
                 String data = testDao.get(0).getDescription();
 
-                Toast.makeText(this,"response ok", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, data, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, ResultOcrActivity.class);
                 intent.putExtra("stringRequest", data);
                 startActivity(intent);
