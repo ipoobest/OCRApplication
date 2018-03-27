@@ -21,7 +21,6 @@ import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
 import com.android.orc.ocrapplication.model.ItemClickCallback;
 import com.android.orc.ocrapplication.model.dao.ReviewListItem;
-import com.android.orc.ocrapplication.model.dao.StringFacebook;
 import com.android.orc.ocrapplication.review.ReviewResultActivity;
 import com.facebook.Profile;
 import com.google.firebase.database.ChildEventListener;
@@ -52,7 +51,6 @@ public class ReviewFragment extends Fragment {
     EditText review;
     Button post;
     CardView cardView;
-    StringFacebook stringFacebook;
 
     public ReviewFragment() {
         super();

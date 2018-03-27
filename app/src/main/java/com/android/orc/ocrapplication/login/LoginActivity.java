@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dashboard.DashBoardActivity;
-import com.android.orc.ocrapplication.model.dao.StringFacebook;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -37,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView tv_name, tv_email, tv_id;
     String first_name="", last_name="", email="", id="";
-    StringFacebook stringFacebook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +103,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void displayUserInfo(JSONObject object) {
-        stringFacebook = new StringFacebook();
         try {
             first_name = object.getString("first_name");
             last_name = object.getString("last_name");
