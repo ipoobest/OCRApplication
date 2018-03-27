@@ -279,7 +279,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 String data = testDao.get(0).getDescription();
                 String request = data.replace("\n", "%0A");
                 Toast.makeText(this, request, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, MockActivity.class);
+
+                Intent intent = new Intent(this, ResultOcrActivity.class);
                 intent.putExtra("stringRequest", request);
                 startActivity(intent);
 

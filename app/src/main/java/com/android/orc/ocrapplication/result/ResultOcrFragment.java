@@ -86,7 +86,7 @@ public class ResultOcrFragment extends Fragment {
 //            FragmentListener fragmentListener = (FragmentListener) getActivity();
 //            fragmentListener.onMenuItemClick(dao);
 
-            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
 
         };
 
