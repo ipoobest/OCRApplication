@@ -2,7 +2,6 @@ package com.android.orc.ocrapplication.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import com.android.orc.ocrapplication.holder.MenuHolder;
 import com.android.orc.ocrapplication.model.ItemClickCallback;
 import com.android.orc.ocrapplication.model.dao.MenuListItem;
 import com.bumptech.glide.Glide;
-
 
 import java.util.List;
 
@@ -43,15 +41,6 @@ public class MenuListAdapter extends RecyclerView.Adapter<MenuHolder> {
             holder.textMenu.setText(menues.name);
             Glide.with(context).load(menues.getImgUrl()).into(holder.imgMenu);
 
-            holder.itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
-                @Override
-                public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-
-                    menu.add(holder.getAdapterPosition(), 0, 0, "abc");
-                    menu.add(holder.getAdapterPosition(), 1, 0, "def");
-
-                }
-            });
         }
     }
 

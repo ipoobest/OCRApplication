@@ -11,8 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.camera.CameraActivity;
+import com.android.orc.ocrapplication.login.LoginActivity;
+import com.facebook.AccessToken;
 
 
 public class DashBoardActivity extends AppCompatActivity
@@ -44,9 +45,9 @@ public class DashBoardActivity extends AppCompatActivity
     private void initInstance() {
 
         //Login Facebook
-//        if (AccessToken.getCurrentAccessToken() == null) {
-//            goLoginScreen();
-//        }
+        if (AccessToken.getCurrentAccessToken() == null) {
+            goLoginScreen();
+        }
 
 //        logout_facebook = findViewById(R.id.logout_facebook);
 
