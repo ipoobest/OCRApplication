@@ -105,6 +105,7 @@ public class ResultOcrFragment extends Fragment {
             public void onResponse(Call<List<MenuDao>> call, Response<List<MenuDao>> response) {
                 if (response.isSuccessful()) {
                     List<MenuDao> dao = response.body();
+                    Toast.makeText(getContext(), dao.get(1).getName(), Toast.LENGTH_LONG).show();
                     menuManager.setDao(dao);
                     adapter.setDao(dao);
                     adapter.notifyDataSetChanged();
