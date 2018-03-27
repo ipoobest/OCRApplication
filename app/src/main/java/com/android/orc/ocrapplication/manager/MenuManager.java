@@ -17,18 +17,18 @@ import java.util.List;
 public class MenuManager {
 
     private Context mContext;
-    private MenuDao dao;
+    private List<MenuDao> dao;
 //    MenuItemDao daoSaveState;
 
     public MenuManager() {
         mContext = Contextor.getInstance().getContext();
     }
 
-    public MenuDao getDao() {
+    public List<MenuDao> getDao() {
         return dao;
     }
 
-    public void setDao(MenuDao dao) {
+    public void setDao(List<MenuDao> dao) {
         this.dao = dao;
     }
 

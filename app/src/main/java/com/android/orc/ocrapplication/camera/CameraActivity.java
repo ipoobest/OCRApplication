@@ -26,6 +26,7 @@ import com.android.orc.cloudvision.CVRequest;
 import com.android.orc.cloudvision.CVResponse;
 import com.android.orc.cloudvision.CloudVision;
 import com.android.orc.ocrapplication.BuildConfig;
+import com.android.orc.ocrapplication.MockActivity.MockActivity;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dashboard.DashBoardActivity;
 import com.android.orc.ocrapplication.description.DescriptionActivity;
@@ -276,10 +277,10 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             if (response.isTextAvailable()) {
                 List<CVResponse.EntityAnnotation> testDao = response.getTexts();
                 String data = testDao.get(0).getDescription();
-
-                Toast.makeText(this, data, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, ResultOcrActivity.class);
-                intent.putExtra("stringRequest", data);
+                String request = data.replace("\n", "%0A");
+                Toast.makeText(this, request, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, MockActivity.class);
+                intent.putExtra("stringRequest", request);
                 startActivity(intent);
 
 //                textView.setText(testDao.get(0).getDescription());

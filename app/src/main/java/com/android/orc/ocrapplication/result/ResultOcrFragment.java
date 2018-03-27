@@ -44,11 +44,6 @@ public class ResultOcrFragment extends Fragment {
     private RecyclerView recyclerView;
     private ResultListAdapter adapter;
 
-    TextView nameMenu;
-    TextView description;
-    TextView ingredient;
-    ImageView imageView;
-
 
     public static ResultOcrFragment newInstance(String request) {
         ResultOcrFragment fragment = new ResultOcrFragment();
@@ -71,7 +66,7 @@ public class ResultOcrFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_result, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_ocr_result, container, false);
         initInstances(rootView);
         return rootView;
 
@@ -80,100 +75,58 @@ public class ResultOcrFragment extends Fragment {
     private void initInstances(View rootView) {
         menuManager = new MenuManager();
 
-        imageView = rootView.findViewById(R.id.image_menu_description);
-        nameMenu = rootView.findViewById(R.id.text_name_menu_description);
-        description = rootView.findViewById(R.id.text_description_description);
-        ingredient = rootView.findViewById(R.id.text_ingredient_menu_description);
-
-
         //find view by id
-//        recyclerView = rootView.findViewById(R.id.recycler_view_ocr_fragment);
-//
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-//
-//        RecyclerViewClickListener listener = (view, position) -> {
+        recyclerView = rootView.findViewById(R.id.recycler_view_ocr_fragment);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+
+        RecyclerViewClickListener listener = (view, position) -> {
 
 //            MenuDao dao = menuManager.getDao().get(position);
 //            FragmentListener fragmentListener = (FragmentListener) getActivity();
 //            fragmentListener.onMenuItemClick(dao);
 
-//            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
 
-//        };
-//
-//        adapter = new ResultListAdapter(getContext(), listener);
-//        recyclerView.setAdapter(adapter);
-//
+        };
+
+        adapter = new ResultListAdapter(getContext(), listener);
+        recyclerView.setAdapter(adapter);
+
         callQuery();
 
     }
 
     //load data
     private void callQuery() {
-        Call<MenuDao> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
-        call.enqueue(new Callback<MenuDao>() {
+        Call<List<MenuDao>> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
+        call.enqueue(new Callback<List<MenuDao>>() {
             @Override
-            public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
+            public void onResponse(Call<List<MenuDao>> call, Response<List<MenuDao>> response) {
                 if (response.isSuccessful()) {
-                    MenuDao dao = response.body();
-//                    menuManager.setDao(dao);
-//                    adapter.setDao(dao);
-//                    adapter.notifyDataSetChanged();
-                    Glide.with(getContext())
-                            .load(dao.getImgUrl())
-                            .into(imageView);
-
-                    nameMenu.setText(dao.getName());
-                    description.setText(dao.getDescription());
-                    ingredient.setText(dao.getIngredient());
-                    Toast.makeText(getContext(),
-                            dao.getName(),
-                            Toast.LENGTH_SHORT).show();
+                    List<MenuDao> dao = response.body();
+                    menuManager.setDao(dao);
+                    adapter.setDao(dao);
+                    adapter.notifyDataSetChanged();
                 } else {
-                    Toast.makeText(getContext(),
-                            response.errorBody().toString(),
-                            Toast.LENGTH_SHORT).show();
+                    try {
+                        Toast.makeText(getContext(),
+                                response.errorBody().string(),
+                                Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<MenuDao> call, Throwable t) {
-
+            public void onFailure(Call<List<MenuDao>> call, Throwable t) {
+                Toast.makeText(getContext(),
+                        t.toString(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
-    }
-//        Call<MenuDao> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
-//        call.enqueue(new Callback<MenuDao>() {
-//            @Override
-//            public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
-//                if (response.isSuccessful()) {
-//                    MenuDao dao = response.body();
-//                    //ดึง dao
-////                    tvNameMenu.setText(dao.getName());
-//                    Toast.makeText(getContext(),
-//                            dao.getImgUrl(),
-//                            Toast.LENGTH_SHORT).show();
-//                } else {
-//                    try {
-//                        tvIngredient.setText(response.errorBody().string());
-//                        Toast.makeText(getContext(),
-//                                response.errorBody().string(),
-//                                Toast.LENGTH_SHORT).show();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<MenuDao> call, Throwable t) {
-//                tvIngredient.setText(t.toString());
-//                Toast.makeText(getContext(),
-//                        t.toString(),
-//                        Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
+    }
 
 }
