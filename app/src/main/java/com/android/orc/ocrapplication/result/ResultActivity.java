@@ -10,15 +10,15 @@ import com.android.orc.cloudvision.CVRequest;
 import com.android.orc.cloudvision.CVResponse;
 import com.android.orc.cloudvision.CloudVision;
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.dao.MenuItemDao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.Headers;
 
-public class ResultActivity extends AppCompatActivity implements CloudVision.Callback{
+public class ResultActivity extends AppCompatActivity implements CloudVision.Callback {
     private final static String apiKey = "AIzaSyA7NoRiu-JttOEg2pJVGuw2jEnalNHRDKY";
-
+//    MenuItemDao dao = getIntent().getParcelableExtra("dao");
 
     CVRequest.ImageContext.LatLongRect latLongRect;
     TextView textView;
@@ -88,13 +88,20 @@ public class ResultActivity extends AppCompatActivity implements CloudVision.Cal
     }
 
 
+
     @Override
-    public void onImageDetectionSuccess(boolean isSuccess, int statusCode, Headers headers, CVResponse cvResponse) {
+    public void onImageDetectionSuccess(boolean isSuccess, int statusCode, okhttp3.Headers headers, CVResponse cvResponse) {
         setCVResponse(cvResponse);
+
     }
 
     @Override
     public void onImageDetectionFailure(Throwable t) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }

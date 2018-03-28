@@ -21,7 +21,7 @@ public class OrcApplication extends Application {
         // Facebook Login
         AppEventsLogger.activateApp(this);
     }
-
+//Hello world
     @Override
     public void onTerminate() {
         super.onTerminate();
