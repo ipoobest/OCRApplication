@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.callback.FragmentListener;
+import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.camera.CameraActivity;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
@@ -162,5 +163,10 @@ public class DashBoardActivity extends AppCompatActivity
 
         intent.putExtra("dao", dao);
         startActivity(intent);
+    }
+
+    @Override
+    public void onMenuItemClick(MenuDao dao) {
+
     }
 }

@@ -3,17 +3,28 @@ package com.android.orc.ocrapplication.result;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.adapter.DashBoardAdapter;
+import com.android.orc.ocrapplication.adapter.ResultListAdapter;
+import com.android.orc.ocrapplication.callback.FragmentListener;
+import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
 import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.android.orc.ocrapplication.manager.HttpManager;
+import com.android.orc.ocrapplication.manager.MenuListManager;
+import com.android.orc.ocrapplication.manager.MenuManager;
 import com.bumptech.glide.Glide;
 
 import java.io.IOException;
@@ -29,17 +40,17 @@ import retrofit2.Response;
 
 public class ResultOcrFragment extends Fragment {
 
-    ImageView imgMenu;
-    TextView tvNameMenu;
-    TextView tvDescription;
-    TextView tvIngredient;
-
     String requestMenu;
+    private RecyclerView recyclerView;
+    private ResultListAdapter adapter;
+    MenuManager menuManager;
 
-    public static ResultOcrFragment newInstance(String requset) {
+
+
+    public static ResultOcrFragment newInstance(String request) {
         ResultOcrFragment fragment = new ResultOcrFragment();
         Bundle args = new Bundle();
-        args.putString("stringRequest", requset);
+        args.putString("stringRequest", request);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,43 +68,54 @@ public class ResultOcrFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_result, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_ocr_result, container, false);
         initInstances(rootView);
         return rootView;
 
     }
 
     private void initInstances(View rootView) {
+        menuManager = new MenuManager();
+
         //find view by id
-        imgMenu = rootView.findViewById(R.id.image_menu_description);
-        tvNameMenu = rootView.findViewById(R.id.text_name_menu_description);
-        tvDescription = rootView.findViewById(R.id.text_description_description);
-        tvIngredient = rootView.findViewById(R.id.text_ingredient_menu_description);
+        recyclerView = rootView.findViewById(R.id.recycler_view_ocr_fragment);
 
-        callQuery();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
-//
+        RecyclerViewClickListener listener = (view, position) -> {
+
+//            MenuDao dao = menuManager.getDao().get(position);
+//            FragmentListener fragmentListener = (FragmentListener) getActivity();
+//            fragmentListener.onMenuItemClick(dao);
+
+            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+
+        };
+
+        adapter = new ResultListAdapter(getContext(), listener);
+
+        recyclerView.setAdapter(adapter);
+                callQuery();
+
 
 
     }
 
+//    load data
     private void callQuery() {
-        Call<MenuDao> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
-        call.enqueue(new Callback<MenuDao>() {
+        Call<List<MenuDao>> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
+        call.enqueue(new Callback<List<MenuDao>>() {
             @Override
-            public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
+            public void onResponse(Call<List<MenuDao>> call, Response<List<MenuDao>> response) {
                 if (response.isSuccessful()) {
-                    MenuDao dao = response.body();
-                    //ดึง dao
-                    tvNameMenu.setText(dao.getName());
-                    tvDescription.setText(dao.getDescription());
-                    tvIngredient.setText(dao.getIngredient());
-                    Glide.with(ResultOcrFragment.this)
-                            .load(dao.getImgUrl())
-                            .into(imgMenu);
+                    List<MenuDao> dao = response.body();
+                    Log.d("Dao MenuItem", dao.toString());
+                    menuManager.setDao(dao);
+
+                    adapter.setDao(dao);
+                    adapter.notifyDataSetChanged();
                 } else {
                     try {
-                        tvIngredient.setText(response.errorBody().string());
                         Toast.makeText(getContext(),
                                 response.errorBody().string(),
                                 Toast.LENGTH_SHORT).show();
@@ -104,43 +126,13 @@ public class ResultOcrFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<MenuDao> call, Throwable t) {
-
+            public void onFailure(Call<List<MenuDao>> call, Throwable t) {
+                Toast.makeText(getContext(),
+                        t.toString(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
-    }
-//        Call<MenuDao> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
-//        call.enqueue(new Callback<MenuDao>() {
-//            @Override
-//            public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
-//                if (response.isSuccessful()) {
-//                    MenuDao dao = response.body();
-//                    //ดึง dao
-////                    tvNameMenu.setText(dao.getName());
-//                    Toast.makeText(getContext(),
-//                            dao.getImgUrl(),
-//                            Toast.LENGTH_SHORT).show();
-//                } else {
-//                    try {
-//                        tvIngredient.setText(response.errorBody().string());
-//                        Toast.makeText(getContext(),
-//                                response.errorBody().string(),
-//                                Toast.LENGTH_SHORT).show();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<MenuDao> call, Throwable t) {
-//                tvIngredient.setText(t.toString());
-//                Toast.makeText(getContext(),
-//                        t.toString(),
-//                        Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
+    }
 
 }
