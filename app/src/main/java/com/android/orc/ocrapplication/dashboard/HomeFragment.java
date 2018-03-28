@@ -87,6 +87,8 @@ public class HomeFragment extends Fragment
     @SuppressWarnings("UnusedParameters")
     private void initInstances(View rootView, Bundle savedInstanceState) {
         menuListManager = new MenuListManager();
+
+
         // set floatingView
         mDrawer = rootView.findViewById(R.id.drawer_layout);
         mSearchView = rootView.findViewById(R.id.floating_search_view);
