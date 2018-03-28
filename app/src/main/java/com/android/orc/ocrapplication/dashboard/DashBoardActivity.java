@@ -159,14 +159,14 @@ public class DashBoardActivity extends AppCompatActivity
 
     @Override
     public void onMenuItemClick(MenuItemDao dao) {
-        Intent intent = new Intent(getBaseContext(), ResultItemActivity.class);
+        Intent intent = new Intent(this, ResultItemActivity.class);
 
         intent.putExtra("dao", dao);
         startActivity(intent);
     }
 
     @Override
-    public void onMenuItemClick(MenuDao dao) {
+    public void onMenuClick(MenuDao dao) {
 
     }
 }

@@ -11,5 +11,5 @@ import com.android.orc.ocrapplication.dao.MenuItemDao;
 public interface FragmentListener {
     void onMenuItemClick(MenuItemDao dao);
 
-    void onMenuItemClick(MenuDao dao);
+    void onMenuClick(MenuDao dao);
 }

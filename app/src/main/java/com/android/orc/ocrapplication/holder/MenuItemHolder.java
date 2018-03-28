@@ -1,6 +1,5 @@
 package com.android.orc.ocrapplication.holder;
 
-import android.annotation.SuppressLint;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,7 +17,7 @@ public class MenuItemHolder extends RecyclerView.ViewHolder implements View.OnCl
     ImageView imgMenu;
     TextView nameMenu;
 
-    RecyclerViewClickListener mListener;
+    private RecyclerViewClickListener mListener;
 
     public ImageView getImgMenu() {
         return imgMenu;
@@ -28,9 +27,10 @@ public class MenuItemHolder extends RecyclerView.ViewHolder implements View.OnCl
         return nameMenu;
     }
 
-    public MenuItemHolder(View itemView, RecyclerViewClickListener mListener) {
+    public MenuItemHolder(View itemView, RecyclerViewClickListener listener) {
         super(itemView);
 
+        mListener = listener;
         nameMenu = itemView.findViewById(R.id.tv_menu_item);
         imgMenu = itemView.findViewById(R.id.img_menu_item);
         itemView.setOnClickListener(this);

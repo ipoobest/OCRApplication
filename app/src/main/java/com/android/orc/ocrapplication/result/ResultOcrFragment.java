@@ -84,9 +84,9 @@ public class ResultOcrFragment extends Fragment {
 
         RecyclerViewClickListener listener = (view, position) -> {
 
-//            MenuDao dao = menuManager.getDao().get(position);
-//            FragmentListener fragmentListener = (FragmentListener) getActivity();
-//            fragmentListener.onMenuItemClick(dao);
+            MenuDao dao = menuManager.getDao().get(position);
+            FragmentListener fragmentListener = (FragmentListener) getActivity();
+            fragmentListener.onMenuClick(dao);
 
             Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
 
@@ -95,7 +95,7 @@ public class ResultOcrFragment extends Fragment {
         adapter = new ResultListAdapter(getContext(), listener);
 
         recyclerView.setAdapter(adapter);
-                callQuery();
+        callQuery();
 
 
 
@@ -109,9 +109,7 @@ public class ResultOcrFragment extends Fragment {
             public void onResponse(Call<List<MenuDao>> call, Response<List<MenuDao>> response) {
                 if (response.isSuccessful()) {
                     List<MenuDao> dao = response.body();
-                    Log.d("Dao MenuItem", dao.toString());
                     menuManager.setDao(dao);
-
                     adapter.setDao(dao);
                     adapter.notifyDataSetChanged();
                 } else {
