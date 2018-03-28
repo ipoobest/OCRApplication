@@ -1,5 +1,7 @@
 package com.android.orc.ocrapplication.manager;
 
+import com.android.orc.ocrapplication.model.util.ApiKey;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -26,13 +28,14 @@ public class HttpManager {
 
     private HttpManager() {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        //TODO: change Body to HEADERS
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(logging)
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://128.199.154.30:3000/")
+                .baseUrl(ApiKey.BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
