@@ -60,7 +60,7 @@ dependencies {
     implementation 'com.android.support:cardview-v7:27.1.0'
     implementation 'com.google.android.gms:play-services-maps:11.8.0'
     annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.1.3'
-    testCompile 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.12'
     compile project(path: ':cloudvision')
 }
 apply plugin: 'com.google.gms.google-services'
