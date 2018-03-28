@@ -277,11 +277,11 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             if (response.isTextAvailable()) {
                 List<CVResponse.EntityAnnotation> testDao = response.getTexts();
                 String data = testDao.get(0).getDescription();
-                String request = data.replace("\n", "%0A");
-                Toast.makeText(this, request, Toast.LENGTH_LONG).show();
+//                String request = data.replace("\n", "%0A");
+//                Toast.makeText(this, request, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(this, ResultOcrActivity.class);
-                intent.putExtra("stringRequest", request);
+                intent.putExtra("stringRequest", data);
                 startActivity(intent);
 
 //                textView.setText(testDao.get(0).getDescription());

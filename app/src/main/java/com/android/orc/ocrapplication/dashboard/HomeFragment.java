@@ -10,6 +10,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -121,6 +122,7 @@ public class HomeFragment extends Fragment
 
                 if (response.isSuccessful()) {
                     List<MenuItemDao> dao = response.body();
+                    Log.d("Hello", dao.get(0).getDescription());
                     //ดึง dao
                     menuListManager.setDao(dao);
                     adapter.setDao(dao);

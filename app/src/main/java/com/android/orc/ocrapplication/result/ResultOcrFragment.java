@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,9 +41,10 @@ import retrofit2.Response;
 public class ResultOcrFragment extends Fragment {
 
     String requestMenu;
-    MenuManager menuManager;
     private RecyclerView recyclerView;
     private ResultListAdapter adapter;
+    MenuManager menuManager;
+
 
 
     public static ResultOcrFragment newInstance(String request) {
@@ -86,18 +88,20 @@ public class ResultOcrFragment extends Fragment {
 //            FragmentListener fragmentListener = (FragmentListener) getActivity();
 //            fragmentListener.onMenuItemClick(dao);
 
-//            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
 
         };
 
         adapter = new ResultListAdapter(getContext(), listener);
-        recyclerView.setAdapter(adapter);
 
-        callQuery();
+        recyclerView.setAdapter(adapter);
+                callQuery();
+
+
 
     }
 
-    //load data
+//    load data
     private void callQuery() {
         Call<List<MenuDao>> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
         call.enqueue(new Callback<List<MenuDao>>() {
@@ -105,8 +109,9 @@ public class ResultOcrFragment extends Fragment {
             public void onResponse(Call<List<MenuDao>> call, Response<List<MenuDao>> response) {
                 if (response.isSuccessful()) {
                     List<MenuDao> dao = response.body();
-                    Toast.makeText(getContext(), dao.get(1).getName(), Toast.LENGTH_LONG).show();
+                    Log.d("Dao MenuItem", dao.toString());
                     menuManager.setDao(dao);
+
                     adapter.setDao(dao);
                     adapter.notifyDataSetChanged();
                 } else {

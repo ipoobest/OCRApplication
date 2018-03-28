@@ -37,10 +37,8 @@ public class ResultListAdapter extends RecyclerView.Adapter<MenuItemHolder> {
         this.dao = dao;
     }
 
-    @NonNull
     @Override
-    public MenuItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+    public MenuItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.menu_item, parent, false);
@@ -53,12 +51,14 @@ public class ResultListAdapter extends RecyclerView.Adapter<MenuItemHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MenuItemHolder holder, int position) {
-        List<MenuDao> item = dao;
-        holder.getNameMenu().setText(item.get(position).getName());
+        MenuDao item = dao.get(position);
+        holder.getNameMenu().setText(item.getName());
 
         Glide.with(context)
-                .load(item.get(position).getImgUrl())
+                .load(item.getImgUrl())
                 .into(holder.getImgMenu());
+
+
 
     }
 
