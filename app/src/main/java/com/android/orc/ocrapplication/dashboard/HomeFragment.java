@@ -217,7 +217,6 @@ public class HomeFragment extends Fragment
         startActivity(intent);
     }
 
-    //TODO
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

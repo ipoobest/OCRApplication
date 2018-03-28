@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.android.orc.ocrapplication.model.util.ApiKey;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.GeoDataClient;
@@ -75,8 +76,8 @@ public class MapFragment extends Fragment
     private Location mLastKnownLocation;
 
     // Keys for storing activity state.
-    private static final String KEY_CAMERA_POSITION = "camera_position";
-    private static final String KEY_LOCATION = "location";
+//    private static final String KEY_CAMERA_POSITION = "camera_position";
+//    private static final String KEY_LOCATION = "location";
 
     // Used for selecting the current place.
     private static final int M_MAX_ENTRIES = 5;
@@ -127,8 +128,8 @@ public class MapFragment extends Fragment
         //       in onSavedInstanceState
         // Retrieve location and camera position from saved instance state.
         if (savedInstanceState != null) {
-            mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
-            mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
+            mLastKnownLocation = savedInstanceState.getParcelable(ApiKey.KEY_LOCATION);
+            mCameraPosition = savedInstanceState.getParcelable(ApiKey.KEY_CAMERA_POSITION);
         }
 
 
@@ -425,8 +426,8 @@ public class MapFragment extends Fragment
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         if (mMap != null) {
-            outState.putParcelable(KEY_CAMERA_POSITION, mMap.getCameraPosition());
-            outState.putParcelable(KEY_LOCATION, mLastKnownLocation);
+            outState.putParcelable(ApiKey.KEY_CAMERA_POSITION, mMap.getCameraPosition());
+            outState.putParcelable(ApiKey.KEY_LOCATION, mLastKnownLocation);
             super.onSaveInstanceState(outState);
         }
         // Save Instance (Fragment level's variables) State here
