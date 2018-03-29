@@ -79,7 +79,6 @@
         <activity android:name=".result.ResultActivity" />
         <activity android:name=".result.ResultItemActivity" />
         <activity android:name=".result.ResultOcrActivity" />
-        <activity android:name=".MockActivity.MockActivity" />
         <activity android:name=".review.ReviewActivity"/>
     </application>
 
