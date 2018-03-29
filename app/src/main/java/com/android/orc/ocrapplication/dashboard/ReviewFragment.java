@@ -23,11 +23,11 @@ import com.android.orc.ocrapplication.model.ItemClickCallback;
 import com.android.orc.ocrapplication.model.dao.ReviewListItem;
 import com.android.orc.ocrapplication.review.ReviewResultActivity;
 import com.facebook.Profile;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -186,36 +186,16 @@ public class ReviewFragment extends Fragment {
     }
 
     private void updateList() {
-        myRef.addChildEventListener(new ChildEventListener() {
+
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                listResult.add(dataSnapshot.getValue(ReviewListItem.class));
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                listResult.removeAll(listResult);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    ReviewListItem list = snapshot.getValue(ReviewListItem.class);
+                    listResult.add(list);
+                }
                 adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                ReviewListItem listItem = dataSnapshot.getValue(ReviewListItem.class);
-
-                int index = getItemIndex(listItem);
-
-                listResult.set(index, listItem);
-                adapter.notifyItemChanged(index);
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                ReviewListItem listItem = dataSnapshot.getValue(ReviewListItem.class);
-
-                int index = getItemIndex(listItem);
-
-                listResult.remove(index);
-                adapter.notifyItemRemoved(index);
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
@@ -223,6 +203,44 @@ public class ReviewFragment extends Fragment {
 
             }
         });
+
+//        myRef.addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+//                listResult.add(dataSnapshot.getValue(ReviewListItem.class));
+//                adapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+//                ReviewListItem listItem = dataSnapshot.getValue(ReviewListItem.class);
+//
+//                int index = getItemIndex(listItem);
+//
+//                listResult.set(index, listItem);
+//                adapter.notifyItemChanged(index);
+//            }
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {
+//                ReviewListItem listItem = dataSnapshot.getValue(ReviewListItem.class);
+//
+//                int index = getItemIndex(listItem);
+//
+//                listResult.remove(index);
+//                adapter.notifyItemRemoved(index);
+//            }
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 
     private int getItemIndex(ReviewListItem review) {
