@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.orc.ocrapplication">
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -22,9 +22,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA3cdT7s16tSlcwkmAB6iiGXsTTLG-aIX8" />
         <activity
             android:name=".dashboard.DashBoardActivity"
             android:windowSoftInputMode="adjustPan">
@@ -77,8 +74,7 @@
         <activity android:name=".result.ResultActivity" />
         <activity android:name=".review.ReviewResultActivity" />
         <activity android:name=".result.ResultItemActivity" />
-        <activity android:name=".result.ResultOcrActivity" />
-        <activity android:name=".MockActivity.MockActivity"></activity>
+        <activity android:name=".result.ResultOcrActivity"></activity>
     </application>
 
 </manifest>

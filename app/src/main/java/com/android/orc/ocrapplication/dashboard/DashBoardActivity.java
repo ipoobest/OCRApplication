@@ -15,7 +15,6 @@ import com.android.orc.ocrapplication.camera.CameraActivity;
 import com.android.orc.ocrapplication.login.LoginActivity;
 import com.facebook.AccessToken;
 import com.android.orc.ocrapplication.callback.FragmentListener;
-import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.camera.CameraActivity;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
@@ -162,14 +161,9 @@ public class DashBoardActivity extends AppCompatActivity
 
     @Override
     public void onMenuItemClick(MenuItemDao dao) {
-        Intent intent = new Intent(this, ResultItemActivity.class);
+        Intent intent = new Intent(getBaseContext(), ResultItemActivity.class);
 
         intent.putExtra("dao", dao);
         startActivity(intent);
-    }
-
-    @Override
-    public void onMenuClick(MenuDao dao) {
-
     }
 }

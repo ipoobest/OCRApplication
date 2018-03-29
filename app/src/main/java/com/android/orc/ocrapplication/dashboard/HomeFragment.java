@@ -10,7 +10,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -87,8 +86,6 @@ public class HomeFragment extends Fragment
     @SuppressWarnings("UnusedParameters")
     private void initInstances(View rootView, Bundle savedInstanceState) {
         menuListManager = new MenuListManager();
-
-
         // set floatingView
         mDrawer = rootView.findViewById(R.id.drawer_layout);
         mSearchView = rootView.findViewById(R.id.floating_search_view);
@@ -124,7 +121,6 @@ public class HomeFragment extends Fragment
 
                 if (response.isSuccessful()) {
                     List<MenuItemDao> dao = response.body();
-                    Log.d("Hello", dao.get(0).getDescription());
                     //ดึง dao
                     menuListManager.setDao(dao);
                     adapter.setDao(dao);
@@ -217,6 +213,7 @@ public class HomeFragment extends Fragment
         startActivity(intent);
     }
 
+    //TODO
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

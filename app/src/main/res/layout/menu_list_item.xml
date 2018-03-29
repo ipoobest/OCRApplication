@@ -3,27 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:paddingTop="0.25dp"
     android:paddingBottom="0.5dp"
     android:paddingLeft="0.5dp"
     android:paddingRight="0.5dp"
 
-    android:paddingTop="0.25dp">
+    android:layout_height="wrap_content">
 
     <ImageView
+        android:adjustViewBounds="true"
         android:id="@+id/menu_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         tools:src="@drawable/maxresdefault" />
 
     <TextView
+        android:textColor="#fff"
         android:id="@+id/menu_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
         android:text="menu_neme"
-        android:textColor="#fff"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:layout_gravity="center_horizontal|bottom" />
 </FrameLayout>

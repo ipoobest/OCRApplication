@@ -11,13 +11,13 @@ import com.android.orc.cloudvision.CVResponse;
 import com.android.orc.cloudvision.CloudVision;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
-import com.android.orc.ocrapplication.model.util.ApiKey;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ResultActivity extends AppCompatActivity implements CloudVision.Callback {
+    private final static String apiKey = "AIzaSyA7NoRiu-JttOEg2pJVGuw2jEnalNHRDKY";
 //    MenuItemDao dao = getIntent().getParcelableExtra("dao");
 
     CVRequest.ImageContext.LatLongRect latLongRect;
@@ -47,7 +47,7 @@ public class ResultActivity extends AppCompatActivity implements CloudVision.Cal
         textView.setText(data);
 
         CVRequest request = createCVRequest(data);
-        CloudVision.runImageDetection(ApiKey.CLOUD_VISION_API_KEY, request, this);
+        CloudVision.runImageDetection(apiKey, request, this);
 
     }
 
