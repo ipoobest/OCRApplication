@@ -1,6 +1,7 @@
 package com.android.orc.ocrapplication.callback;
 
 
+import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
 
 /**
@@ -9,4 +10,6 @@ import com.android.orc.ocrapplication.dao.MenuItemDao;
 
 public interface FragmentListener {
     void onMenuItemClick(MenuItemDao dao);
+
+    void onMenuClick(MenuDao dao);
 }

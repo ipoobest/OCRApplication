@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
 
 

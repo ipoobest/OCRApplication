@@ -4,40 +4,37 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
 
-
 /**
- * Created by j.poobest on 19/3/2018 AD.
+ * Created by j.poobest on 24/3/2018 AD.
  */
 
-public class MenuListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class MenuItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    ImageView menuImage;
-    TextView menuName;
-
+    ImageView imgMenu;
+    TextView nameMenu;
 
     private RecyclerViewClickListener mListener;
 
-    public ImageView getMenuImage() {
-        return menuImage;
+    public ImageView getImgMenu() {
+        return imgMenu;
     }
 
-    public TextView getMenuName() {
-        return menuName;
+    public TextView getNameMenu() {
+        return nameMenu;
     }
 
-    public MenuListHolder(View itemView, RecyclerViewClickListener listener) {
-
+    public MenuItemHolder(View itemView, RecyclerViewClickListener listener) {
         super(itemView);
+
         mListener = listener;
-        menuImage = itemView.findViewById(R.id.menu_image);
-        menuName = itemView.findViewById(R.id.menu_name);
+        nameMenu = itemView.findViewById(R.id.tv_menu_item);
+        imgMenu = itemView.findViewById(R.id.img_menu_item);
         itemView.setOnClickListener(this);
-
     }
-
 
     @Override
     public void onClick(View view) {
