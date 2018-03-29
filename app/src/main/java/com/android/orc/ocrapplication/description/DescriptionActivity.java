@@ -6,9 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.callback.FragmentListener;
-import com.android.orc.ocrapplication.dao.MenuDao;
-import com.android.orc.ocrapplication.dao.MenuItemDao;
 
 
 public class DescriptionActivity extends AppCompatActivity {
@@ -19,7 +16,9 @@ public class DescriptionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_description);
 
-        MenuDao dao = getIntent().getParcelableExtra("menudao");
+        Intent intent = getIntent();
+        String dao = intent.getStringExtra("dao");
+        Toast.makeText(this, "DES activity", Toast.LENGTH_LONG).show();
 
 
         if (savedInstanceState == null) {
@@ -28,6 +27,5 @@ public class DescriptionActivity extends AppCompatActivity {
                     .commit();
         }
     }
-
 
 }

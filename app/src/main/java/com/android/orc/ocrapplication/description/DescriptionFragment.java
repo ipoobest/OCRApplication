@@ -11,9 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
-import com.android.orc.ocrapplication.result.ResultFragment;
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,17 +33,16 @@ public class DescriptionFragment extends Fragment {
     TextView tvDescription;
     TextView tvIngredient;
 
-
-    MenuDao dao;
+    MenuItemDao dao;
 
     public DescriptionFragment() {
         super();
     }
 
-    public static DescriptionFragment newInstance(MenuDao dao) {
+    public static DescriptionFragment newInstance(String dao) {
         DescriptionFragment fragment = new DescriptionFragment();
         Bundle args = new Bundle();
-        args.putParcelable("dao", dao);
+        args.putString("dao", dao);
         fragment.setArguments(args);
         return fragment;
     }
@@ -54,7 +51,6 @@ public class DescriptionFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dao = getArguments().getParcelable("dao");
         init(savedInstanceState);
 
         if (savedInstanceState != null)
@@ -69,7 +65,7 @@ public class DescriptionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_result, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_description, container, false);
 
         initInstances(rootView, savedInstanceState);
         return rootView;
