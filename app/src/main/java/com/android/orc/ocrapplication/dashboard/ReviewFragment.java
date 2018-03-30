@@ -204,57 +204,8 @@ public class ReviewFragment extends Fragment {
             }
         });
 
-//        myRef.addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                listResult.add(dataSnapshot.getValue(ReviewListItem.class));
-//                adapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//                ReviewListItem listItem = dataSnapshot.getValue(ReviewListItem.class);
-//
-//                int index = getItemIndex(listItem);
-//
-//                listResult.set(index, listItem);
-//                adapter.notifyItemChanged(index);
-//            }
-//
-//            @Override
-//            public void onChildRemoved(DataSnapshot dataSnapshot) {
-//                ReviewListItem listItem = dataSnapshot.getValue(ReviewListItem.class);
-//
-//                int index = getItemIndex(listItem);
-//
-//                listResult.remove(index);
-//                adapter.notifyItemRemoved(index);
-//            }
-//
-//            @Override
-//            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//
-//            }
-//        });
     }
 
-    private int getItemIndex(ReviewListItem review) {
-
-        int index = -1;
-
-        for (int i = 0; i < listResult.size(); i++) {
-            if (listResult.get(i).key.equals(review.key)) {
-                index = i;
-                break;
-            }
-        }
-        return index;
-    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
