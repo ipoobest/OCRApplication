@@ -128,8 +128,9 @@ public class ReviewFragment extends Fragment {
 
         ItemClickCallback listener = (view, position) -> {
             Intent intent = new Intent(getActivity(), ReviewActivity.class);
-//            Toast.makeText(getContext(),""+listResult.get(position).getName(),Toast.LENGTH_LONG).show();
-            intent.putExtra("recyclerReview", listResult.get(position).getKey());
+//            Toast.makeText(getContext(),listResult.get(position).getFacebookName() + " " + listResult.get(position).getReview(),Toast.LENGTH_LONG).show();
+            intent.putExtra("recyclerReviewName", listResult.get(position).getFacebookName());
+            intent.putExtra("recyclerReviewReview",listResult.get(position).getReview());
             startActivity(intent);
         };
 
