@@ -8,6 +8,7 @@ import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dao.ReviewListItem;
 import com.android.orc.ocrapplication.model.ItemClickCallback;
 
+
 public class ReviewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private ItemClickCallback mListener;
@@ -31,6 +32,7 @@ public class ReviewHolder extends RecyclerView.ViewHolder implements View.OnClic
         this.review = review;
     }
 
+
     public ReviewHolder(View itemView, ItemClickCallback listener) {
         super(itemView);
 
@@ -52,5 +54,4 @@ public class ReviewHolder extends RecyclerView.ViewHolder implements View.OnClic
         this.facebookName.setText(reviews.facebookName);
         this.review.setText(reviews.review);
     }
-
 }

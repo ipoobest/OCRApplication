@@ -19,7 +19,6 @@ import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
-import com.android.orc.ocrapplication.dao.ReviewListItem;
 import com.android.orc.ocrapplication.model.ItemClickCallback;
 import com.android.orc.ocrapplication.review.ReviewActivity;
 import com.facebook.Profile;
@@ -28,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.android.orc.ocrapplication.dao.ReviewListItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +59,7 @@ public class ReviewFragment extends Fragment {
     public static ReviewFragment newInstance() {
         ReviewFragment fragment = new ReviewFragment();
         Bundle args = new Bundle();
+//        args.putParcelable("objectFB",stringFacebook);
         fragment.setArguments(args);
         return fragment;
     }
@@ -72,6 +73,7 @@ public class ReviewFragment extends Fragment {
 
         if (savedInstanceState != null)
             onRestoreInstanceState(savedInstanceState);
+
     }
 
     @Override
@@ -88,9 +90,6 @@ public class ReviewFragment extends Fragment {
 
     @SuppressWarnings("UnusedParameters")
     private void initInstances(View rootView, Bundle savedInstanceState) {
-        // Init 'View' instance(s) with rootView.findViewById here
-        // Note: State of variable initialized here could not be saved
-        //       in onSavedInstanceState
         //set firebase recyclerview
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("review");
@@ -200,8 +199,6 @@ public class ReviewFragment extends Fragment {
             }
         });
     }
-
-
 
 
 

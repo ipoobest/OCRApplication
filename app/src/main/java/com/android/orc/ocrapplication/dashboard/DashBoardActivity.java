@@ -11,6 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.camera.CameraActivity;
+import com.android.orc.ocrapplication.login.LoginActivity;
+import com.facebook.AccessToken;
 import com.android.orc.ocrapplication.callback.FragmentListener;
 import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.camera.CameraActivity;
