@@ -22,6 +22,8 @@ import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
 import com.android.orc.ocrapplication.dao.ReviewListItem;
 import com.android.orc.ocrapplication.model.ItemClickCallback;
 import com.android.orc.ocrapplication.review.ReviewActivity;
+import com.android.orc.ocrapplication.model.dao.ReviewListItem;
+import com.android.orc.ocrapplication.review.ReviewResultActivity;
 import com.facebook.Profile;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
