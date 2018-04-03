@@ -31,6 +31,7 @@ public class ReviewHolder extends RecyclerView.ViewHolder implements View.OnClic
         this.review = review;
     }
 
+
     public ReviewHolder(View itemView, ItemClickCallback listener) {
         super(itemView);
 

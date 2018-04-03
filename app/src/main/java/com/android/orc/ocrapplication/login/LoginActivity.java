@@ -56,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         accessTokenTracker.startTracking();
         profileTracker.startTracking();
 
+        accessTokenTracker.startTracking();
+        profileTracker.startTracking();
         login_facebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -64,6 +66,9 @@ public class LoginActivity extends AppCompatActivity {
                 Profile profile = Profile.getCurrentProfile();
                 tv_name.setText(constructWelcomeMessage(profile));
                 goMainScreen();
+
+
+
             }
 
             @Override
@@ -131,7 +136,6 @@ public class LoginActivity extends AppCompatActivity {
         };
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -148,8 +152,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
 }

@@ -59,8 +59,6 @@ public class DescriptionFragment extends Fragment {
 
     }
 
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,7 +87,6 @@ public class DescriptionFragment extends Fragment {
         Glide.with(DescriptionFragment.this)
                 .load(dao.getImgUrl())
                 .into(imgMenu);
-
 
     }
 

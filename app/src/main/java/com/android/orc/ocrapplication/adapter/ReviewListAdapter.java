@@ -19,13 +19,15 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewHolder> {
 
     private ItemClickCallback mListener;
     private List<ReviewListItem> list;
-    private Context context;
+    Context context;
 
-    public ReviewListAdapter(Context context, List<ReviewListItem> list, ItemClickCallback listener) {
+
+    public ReviewListAdapter(Context context, List<ReviewListItem> list,ItemClickCallback mListener) {
+        this.mListener = mListener;
         this.list = list;
         this.context = context;
-        this.mListener = listener;
     }
+
 
 
     @NonNull

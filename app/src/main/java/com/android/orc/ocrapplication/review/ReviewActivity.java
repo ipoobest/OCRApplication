@@ -15,6 +15,7 @@ public class ReviewActivity extends AppCompatActivity {
     TextView review;
     String name,post;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,5 +50,6 @@ public class ReviewActivity extends AppCompatActivity {
         review = findViewById(R.id.review);
         facebookName.setText(name);
         review.setText(post);
+
     }
 }
