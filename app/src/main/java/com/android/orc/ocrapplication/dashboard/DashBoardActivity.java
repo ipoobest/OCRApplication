@@ -52,9 +52,9 @@ public class DashBoardActivity extends AppCompatActivity
     private void initInstance() {
 
         //Login Facebook
-        if (AccessToken.getCurrentAccessToken() == null) {
-            goLoginScreen();
-        }
+//        if (AccessToken.getCurrentAccessToken() == null) {
+//            goLoginScreen();
+//        }
 
 //        logout_facebook = findViewById(R.id.logout_facebook);
 
