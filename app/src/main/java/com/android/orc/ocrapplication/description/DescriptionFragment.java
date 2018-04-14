@@ -8,19 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.dao.FavoriteItemDao;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.bumptech.glide.Glide;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Map;
 
 /**
  * Created by RUNGNUENG on 9/10/2560.
@@ -34,6 +26,7 @@ public class DescriptionFragment extends Fragment {
     TextView tvIngredient;
 
     MenuItemDao dao;
+    FavoriteItemDao favoriteItemDao;
 
     public DescriptionFragment() {
         super();
@@ -55,6 +48,8 @@ public class DescriptionFragment extends Fragment {
 
         if (savedInstanceState != null)
             onRestoreInstanceState(savedInstanceState);
+
+        favoriteItemDao = getActivity().getIntent().getParcelableExtra("favoriteItemDao");
 
 
     }
@@ -80,14 +75,23 @@ public class DescriptionFragment extends Fragment {
         tvDescription = rootView.findViewById(R.id.text_description_description);
         tvIngredient = rootView.findViewById(R.id.text_ingredient_menu_description);
 
-        tvNameMenu.setText(dao.getName());
-        tvDescription.setText(dao.getDescription());
-        tvIngredient.setText(dao.getIngredient());
+        if (dao != null) {
+            tvNameMenu.setText(dao.getName());
+            tvDescription.setText(dao.getDescription());
+            tvIngredient.setText(dao.getIngredient());
 
-        Glide.with(DescriptionFragment.this)
-                .load(dao.getImgUrl())
-                .into(imgMenu);
+            Glide.with(DescriptionFragment.this)
+                    .load(dao.getImgUrl())
+                    .into(imgMenu);
+        }else if (favoriteItemDao != null){
+            tvNameMenu.setText(favoriteItemDao.nameThai);
+            tvDescription.setText(favoriteItemDao.description);
+            tvIngredient.setText(favoriteItemDao.ingredient);
 
+            Glide.with(DescriptionFragment.this)
+                    .load(favoriteItemDao.imgUrl)
+                    .into(imgMenu);
+        }
     }
 
 

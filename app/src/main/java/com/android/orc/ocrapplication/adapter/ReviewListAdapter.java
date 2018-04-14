@@ -22,7 +22,7 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewHolder> {
     Context context;
 
 
-    public ReviewListAdapter(Context context, List<ReviewListItem> list,ItemClickCallback mListener) {
+    public ReviewListAdapter(ItemClickCallback mListener, List<ReviewListItem> list,Context context) {
         this.mListener = mListener;
         this.list = list;
         this.context = context;
@@ -41,8 +41,6 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewHolder> {
     public void onBindViewHolder(@NonNull ReviewHolder holder, int position) {
         ReviewListItem reviews = list.get(position);
 
-        holder.getFacebookName().setText(reviews.facebookName);
-        holder.getReview().setText(reviews.review);
         holder.itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
             @Override
             public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {

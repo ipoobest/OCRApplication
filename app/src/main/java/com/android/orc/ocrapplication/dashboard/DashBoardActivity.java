@@ -11,16 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.camera.CameraActivity;
-import com.android.orc.ocrapplication.login.LoginActivity;
-import com.facebook.AccessToken;
 import com.android.orc.ocrapplication.callback.FragmentListener;
-import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.camera.CameraActivity;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
-import com.android.orc.ocrapplication.result.ResultActivity;
+import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.result.ResultItemActivity;
-import com.facebook.AccessToken;
 
 
 public class DashBoardActivity extends AppCompatActivity
@@ -32,7 +27,7 @@ public class DashBoardActivity extends AppCompatActivity
     BottomNavigationView bottomNavigationView;
     MenuItem prevMenuItem;
     FloatingActionButton floatingCameraButton;
-    ReviewFragment reviewFragment;
+    FavoriteFragment favoriteFragment;
     HomeFragment homeFragment;
     MapFragment mapFragment;
     //    Button logout_facebook;
@@ -65,7 +60,7 @@ public class DashBoardActivity extends AppCompatActivity
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.action_review:
+                            case R.id.action_favorite:
                                 viewPager.setCurrentItem(0);
                                 break;
                             case R.id.action_home:
@@ -107,10 +102,10 @@ public class DashBoardActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager) {
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
-        reviewFragment = new ReviewFragment();
+        favoriteFragment = new FavoriteFragment();
         homeFragment = new HomeFragment();
         mapFragment = new MapFragment();
-        adapter.addFragment(reviewFragment);
+        adapter.addFragment(favoriteFragment);
         adapter.addFragment(homeFragment);
         adapter.addFragment(mapFragment);
         viewPager.setAdapter(adapter);

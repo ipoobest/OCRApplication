@@ -6,21 +6,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
+import com.android.orc.ocrapplication.model.ItemClickCallback;
 
+public class FavoriteHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
 
-/**
- * Created by j.poobest on 19/3/2018 AD.
- */
-
-public class MenuListHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
+    private ItemClickCallback mListener;
     ImageView menuImage;
     TextView menuName;
     ImageView star;
 
-
-    private RecyclerViewClickListener mListener;
+    public ItemClickCallback getmListener() {
+        return mListener;
+    }
 
     public ImageView getMenuImage() {
         return menuImage;
@@ -30,24 +27,23 @@ public class MenuListHolder extends RecyclerView.ViewHolder implements View.OnCl
         return menuName;
     }
 
-    public ImageView getStar(){
+    public ImageView getStar() {
         return star;
     }
 
-    public MenuListHolder(View itemView, RecyclerViewClickListener listener) {
-
+    public FavoriteHolder(View itemView, ItemClickCallback listener) {
         super(itemView);
+
         mListener = listener;
+        itemView.setOnClickListener(this);
+
         menuImage = itemView.findViewById(R.id.menu_image);
         menuName = itemView.findViewById(R.id.menu_name);
         star = itemView.findViewById(R.id.star);
-        itemView.setOnClickListener(this);
-
     }
 
-
     @Override
-    public void onClick(View view) {
-        mListener.onClick(view, getLayoutPosition());
+    public void onClick(View v) {
+        mListener.onClick(v, getAdapterPosition());
     }
 }
