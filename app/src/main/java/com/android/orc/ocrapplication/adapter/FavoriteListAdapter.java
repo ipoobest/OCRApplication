@@ -42,7 +42,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteHolder> {
     @NonNull
     @Override
     public FavoriteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_menu, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.favorite_menu_item, parent, false);
         return new FavoriteHolder(v, mListener);
     }
 
@@ -50,7 +50,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteHolder> {
     public void onBindViewHolder(@NonNull FavoriteHolder holder, int position) {
         FavoriteListItem favoriteListItem = list.get(position);
 
-        holder.getMenuName().setText(favoriteListItem.nameThai);
+        holder.getMenuName().setText(favoriteListItem.name);
 
         holder.getStar().setImageResource(R.drawable.ic_toggle_star_24);
 
