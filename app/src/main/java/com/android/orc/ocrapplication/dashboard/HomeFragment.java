@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -73,7 +74,7 @@ public class HomeFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home_dashboard, container, false);
+        View rootView = inflater.inflate(R.layout.activity_main, container, false);
         initInstances(rootView, savedInstanceState);
         return rootView;
     }
@@ -87,14 +88,11 @@ public class HomeFragment extends Fragment
     private void initInstances(View rootView, Bundle savedInstanceState) {
         menuListManager = new MenuListManager();
         // set floatingView
-        mDrawer = rootView.findViewById(R.id.drawer_layout);
-        mSearchView = rootView.findViewById(R.id.floating_search_view);
-        navigationView = rootView.findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
 
 
         recyclerView = rootView.findViewById(R.id.recycler_view_dashboard);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         RecyclerViewClickListener listener = (view, position) -> {
 
@@ -228,4 +226,5 @@ public class HomeFragment extends Fragment
         return true;
 
     }
+
 }
