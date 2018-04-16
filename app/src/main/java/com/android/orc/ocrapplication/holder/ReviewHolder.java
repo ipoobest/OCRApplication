@@ -2,35 +2,34 @@ package com.android.orc.ocrapplication.holder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.dao.ReviewListItem;
 import com.android.orc.ocrapplication.model.ItemClickCallback;
 
 public class ReviewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private ItemClickCallback mListener;
-    TextView facebookName;
-    TextView review;
+    ImageView menuImage;
+    TextView menuName;
+    ImageView star;
 
-
-    public TextView getFacebookName() {
-        return facebookName;
+    public ItemClickCallback getmListener() {
+        return mListener;
     }
 
-    public void setFacebookName(TextView facebookName) {
-        this.facebookName = facebookName;
+    public ImageView getMenuImage() {
+        return menuImage;
     }
 
-    public TextView getReview() {
-        return review;
+    public TextView getMenuName() {
+        return menuName;
     }
 
-    public void setReview(TextView review) {
-        this.review = review;
+    public ImageView getStar() {
+        return star;
     }
-
 
     public ReviewHolder(View itemView, ItemClickCallback listener) {
         super(itemView);
@@ -38,20 +37,15 @@ public class ReviewHolder extends RecyclerView.ViewHolder implements View.OnClic
         mListener = listener;
         itemView.setOnClickListener(this);
 
-        facebookName = itemView.findViewById(R.id.name_user);
-        review = itemView.findViewById(R.id.review_user);
+        menuImage = itemView.findViewById(R.id.menu_image);
+        menuName = itemView.findViewById(R.id.menu_name);
+        star = itemView.findViewById(R.id.star);
 
     }
 
     @Override
     public void onClick(View v) {
         mListener.onClick(v, getAdapterPosition());
-    }
-
-    public void setData(ReviewListItem reviews, int position) {
-
-        this.facebookName.setText(reviews.facebookName);
-        this.review.setText(reviews.review);
     }
 
 }

@@ -1,10 +1,18 @@
-package com.android.orc.ocrapplication.model.dao;
+package com.android.orc.ocrapplication.dao;
 
-public class ReviewListItem {
+public class FavoriteListItem {
 
-    public String facebookName, imgUrl, nameThai, star, key;
+    public String description, facebookName, imgUrl, ingredient, name, nameThai, star, key;
 
-    public ReviewListItem() {
+    public FavoriteListItem() {
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getFacebookName() {
@@ -21,6 +29,22 @@ public class ReviewListItem {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getIngredient() {
+        return ingredient;
+    }
+
+    public void setIngredient(String ingredient) {
+        this.ingredient = ingredient;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getNameThai() {
