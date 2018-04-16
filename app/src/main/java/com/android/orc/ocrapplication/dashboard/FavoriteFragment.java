@@ -119,7 +119,10 @@ public class FavoriteFragment extends Fragment {
 
     private void updateList() {
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        Profile profile = Profile.getCurrentProfile();
+        myRef.orderByChild("facebookName")
+                .equalTo(constructWelcomeMessage(profile))
+                .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listResult.removeAll(listResult);
