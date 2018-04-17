@@ -47,9 +47,7 @@ public class HomeFragment extends Fragment
     private DashBoardAdapter adapter;
     MenuListManager menuListManager;
 
-    FloatingSearchView mSearchView;
     DrawerLayout mDrawer;
-    NavigationView navigationView;
 
     public HomeFragment() {
         super();
@@ -100,8 +98,6 @@ public class HomeFragment extends Fragment
             FragmentListener fragmentListener = (FragmentListener) getActivity();
             fragmentListener.onMenuItemClick(dao);
 
-            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
-
         };
 
         adapter = new DashBoardAdapter(getContext(), listener);
@@ -123,9 +119,6 @@ public class HomeFragment extends Fragment
                     menuListManager.setDao(dao);
                     adapter.setDao(dao);
                     adapter.notifyDataSetChanged();
-//                    Toast.makeText(getContext(),
-//                            dao.get(5).getImgUrl(),
-//                            Toast.LENGTH_SHORT).show();
                 } else {
                     try {
                         Toast.makeText(getContext(),
@@ -158,32 +151,6 @@ public class HomeFragment extends Fragment
     }
 
 
-
-
-    private void setupSearchBar() {
-
-        mSearchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
-            @Override
-            public void onSuggestionClicked(SearchSuggestion searchSuggestion) {
-
-            }
-
-            @Override
-            public void onSearchAction(String result) {
-                if (result != null) {
-//                    Toast.makeText(getContext(), ""+result, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), DescriptionActivity.class);
-                    intent.putExtra("result", result);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getContext(), "please", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-    }
-
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -198,10 +165,6 @@ public class HomeFragment extends Fragment
 
     private void attachSearchViewActivityDrawer(FloatingSearchView mSearchView) {
         mSearchView.attachNavigationDrawerToMenuButton(mDrawer);
-    }
-
-    private void setupDrawerLayout() {
-        attachSearchViewActivityDrawer(mSearchView);
     }
 
 

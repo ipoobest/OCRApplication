@@ -109,38 +109,6 @@ public class ResultOcrFragment extends Fragment {
             }
         });
     }
-//        Call<MenuDao> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
-//        call.enqueue(new Callback<MenuDao>() {
-//            @Override
-//            public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
-//                if (response.isSuccessful()) {
-//                    MenuDao dao = response.body();
-//                    //ดึง dao
-////                    tvNameMenu.setText(dao.getName());
-//                    Toast.makeText(getContext(),
-//                            dao.getImgUrl(),
-//                            Toast.LENGTH_SHORT).show();
-//                } else {
-//                    try {
-//                        tvIngredient.setText(response.errorBody().string());
-//                        Toast.makeText(getContext(),
-//                                response.errorBody().string(),
-//                                Toast.LENGTH_SHORT).show();
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<MenuDao> call, Throwable t) {
-//                tvIngredient.setText(t.toString());
-//                Toast.makeText(getContext(),
-//                        t.toString(),
-//                        Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
 
 }

@@ -22,6 +22,7 @@ import java.util.List;
  */
 
 public class DashBoardAdapter extends RecyclerView.Adapter<MenuListHolder> {
+
     Context context;
     List<MenuItemDao> dao;
 

@@ -1,4 +1,4 @@
-package com.android.orc.ocrapplication.dashboard;
+package com.android.orc.ocrapplication.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
