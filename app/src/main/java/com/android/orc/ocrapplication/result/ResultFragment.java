@@ -61,7 +61,7 @@ public class ResultFragment extends Fragment {
         tvDescription = rootView.findViewById(R.id.text_description_description);
         tvIngredient = rootView.findViewById(R.id.text_ingredient_menu_description);
 
-        tvNameMenu.setText(dao.getNameThai());
+        tvNameMenu.setText(dao.getName());
         tvDescription.setText(dao.getDescription());
         tvIngredient.setText(dao.getIngredient());
 
