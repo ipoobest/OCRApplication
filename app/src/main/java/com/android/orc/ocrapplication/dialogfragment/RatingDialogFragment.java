@@ -43,7 +43,6 @@ public class RatingDialogFragment extends DialogFragment implements View.OnClick
 
     public static final String TAG = "RatingDialog";
 
-    //test ssh
 
     interface RatingListener {
 
