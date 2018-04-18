@@ -48,8 +48,6 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/menu_category"
                 android:layout_alignLeft="@+id/text_name_menu_description"
-                android:rating="2.5"
-                app:mrb_progressTint="@android:color/white"
                 app:mrb_secondaryProgressTint="@android:color/white" />
 
             <TextView
@@ -166,9 +164,10 @@
         android:id="@+id/bottom_sheet_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:backgroundTint="@color/white"
         android:layout_margin="@dimen/activity_vertical_margin"
         android:src="@drawable/ic_create_black_24dp"
-        app:layout_anchor="@+id/bottom_sheet"
+        android:layout_gravity="bottom|end"
         app:layout_anchorGravity="top|end" />
 
 

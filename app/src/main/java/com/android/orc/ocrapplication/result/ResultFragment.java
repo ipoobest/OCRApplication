@@ -1,7 +1,6 @@
 package com.android.orc.ocrapplication.result;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
+import com.android.orc.ocrapplication.dialogfragment.RatingDialogFragment;
 import com.bumptech.glide.Glide;
 
 /**
@@ -26,9 +26,10 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     TextView tvNameMenu;
     TextView tvDescription;
     TextView tvIngredient;
-    FloatingActionButton fab;
+    FloatingActionButton floatingActionButton;
     View bottomSheet;
     BottomSheetBehavior bottomSheetBehavior;
+     RatingDialogFragment mRatingDialog;
 
     MenuItemDao dao;
 
@@ -75,9 +76,12 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
                 .into(imgMenu);
 
 
-        fab = rootView.findViewById(R.id.bottom_sheet_fab);
+        floatingActionButton = rootView.findViewById(R.id.bottom_sheet_fab);
+        floatingActionButton.setOnClickListener(this);
         bottomSheet = rootView.findViewById(R.id.bottom_sheet);
-        fab.setOnClickListener(this);
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        mRatingDialog = new RatingDialogFragment();
+
         bottomSheets();
 
 
@@ -85,9 +89,11 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
 
     private void bottomSheets() {
         // init the bottom sheet behavior
+        bottomSheetBehavior.setPeekHeight(120);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_DRAGGING);
 
 
-        // set callback for changes
+//         set callback for changes
 //        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
 //            @Override
 //            public void onStateChanged(@NonNull View bottomSheet, int newState) {
@@ -95,15 +101,17 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
 //
 //            @Override
 //            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-//                fab.animate().scaleX(1 - slideOffset).scaleY(1 - slideOffset).setDuration(0).start();
+//                floatingActionButton.animate().scaleX(1 - slideOffset).scaleY(1 - slideOffset).setDuration(0).start();
 //            }
 //        });
     }
 
     @Override
     public void onClick(View v) {
-        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
-        bottomSheetBehavior.setPeekHeight(120);
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        if (v == floatingActionButton) {
+            mRatingDialog.show(getChildFragmentManager(), RatingDialogFragment.TAG);
+        }
     }
+
+    //TODO:: REcyclerView review
 }
