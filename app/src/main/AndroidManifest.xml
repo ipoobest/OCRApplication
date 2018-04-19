@@ -75,7 +75,6 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".review.ReviewResultActivity" />
         <activity android:name=".result.ResultItemActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -84,7 +83,6 @@
         <activity android:name=".result.ocrscan.ResultOcrActivity" >
 
         </activity>
-        <activity android:name=".review.ReviewActivity" />
         <activity android:name=".result.ocrresult.OrcDescriptionActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

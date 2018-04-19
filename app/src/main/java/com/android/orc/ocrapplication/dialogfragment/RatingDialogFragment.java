@@ -27,9 +27,17 @@ import android.widget.EditText;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dao.Rating;
+import com.android.orc.ocrapplication.manager.HttpManager;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.List;
+
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Dialog Fragment containing rating form.
@@ -40,6 +48,9 @@ public class RatingDialogFragment extends DialogFragment implements View.OnClick
     EditText mRatingText;
     Button btnSubmit;
     Button btnCancel;
+    Rating rating;
+
+    RequestBody requestBody;
 
     public static final String TAG = "RatingDialog";
 
@@ -63,7 +74,7 @@ public class RatingDialogFragment extends DialogFragment implements View.OnClick
     }
 
     private void initInstances(View rootView) {
-        mRatingBar = rootView.findViewById(R.id.restaurant_form_rating);
+        mRatingBar = rootView.findViewById(R.id.menu_form_rating);
         mRatingText = rootView.findViewById(R.id.restaurant_form_text);
         btnSubmit = rootView.findViewById(R.id.restaurant_form_button);
         btnCancel = rootView.findViewById(R.id.restaurant_form_cancel);
@@ -104,6 +115,8 @@ public class RatingDialogFragment extends DialogFragment implements View.OnClick
 
             if (mRatingListener != null) {
                 mRatingListener.onRating(rating);
+
+                addComment();
             }
 
             dismiss();
@@ -111,6 +124,21 @@ public class RatingDialogFragment extends DialogFragment implements View.OnClick
             dismiss();
         }
 
+    }
+
+    private void addComment() {
+        Call<List<Rating>> call = HttpManager.getInstance().getService().addComment(requestBody);
+        call.enqueue(new Callback<List<Rating>>() {
+            @Override
+            public void onResponse(Call<List<Rating>> call, Response<List<Rating>> response) {
+                //TODO: @PUT retrofir comment
+            }
+
+            @Override
+            public void onFailure(Call<List<Rating>> call, Throwable t) {
+
+            }
+        });
     }
 
 }
