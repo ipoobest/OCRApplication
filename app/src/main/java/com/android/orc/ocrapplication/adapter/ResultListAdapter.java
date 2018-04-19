@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
 import com.android.orc.ocrapplication.dao.MenuDao;
+import com.android.orc.ocrapplication.holder.MenuItemHolder;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
