@@ -19,6 +19,7 @@ import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
 import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.android.orc.ocrapplication.manager.HttpManager;
+import com.android.orc.ocrapplication.manager.MenuManager;
 import com.bumptech.glide.Glide;
 
 import java.io.IOException;
