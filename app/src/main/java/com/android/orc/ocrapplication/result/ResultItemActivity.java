@@ -28,7 +28,9 @@ public class ResultItemActivity extends AppCompatActivity {
 
         MenuItemDao dao = getIntent().getParcelableExtra("dao");
 
-        if (savedInstanceState == null){
+
+        if (savedInstanceState == null) {
+
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.content_container_result, ResultFragment.newInstance(dao))
                     .commit();

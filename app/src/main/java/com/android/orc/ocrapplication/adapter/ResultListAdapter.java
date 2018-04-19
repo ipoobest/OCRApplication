@@ -13,6 +13,7 @@ import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.holder.MenuItemHolder;
 import com.android.orc.ocrapplication.holder.MenuListHolder;
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class ResultListAdapter extends RecyclerView.Adapter<MenuItemHolder> {
     public MenuItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.menu_item, parent, false);
+                .inflate(R.layout.item_menu, parent, false);
 
 //        int height = parent.getMeasuredHeight() / 3;
 //        view.setMinimumHeight(height);
@@ -51,11 +52,11 @@ public class ResultListAdapter extends RecyclerView.Adapter<MenuItemHolder> {
     @Override
     public void onBindViewHolder(@NonNull MenuItemHolder holder, int position) {
         MenuDao item = dao.get(position);
-        holder.getNameMenu().setText(item.getName());
+        holder.getMenuName().setText(item.getName());
 
         Glide.with(context)
                 .load(item.getImgUrl())
-                .into(holder.getImgMenu());
+                .into(holder.getMenuImage());
 
 
     }

@@ -1,6 +1,7 @@
-package com.android.orc.ocrapplication.result;
+package com.android.orc.ocrapplication.result.ocrscan;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,18 +10,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.ResultListAdapter;
 import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
+import com.android.orc.ocrapplication.callback.ResultOcrFragmentListener;
 import com.android.orc.ocrapplication.dao.MenuDao;
-import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.android.orc.ocrapplication.manager.HttpManager;
 import com.android.orc.ocrapplication.manager.MenuManager;
-import com.bumptech.glide.Glide;
 
 import java.io.IOException;
 import java.util.List;
@@ -40,6 +38,18 @@ public class ResultOcrFragment extends Fragment {
     private ResultListAdapter adapter;
     MenuManager menuManager;
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putBundle("menuManager", menuManager.onSaveInstanceState());
+
+    }
+
+    private void onRestoreInstanceState(Bundle savedInstanceState) {
+        menuManager.onRestoreInstanceState(
+                savedInstanceState.getBundle("menuManager"));
+    }
 
 
     public static ResultOcrFragment newInstance(String request) {
@@ -54,7 +64,12 @@ public class ResultOcrFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestMenu = getArguments().getString("stringRequest");
+
+
+        if (savedInstanceState != null) {
+            onRestoreInstanceState(savedInstanceState);
+        }
+
     }
 
 
@@ -72,6 +87,7 @@ public class ResultOcrFragment extends Fragment {
     private void initInstances(View rootView) {
         menuManager = new MenuManager();
 
+
         //find view by id
         recyclerView = rootView.findViewById(R.id.recycler_view_ocr_fragment);
 
@@ -79,19 +95,18 @@ public class ResultOcrFragment extends Fragment {
 
         RecyclerViewClickListener listener = (view, position) -> {
 
-//            MenuDao dao = menuManager.getDao().get(position);
-//            FragmentListener fragmentListener = (FragmentListener) getActivity();
-//            fragmentListener.onMenuItemClick(dao);
+            MenuDao dao = menuManager.getDao().get(position);
+            ResultOcrFragmentListener fragmentListener = (ResultOcrFragmentListener) getActivity();
+            fragmentListener.onMenuItemClick(dao);
 
-            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
 
         };
 
         adapter = new ResultListAdapter(getContext(), listener);
-
+        adapter.setDao(menuManager.getDao());
         recyclerView.setAdapter(adapter);
         callQuery();
-
 
 
     }

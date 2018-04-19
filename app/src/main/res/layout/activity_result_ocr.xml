@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.android.orc.ocrapplication.result.ResultOcrActivity">
+    tools:context=".result.ocrscan.ResultOcrActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/result_ocr_toolbar"

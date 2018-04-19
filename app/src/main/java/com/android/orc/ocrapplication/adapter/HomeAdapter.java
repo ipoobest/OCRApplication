@@ -21,7 +21,7 @@ import java.util.List;
  * Created by j.poobest on 19/3/2018 AD.
  */
 
-public class DashBoardAdapter extends RecyclerView.Adapter<MenuListHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
 
     Context context;
     List<MenuItemDao> dao;
@@ -31,7 +31,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<MenuListHolder> {
 
     private RecyclerViewClickListener mListener;
 
-    public DashBoardAdapter(Context context, RecyclerViewClickListener listener ) {
+    public HomeAdapter(Context context, RecyclerViewClickListener listener ) {
         this.context = context;
         this.mListener = listener;
     }

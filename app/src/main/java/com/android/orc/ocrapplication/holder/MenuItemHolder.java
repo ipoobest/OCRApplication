@@ -10,24 +10,33 @@ import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
 
 public class MenuItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    ImageView imgMenu;
-    TextView nameMenu;
+    ImageView menuImage;
+    TextView menuName;
+    ImageView star;
 
     RecyclerViewClickListener mListener;
 
-    public ImageView getImgMenu() {
-        return imgMenu;
+
+    public ImageView getMenuImage() {
+        return menuImage;
     }
 
-    public TextView getNameMenu() {
-        return nameMenu;
+    public TextView getMenuName() {
+        return menuName;
     }
 
-    public MenuItemHolder(View itemView, RecyclerViewClickListener mListener) {
+    public ImageView getStar() {
+        return star;
+    }
+
+
+    public MenuItemHolder(View itemView, RecyclerViewClickListener listener) {
         super(itemView);
 
-        nameMenu = itemView.findViewById(R.id.tv_menu_item);
-        imgMenu = itemView.findViewById(R.id.img_menu_item);
+        mListener = listener;
+        menuImage = itemView.findViewById(R.id.menu_image);
+        menuName = itemView.findViewById(R.id.menu_name);
+        star = itemView.findViewById(R.id.star);
         itemView.setOnClickListener(this);
     }
 

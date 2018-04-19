@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,18 +19,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.adapter.DashBoardAdapter;
+import com.android.orc.ocrapplication.adapter.HomeAdapter;
 import com.android.orc.ocrapplication.callback.FragmentListener;
 import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
-import com.android.orc.ocrapplication.description.DescriptionActivity;
 import com.android.orc.ocrapplication.dialogfragment.FilterDialogFragment;
-import com.android.orc.ocrapplication.dialogfragment.Filters;
 import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.manager.HttpManager;
 import com.android.orc.ocrapplication.manager.MenuListManager;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.arlib.floatingsearchview.FloatingSearchView;
-import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 
 import java.io.IOException;
 import java.util.List;
@@ -48,7 +44,7 @@ public class HomeFragment extends Fragment
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private RecyclerView recyclerView;
-    private DashBoardAdapter adapter;
+    private HomeAdapter adapter;
     MenuListManager menuListManager;
     CardView filterBar;
     ImageView btnClearFilter;
@@ -113,7 +109,7 @@ public class HomeFragment extends Fragment
 
         };
 
-        adapter = new DashBoardAdapter(getContext(), listener);
+        adapter = new HomeAdapter(getContext(), listener);
         recyclerView.setAdapter(adapter);
 
         loadData();
