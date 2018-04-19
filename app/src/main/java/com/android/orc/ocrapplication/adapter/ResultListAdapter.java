@@ -22,19 +22,53 @@ import java.util.List;
 
 public class ResultListAdapter extends RecyclerView.Adapter<MenuItemHolder> {
 
-    @NonNull
+    Context context;
+    List<MenuDao> dao;
+
+    private RecyclerViewClickListener mListener;
+
+    public ResultListAdapter(Context context, RecyclerViewClickListener listener) {
+        this.context = context;
+        this.mListener = listener;
+    }
+
+    public void setDao(List<MenuDao> dao) {
+        this.dao = dao;
+    }
+
     @Override
-    public MenuItemHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public MenuItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.menu_item, parent, false);
+
+//        int height = parent.getMeasuredHeight() / 3;
+//        view.setMinimumHeight(height);
+
+        return new MenuItemHolder(view, mListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MenuItemHolder holder, int position) {
+        MenuDao item = dao.get(position);
+        holder.getNameMenu().setText(item.getName());
+
+        Glide.with(context)
+                .load(item.getImgUrl())
+                .into(holder.getImgMenu());
+
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+
+        if (dao == null) {
+            return 0;
+        }
+        if (dao.size() == 0) {
+            return 0;
+        }
+        return dao.size();
     }
 }
