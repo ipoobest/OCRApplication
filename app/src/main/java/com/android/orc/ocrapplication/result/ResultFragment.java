@@ -1,8 +1,10 @@
 package com.android.orc.ocrapplication.result;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -29,7 +31,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     FloatingActionButton floatingActionButton;
     View bottomSheet;
     BottomSheetBehavior bottomSheetBehavior;
-     RatingDialogFragment mRatingDialog;
+    RatingDialogFragment mRatingDialog;
 
     MenuItemDao dao;
 
@@ -79,6 +81,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         floatingActionButton = rootView.findViewById(R.id.bottom_sheet_fab);
         floatingActionButton.setOnClickListener(this);
         bottomSheet = rootView.findViewById(R.id.bottom_sheet);
+
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         mRatingDialog = new RatingDialogFragment();
 
@@ -90,20 +93,21 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     private void bottomSheets() {
         // init the bottom sheet behavior
         bottomSheetBehavior.setPeekHeight(120);
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_DRAGGING);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
 
 //         set callback for changes
-//        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-//            @Override
-//            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-//            }
-//
-//            @Override
-//            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+        bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
 //                floatingActionButton.animate().scaleX(1 - slideOffset).scaleY(1 - slideOffset).setDuration(0).start();
-//            }
-//        });
+            }
+        });
     }
 
     @Override
