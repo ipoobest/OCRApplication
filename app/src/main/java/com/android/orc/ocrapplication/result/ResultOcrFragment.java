@@ -3,6 +3,7 @@ package com.android.orc.ocrapplication.result;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,22 +79,19 @@ public class ResultOcrFragment extends Fragment {
     }
 
     private void callQuery() {
-        Call<MenuDao> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
-        call.enqueue(new Callback<MenuDao>() {
+        Call<List<MenuDao>> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
+        call.enqueue(new Callback<List<MenuDao>>() {
             @Override
-            public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
+            public void onResponse(Call<List<MenuDao>> call, Response<List<MenuDao>> response) {
                 if (response.isSuccessful()) {
-                    MenuDao dao = response.body();
-                    //ดึง dao
-                    tvNameMenu.setText(dao.getName());
-                    tvDescription.setText(dao.getDescription());
-                    tvIngredient.setText(dao.getIngredient());
-                    Glide.with(ResultOcrFragment.this)
-                            .load(dao.getImgUrl())
-                            .into(imgMenu);
+                    List<MenuDao> dao = response.body();
+                    Log.d("Dao MenuItem", dao.toString());
+                    menuManager.setDao(dao);
+
+                    adapter.setDao(dao);
+                    adapter.notifyDataSetChanged();
                 } else {
                     try {
-                        tvIngredient.setText(response.errorBody().string());
                         Toast.makeText(getContext(),
                                 response.errorBody().string(),
                                 Toast.LENGTH_SHORT).show();
@@ -104,10 +102,13 @@ public class ResultOcrFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<MenuDao> call, Throwable t) {
-
+            public void onFailure(Call<List<MenuDao>> call, Throwable t) {
+                Toast.makeText(getContext(),
+                        t.toString(),
+                        Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 
 
