@@ -21,7 +21,8 @@ import java.util.List;
  * Created by j.poobest on 19/3/2018 AD.
  */
 
-public class DashBoardAdapter extends RecyclerView.Adapter<MenuListHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
+
     Context context;
     List<MenuItemDao> dao;
 
@@ -30,7 +31,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<MenuListHolder> {
 
     private RecyclerViewClickListener mListener;
 
-    public DashBoardAdapter(Context context, RecyclerViewClickListener listener ) {
+    public HomeAdapter(Context context, RecyclerViewClickListener listener ) {
         this.context = context;
         this.mListener = listener;
     }
@@ -50,7 +51,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<MenuListHolder> {
     public MenuListHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.menu_list_item, parent, false);
+                .inflate(R.layout.item_menu, parent, false);
 
         int height = parent.getMeasuredHeight() / 4;
         view.setMinimumHeight(height);
@@ -64,7 +65,7 @@ public class DashBoardAdapter extends RecyclerView.Adapter<MenuListHolder> {
     public void onBindViewHolder(MenuListHolder holder, int position) {
 
         MenuItemDao item = dao.get(position);
-        holder.getMenuName().setText(item.getNameThai());
+        holder.getMenuName().setText(item.getName());
 
         Glide.with(context)
                 .load(item.getImgUrl())

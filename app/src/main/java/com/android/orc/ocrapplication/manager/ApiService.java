@@ -24,7 +24,7 @@ public interface ApiService {
     @GET("menu")
     Call<List<MenuItemDao>> loadMenuItem();
 
-    @GET("menu/{name}")
-    Call<MenuDao> requestMenu(@Path("name") String menu);
+    @GET("/menu/querymenu/{name}")
+    Call<List<MenuDao>> requestMenu(@Path("name") String menu);
 
 }

@@ -86,7 +86,7 @@ public class FavoriteFragment extends Fragment {
         recyclerView = rootView.findViewById(R.id.recycler_view_review);
         recyclerView.setHasFixedSize(true);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
 
         ItemClickCallback listener = (view, position) -> {
             Intent intent = new Intent(getActivity(), DescriptionActivity.class);

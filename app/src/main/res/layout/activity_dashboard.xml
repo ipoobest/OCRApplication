@@ -39,6 +39,7 @@
         android:layout_marginBottom="70dp"
         android:layout_marginRight="15dp"
         android:src="@drawable/ic_bottom_navigation_camera"
+        app:backgroundTint="@color/white"
         app:fabSize="normal" />
 
 </FrameLayout>

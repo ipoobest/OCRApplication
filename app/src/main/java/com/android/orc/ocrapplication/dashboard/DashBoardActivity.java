@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.adapter.PagerAdapter;
 import com.android.orc.ocrapplication.callback.FragmentListener;
 import com.android.orc.ocrapplication.camera.CameraActivity;
 import com.android.orc.ocrapplication.dao.MenuItemDao;

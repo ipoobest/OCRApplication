@@ -10,6 +10,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
         //map
         resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
 
@@ -67,6 +68,8 @@ dependencies {
     implementation project(path: ':cloudvision')
     //map
     implementation "com.google.android.gms:play-services:12.0.1"
+
+    // Third-party libraries
+    implementation 'me.zhanghai.android.materialratingbar:library:1.2.0'
 }
 apply plugin: 'com.google.gms.google-services'
-

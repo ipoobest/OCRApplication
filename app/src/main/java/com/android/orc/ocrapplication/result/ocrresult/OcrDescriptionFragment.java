@@ -1,10 +1,8 @@
-package com.android.orc.ocrapplication.result;
+package com.android.orc.ocrapplication.result.ocrresult;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,7 +13,6 @@ import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dao.MenuDao;
-import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.android.orc.ocrapplication.dialogfragment.RatingDialogFragment;
 import com.bumptech.glide.Glide;
 
@@ -23,7 +20,7 @@ import com.bumptech.glide.Glide;
  * Created by j.poobest on 19/3/2018 AD.
  */
 
-public class ResultFragment extends Fragment implements View.OnClickListener {
+public class OcrDescriptionFragment extends Fragment implements View.OnClickListener {
 
     ImageView imgMenu;
     TextView tvNameMenu;
@@ -34,10 +31,10 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     BottomSheetBehavior bottomSheetBehavior;
     RatingDialogFragment mRatingDialog;
 
-    MenuItemDao dao;
+    MenuDao dao;
 
-    public static ResultFragment newInstance(MenuItemDao dao) {
-        ResultFragment fragment = new ResultFragment();
+    public static OcrDescriptionFragment newInstance(MenuDao dao) {
+        OcrDescriptionFragment fragment = new OcrDescriptionFragment();
         Bundle args = new Bundle();
         args.putParcelable("dao", dao);
         fragment.setArguments(args);
@@ -77,7 +74,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         tvDescription.setText(dao.getDescription());
         tvIngredient.setText(dao.getIngredient());
 
-        Glide.with(ResultFragment.this)
+        Glide.with(OcrDescriptionFragment.this)
                 .load(dao.getImgUrl())
                 .into(imgMenu);
 
@@ -95,12 +92,11 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     }
 
     private void bottomSheets() {
-
         // init the bottom sheet behavior
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
 
-//         set callback for changes
+
     }
 
     @Override
