@@ -42,13 +42,13 @@ public class ResultOcrFragment extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        outState.putBundle("menuManager", menuManager.onSaveInstanceState());
+        outState.putBundle("dao", menuManager.onSaveInstanceState());
 
     }
 
     private void onRestoreInstanceState(Bundle savedInstanceState) {
         menuManager.onRestoreInstanceState(
-                savedInstanceState.getBundle("menuManager"));
+                savedInstanceState.getBundle("dao"));
     }
 
 
@@ -64,7 +64,8 @@ public class ResultOcrFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        menuManager = new MenuManager();
+        requestMenu = getArguments().getString("stringRequest");
 
         if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);
@@ -85,9 +86,6 @@ public class ResultOcrFragment extends Fragment {
     }
 
     private void initInstances(View rootView) {
-        menuManager = new MenuManager();
-
-
         //find view by id
         recyclerView = rootView.findViewById(R.id.recycler_view_ocr_fragment);
 
@@ -106,6 +104,8 @@ public class ResultOcrFragment extends Fragment {
         adapter = new ResultListAdapter(getContext(), listener);
         adapter.setDao(menuManager.getDao());
         recyclerView.setAdapter(adapter);
+
+
         callQuery();
 
 

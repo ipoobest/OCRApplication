@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dao.MenuDao;
 
-public class OrcResultActivity extends AppCompatActivity {
+public class OrcDescriptionActivity extends AppCompatActivity {
 
     Toolbar toolbar;
 
@@ -18,20 +18,13 @@ public class OrcResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result_ocr);
 
         toolbar = findViewById(R.id.result_ocr_toolbar);
-        toolbar.setTitle("Menu Description");
         setSupportActionBar(toolbar);
-
-        ActionBar ab = getSupportActionBar();
-
-        // Enable the Up button
-        ab.setDisplayHomeAsUpEnabled(true);
-
 
         MenuDao dao = getIntent().getParcelableExtra("dao");
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.content_result_ocr, OcrResultFragment.newInstance(dao))
+                    .add(R.id.content_result_ocr, OcrDescriptionFragment.newInstance(dao))
                     .commit();
         }
     }

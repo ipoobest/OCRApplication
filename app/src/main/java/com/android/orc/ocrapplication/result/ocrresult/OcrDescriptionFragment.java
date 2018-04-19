@@ -1,7 +1,6 @@
 package com.android.orc.ocrapplication.result.ocrresult;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
@@ -21,7 +20,7 @@ import com.bumptech.glide.Glide;
  * Created by j.poobest on 19/3/2018 AD.
  */
 
-public class OcrResultFragment extends Fragment implements View.OnClickListener {
+public class OcrDescriptionFragment extends Fragment implements View.OnClickListener {
 
     ImageView imgMenu;
     TextView tvNameMenu;
@@ -34,8 +33,8 @@ public class OcrResultFragment extends Fragment implements View.OnClickListener 
 
     MenuDao dao;
 
-    public static OcrResultFragment newInstance(MenuDao dao) {
-        OcrResultFragment fragment = new OcrResultFragment();
+    public static OcrDescriptionFragment newInstance(MenuDao dao) {
+        OcrDescriptionFragment fragment = new OcrDescriptionFragment();
         Bundle args = new Bundle();
         args.putParcelable("dao", dao);
         fragment.setArguments(args);
@@ -75,7 +74,7 @@ public class OcrResultFragment extends Fragment implements View.OnClickListener 
         tvDescription.setText(dao.getDescription());
         tvIngredient.setText(dao.getIngredient());
 
-        Glide.with(OcrResultFragment.this)
+        Glide.with(OcrDescriptionFragment.this)
                 .load(dao.getImgUrl())
                 .into(imgMenu);
 

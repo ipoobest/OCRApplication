@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.callback.ResultOcrFragmentListener;
 import com.android.orc.ocrapplication.dao.MenuDao;
-import com.android.orc.ocrapplication.result.ocrresult.OrcResultActivity;
+import com.android.orc.ocrapplication.result.ocrresult.OrcDescriptionActivity;
 
 public class ResultOcrActivity extends AppCompatActivity implements ResultOcrFragmentListener {
 
@@ -37,7 +37,7 @@ public class ResultOcrActivity extends AppCompatActivity implements ResultOcrFra
 
     @Override
     public void onMenuItemClick(MenuDao dao) {
-        Intent intent = new Intent(getBaseContext(), OrcResultActivity.class);
+        Intent intent = new Intent(getBaseContext(), OrcDescriptionActivity.class);
 
         intent.putExtra("dao", dao);
         startActivity(intent);

@@ -82,13 +82,10 @@
                 android:value="com.android.orc.ocrapplication.dashboard.DashBoardActivity" />
         </activity>
         <activity android:name=".result.ocrscan.ResultOcrActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.orc.ocrapplication.camera.CameraActivity" />
 
         </activity>
         <activity android:name=".review.ReviewActivity" />
-        <activity android:name=".result.ocrresult.OrcResultActivity">
+        <activity android:name=".result.ocrresult.OrcDescriptionActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.orc.ocrapplication.result.ocrscan.ResultOcrActivity" />
