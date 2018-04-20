@@ -9,6 +9,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
@@ -32,11 +33,15 @@ public interface ApiService {
 //                                  @Part("comment") String comment,
 //                                  @Part("rating") Double rating);
 
-    @PUT("/review/add/{namethai}")
-    void addComment(@Path("namethai") String nameThai,
-                    @Part("user") String userName,
-                    @Part("comment") String comment,
-                    @Part("rating") Double rating,
-                    Callback<Rating> serverResponseCallback);
+//    @PUT("/review/add/{namethai}")
+//    void addComment(@Path("namethai") String nameThai,
+//                    @Part("user") String userName,
+//                    @Part("comment") String comment,
+//                    @Part("rating") Double rating,
+//                    Callback<Rating> serverResponseCallback);
+
+    @PUT("/review/add/{nameThai}")
+    Call<Rating> addComment(@Path("nameThai") String name,
+                            @Body Rating ratingRequest);
 
 }

@@ -35,16 +35,16 @@ public class Rating {
     public Rating() {
     }
 
-    public Rating(FirebaseUser user, double rating, String text) {
-        this.userId = user.getUid();
-        this.userName = user.getDisplayName();
-        if (TextUtils.isEmpty(this.userName)) {
-            this.userName = user.getEmail();
-        }
-
-        this.rating = rating;
-        this.text = text;
-    }
+//    public Rating(FirebaseUser user, double rating, String text) {
+//        this.userId = user.getUid();
+//        this.userName = user.getDisplayName();
+//        if (TextUtils.isEmpty(this.userName)) {
+//            this.userName = user.getEmail();
+//        }
+//
+//        this.rating = rating;
+//        this.text = text;
+//    }
 
     public String getUserId() {
         return userId;

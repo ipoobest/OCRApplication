@@ -40,6 +40,9 @@ public class MenuDao implements Parcelable{
     @SerializedName("__v")
     @Expose
     private Integer v;
+    //TODO: add List comment
+    //    @SerializedName("__v")
+    //    @Expose
 
     protected MenuDao(Parcel in) {
         id = in.readString();
