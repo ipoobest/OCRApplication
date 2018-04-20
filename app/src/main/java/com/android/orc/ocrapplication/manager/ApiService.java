@@ -4,6 +4,7 @@ package com.android.orc.ocrapplication.manager;
 import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.android.orc.ocrapplication.dao.Rating;
+import com.android.orc.ocrapplication.dao.RatingDao;
 
 import java.util.List;
 
@@ -40,8 +41,9 @@ public interface ApiService {
 //                    @Part("rating") Double rating,
 //                    Callback<Rating> serverResponseCallback);
 
+    //TODO: PUT METHODS
     @PUT("/review/add/{nameThai}")
-    Call<Rating> addComment(@Path("nameThai") String name,
-                            @Body Rating ratingRequest);
+    Call<Object> addComment(@Path("nameThai") String name,
+                            @Body RatingDao ratingRequest);
 
 }
