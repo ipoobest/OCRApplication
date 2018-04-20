@@ -104,6 +104,7 @@
         android:id="@+id/recycler_view_dashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:layout_below="@+id/filter_bar_container"
         android:background="@android:color/white"
         tools:listitem="@layout/item_menu" />
