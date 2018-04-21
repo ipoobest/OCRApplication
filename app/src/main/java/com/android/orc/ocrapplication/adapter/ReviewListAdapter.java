@@ -3,27 +3,24 @@ package com.android.orc.ocrapplication.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dao.CommentDao;
-import com.android.orc.ocrapplication.dao.ReviewListItem;
 import com.android.orc.ocrapplication.holder.ReviewHolder;
-import com.android.orc.ocrapplication.model.ItemClickCallback;
 
 import java.util.List;
 
 public class ReviewListAdapter extends RecyclerView.Adapter<ReviewHolder> {
 
-    private List<CommentDao> list;
+    private List<CommentDao> dao;
     Context context;
 
 
     public ReviewListAdapter(List<CommentDao> list, Context context) {
-        this.list = list;
+        this.dao = list;
         this.context = context;
     }
 
@@ -39,11 +36,23 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ReviewHolder holder, int position) {
+        CommentDao item = dao.get(position);
+        holder.getTvUserName().setText(item.getUserName());
+        holder.getTvDate().setText(item.getDateTime().toString());
+        holder.getRatingBar().setNumStars(item.getRating().intValue());
+        holder.getTvComment().setText(item.getComment());
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        if (dao == null) {
+            return 0;
+        }
+        if (dao.size() == 0) {
+            return 0;
+        }
+        return dao.size();
+
     }
 }

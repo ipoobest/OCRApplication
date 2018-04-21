@@ -16,6 +16,22 @@ public class ReviewHolder extends RecyclerView.ViewHolder {
     MaterialRatingBar ratingBar;
     TextView tvComment;
 
+    public TextView getTvUserName() {
+        return tvUserName;
+    }
+
+    public TextView getTvDate() {
+        return tvDate;
+    }
+
+    public MaterialRatingBar getRatingBar() {
+        return ratingBar;
+    }
+
+    public TextView getTvComment() {
+        return tvComment;
+    }
+
     public ReviewHolder(View itemView) {
         super(itemView);
         tvUserName = itemView.findViewById(R.id.comment_item_name);
