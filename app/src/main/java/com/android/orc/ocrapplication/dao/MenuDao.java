@@ -30,6 +30,9 @@ public class MenuDao implements Parcelable {
     @SerializedName("nameThai")
     @Expose
     private String nameThai;
+    @SerializedName("type")
+    @Expose
+    private String type;
     @SerializedName("description")
     @Expose
     private String description;
@@ -45,6 +48,7 @@ public class MenuDao implements Parcelable {
     @SerializedName("quantity")
     @Expose
     private Double quantityRating;
+
     @SerializedName("review")
     @Expose
     private List<RatingDao> review = null;
@@ -54,6 +58,7 @@ public class MenuDao implements Parcelable {
         id = in.readString();
         name = in.readString();
         nameThai = in.readString();
+        type = in.readString();
         description = in.readString();
         ingredient = in.readString();
         imgUrl = in.readString();
@@ -104,6 +109,14 @@ public class MenuDao implements Parcelable {
 
     public void setNameThai(String nameThai) {
         this.nameThai = nameThai;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getDescription() {
@@ -164,6 +177,7 @@ public class MenuDao implements Parcelable {
         dest.writeString(id);
         dest.writeString(name);
         dest.writeString(nameThai);
+        dest.writeString(type);
         dest.writeString(description);
         dest.writeString(ingredient);
         dest.writeString(imgUrl);

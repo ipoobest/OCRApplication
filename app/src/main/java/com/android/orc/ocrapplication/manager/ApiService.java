@@ -43,7 +43,7 @@ public interface ApiService {
 
     //TODO: PUT METHODS
     @PUT("/review/add/{nameThai}")
-    Call<Object> addComment(@Path("nameThai") String name,
+    Call<MenuDao> addComment(@Path("nameThai") String name,
                             @Body RatingDao ratingRequest);
 
 }

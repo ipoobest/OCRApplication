@@ -42,7 +42,7 @@ import retrofit2.Response;
 /**
  * Dialog Fragment containing rating form.
  */
-public class RatingDialogFragment extends DialogFragment implements View.OnClickListener {
+public class CommentDialogFragment extends DialogFragment implements View.OnClickListener {
 
     MaterialRatingBar mRatingBar;
     EditText mRatingText;
@@ -80,7 +80,6 @@ public class RatingDialogFragment extends DialogFragment implements View.OnClick
         btnCancel = rootView.findViewById(R.id.restaurant_form_cancel);
 
 
-
         btnSubmit.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
     }
@@ -108,10 +107,11 @@ public class RatingDialogFragment extends DialogFragment implements View.OnClick
     @Override
     public void onClick(View v) {
         if (v == btnSubmit) {
-            Rating rating = new Rating(
-                    FirebaseAuth.getInstance().getCurrentUser(),
-                    mRatingBar.getRating(),
-                    mRatingText.getText().toString());
+
+//            Rating rating = new Rating(
+//                    FirebaseAuth.getInstance().getCurrentUser(),
+//                    mRatingBar.getRating(),
+//                    mRatingText.getText().toString());
 
             if (mRatingListener != null) {
                 mRatingListener.onRating(rating);
@@ -127,18 +127,18 @@ public class RatingDialogFragment extends DialogFragment implements View.OnClick
     }
 
     private void addComment() {
-        Call<List<Rating>> call = HttpManager.getInstance().getService().addComment(requestBody);
-        call.enqueue(new Callback<List<Rating>>() {
-            @Override
-            public void onResponse(Call<List<Rating>> call, Response<List<Rating>> response) {
-                //TODO: @PUT retrofir comment
-            }
-
-            @Override
-            public void onFailure(Call<List<Rating>> call, Throwable t) {
-
-            }
-        });
+//        Call<List<Rating>> call = HttpManager.getInstance().getService().addComment();
+//        call.enqueue(new Callback<List<Rating>>() {
+//            @Override
+//            public void onResponse(Call<List<Rating>> call, Response<List<Rating>> response) {
+//                //TODO: @PUT retrofir comment
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Rating>> call, Throwable t) {
+//
+//            }
+//        });
     }
 
 }

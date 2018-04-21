@@ -1,10 +1,8 @@
 package com.android.orc.ocrapplication.result;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,9 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
-import com.android.orc.ocrapplication.dialogfragment.RatingDialogFragment;
+import com.android.orc.ocrapplication.dialogfragment.CommentDialogFragment;
 import com.bumptech.glide.Glide;
 
 /**
@@ -32,7 +29,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     FloatingActionButton floatingActionButton;
     View bottomSheet;
     BottomSheetBehavior bottomSheetBehavior;
-    RatingDialogFragment mRatingDialog;
+    CommentDialogFragment mRatingDialog;
 
     MenuItemDao dao;
 
@@ -87,7 +84,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         bottomSheet = rootView.findViewById(R.id.bottom_sheet);
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
-        mRatingDialog = new RatingDialogFragment();
+        mRatingDialog = new CommentDialogFragment();
 
         bottomSheets();
 
@@ -106,7 +103,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == floatingActionButton) {
-            mRatingDialog.show(getChildFragmentManager(), RatingDialogFragment.TAG);
+            mRatingDialog.show(getChildFragmentManager(), CommentDialogFragment.TAG);
         }
     }
 

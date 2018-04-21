@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dao.MenuDao;
-import com.android.orc.ocrapplication.dialogfragment.RatingDialogFragment;
+import com.android.orc.ocrapplication.dialogfragment.CommentDialogFragment;
 import com.bumptech.glide.Glide;
 
 /**
@@ -29,7 +29,7 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
     FloatingActionButton floatingActionButton;
     View bottomSheet;
     BottomSheetBehavior bottomSheetBehavior;
-    RatingDialogFragment mRatingDialog;
+    CommentDialogFragment mRatingDialog;
 
     MenuDao dao;
 
@@ -84,7 +84,7 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
         bottomSheet = rootView.findViewById(R.id.bottom_sheet);
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
-        mRatingDialog = new RatingDialogFragment();
+        mRatingDialog = new CommentDialogFragment();
 
         bottomSheets();
 
@@ -102,7 +102,7 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == floatingActionButton) {
-            mRatingDialog.show(getChildFragmentManager(), RatingDialogFragment.TAG);
+            mRatingDialog.show(getChildFragmentManager(), CommentDialogFragment.TAG);
         }
     }
 
