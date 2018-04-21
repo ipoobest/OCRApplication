@@ -27,10 +27,14 @@ import android.widget.EditText;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dao.CommentDao;
+import com.android.orc.ocrapplication.dao.MenuDao;
+import com.android.orc.ocrapplication.dao.MenuItemDao;
+import com.android.orc.ocrapplication.manager.HttpManager;
+
 
 
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
-import okhttp3.RequestBody;
+import retrofit2.Call;
 
 /**
  * Dialog Fragment containing rating form.
@@ -43,7 +47,19 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
     Button btnCancel;
     CommentDao rating;
 
-    RequestBody requestBody;
+    String nameThai;
+    CommentDao dao;
+
+    public static CommentDialogFragment newInstance( String nameThia ){
+        CommentDialogFragment commentDialogFragment = new CommentDialogFragment();
+
+        Bundle args = new Bundle();
+        args.putString("nameThai", nameThia);
+        commentDialogFragment.setArguments(args);
+
+        return commentDialogFragment;
+
+    }
 
     public static final String TAG = "RatingDialog";
 
@@ -55,6 +71,13 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
     }
 
     private RatingListener mRatingListener;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //TODO: get bundle
+        nameThai = getArguments().getString("nameThai");
+    }
 
     @Nullable
     @Override
@@ -100,11 +123,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
     @Override
     public void onClick(View v) {
         if (v == btnSubmit) {
-
-//            Rating rating = new Rating(
-//                    FirebaseAuth.getInstance().getCurrentUser(),
-//                    mRatingBar.getRating(),
-//                    mRatingText.getText().toString());
+//            Toast.makeText(getContext(), "Please Comment this menu", Toast.LENGTH_LONG).show();
 
             if (mRatingListener != null) {
                 mRatingListener.onRating(rating);
@@ -120,18 +139,11 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
     }
 
     private void addComment() {
-//        Call<List<Rating>> call = HttpManager.getInstance().getService().addComment();
-//        call.enqueue(new Callback<List<Rating>>() {
-//            @Override
-//            public void onResponse(Call<List<Rating>> call, Response<List<Rating>> response) {
-//                //TODO: @PUT retrofir comment
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Rating>> call, Throwable t) {
-//
-//            }
-//        });
-    }
+        //menu name
+        //Comment
+        Call<MenuDao> call = HttpManager.getInstance().getService().addComment(nameThai,dao);
 
+        //TODO: make call
+
+    }
 }

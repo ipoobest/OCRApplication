@@ -1,5 +1,6 @@
 package com.android.orc.ocrapplication.result;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
@@ -84,7 +85,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         bottomSheet = rootView.findViewById(R.id.bottom_sheet);
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
-        mRatingDialog = new CommentDialogFragment();
+        mRatingDialog =  CommentDialogFragment.newInstance(dao.getNameThai());
 
         bottomSheets();
 
