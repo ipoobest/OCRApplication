@@ -3,17 +3,14 @@ package com.android.orc.ocrapplication.manager;
 
 import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
-import com.android.orc.ocrapplication.dao.Rating;
-import com.android.orc.ocrapplication.dao.RatingDao;
+import com.android.orc.ocrapplication.dao.CommentDao;
 
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PUT;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 /**
@@ -44,6 +41,6 @@ public interface ApiService {
     //TODO: PUT METHODS
     @PUT("/review/add/{nameThai}")
     Call<MenuDao> addComment(@Path("nameThai") String name,
-                            @Body RatingDao ratingRequest);
+                            @Body CommentDao ratingRequest);
 
 }

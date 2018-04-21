@@ -26,18 +26,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.dao.Rating;
-import com.android.orc.ocrapplication.manager.HttpManager;
-import com.google.firebase.auth.FirebaseAuth;
+import com.android.orc.ocrapplication.dao.CommentDao;
 
-import java.util.List;
 
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
-import okhttp3.MediaType;
 import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Dialog Fragment containing rating form.
@@ -48,7 +41,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
     EditText mRatingText;
     Button btnSubmit;
     Button btnCancel;
-    Rating rating;
+    CommentDao rating;
 
     RequestBody requestBody;
 
@@ -57,7 +50,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 
     interface RatingListener {
 
-        void onRating(Rating rating);
+        void onRating(CommentDao rating);
 
     }
 
