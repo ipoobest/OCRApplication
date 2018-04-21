@@ -7,12 +7,14 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by j.poobest on 21/3/2018 AD.
  */
 
 
-public class MenuDao implements Parcelable{
+public class MenuDao implements Parcelable {
 
     //เผื่ออนาคตต้องสร้าง dao เปล่าๆ
     public MenuDao() {
@@ -40,9 +42,13 @@ public class MenuDao implements Parcelable{
     @SerializedName("__v")
     @Expose
     private Integer v;
-    //TODO: add List comment
-    //    @SerializedName("__v")
-    //    @Expose
+    @SerializedName("quantity")
+    @Expose
+    private Double quantityRating;
+    @SerializedName("review")
+    @Expose
+    private List<RatingDao> review = null;
+
 
     protected MenuDao(Parcel in) {
         id = in.readString();
@@ -56,6 +62,12 @@ public class MenuDao implements Parcelable{
         } else {
             v = in.readInt();
         }
+        if (in.readByte() == 0) {
+            quantityRating = null;
+        } else {
+            quantityRating = in.readDouble();
+        }
+        review = in.createTypedArrayList(RatingDao.CREATOR);
     }
 
     public static final Creator<MenuDao> CREATOR = new Creator<MenuDao>() {
@@ -126,6 +138,22 @@ public class MenuDao implements Parcelable{
         this.v = v;
     }
 
+    public Double getQuantityRating() {
+        return quantityRating;
+    }
+
+    public void setQuantityRating(Double quantityRating) {
+        this.quantityRating = quantityRating;
+    }
+
+    public List<RatingDao> getReview() {
+        return review;
+    }
+
+    public void setReview(List<RatingDao> review) {
+        this.review = review;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -145,5 +173,12 @@ public class MenuDao implements Parcelable{
             dest.writeByte((byte) 1);
             dest.writeInt(v);
         }
+        if (quantityRating == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(quantityRating);
+        }
+        dest.writeTypedList(review);
     }
 }
