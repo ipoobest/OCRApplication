@@ -51,6 +51,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteHolder> {
         FavoriteListItem favoriteListItem = list.get(position);
 
         holder.getMenuName().setText(favoriteListItem.name);
+        holder.getMenuNameThai().setText(favoriteListItem.nameThai);
 
         holder.getStar().setImageResource(R.drawable.ic_toggle_star_24);
 
