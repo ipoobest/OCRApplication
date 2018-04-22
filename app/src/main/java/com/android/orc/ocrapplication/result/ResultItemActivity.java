@@ -9,7 +9,7 @@ import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
 
 
-public class ResultItemActivity extends AppCompatActivity {
+public class ResultItemActivity extends AppCompatActivity  {
 
     Toolbar toolbar;
 
@@ -36,4 +36,7 @@ public class ResultItemActivity extends AppCompatActivity {
                     .commit();
         }
     }
+
+
+
 }

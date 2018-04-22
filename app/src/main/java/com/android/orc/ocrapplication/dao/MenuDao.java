@@ -7,12 +7,14 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by j.poobest on 21/3/2018 AD.
  */
 
 
-public class MenuDao implements Parcelable{
+public class MenuDao implements Parcelable {
 
     //เผื่ออนาคตต้องสร้าง dao เปล่าๆ
     public MenuDao() {
@@ -28,6 +30,9 @@ public class MenuDao implements Parcelable{
     @SerializedName("nameThai")
     @Expose
     private String nameThai;
+    @SerializedName("type")
+    @Expose
+    private String type;
     @SerializedName("description")
     @Expose
     private String description;
@@ -40,11 +45,20 @@ public class MenuDao implements Parcelable{
     @SerializedName("__v")
     @Expose
     private Integer v;
+    @SerializedName("quantity")
+    @Expose
+    private Double quantityRating;
+
+    @SerializedName("review")
+    @Expose
+    private List<CommentDao> review = null;
+
 
     protected MenuDao(Parcel in) {
         id = in.readString();
         name = in.readString();
         nameThai = in.readString();
+        type = in.readString();
         description = in.readString();
         ingredient = in.readString();
         imgUrl = in.readString();
@@ -53,6 +67,12 @@ public class MenuDao implements Parcelable{
         } else {
             v = in.readInt();
         }
+        if (in.readByte() == 0) {
+            quantityRating = null;
+        } else {
+            quantityRating = in.readDouble();
+        }
+        review = in.createTypedArrayList(CommentDao.CREATOR);
     }
 
     public static final Creator<MenuDao> CREATOR = new Creator<MenuDao>() {
@@ -91,6 +111,14 @@ public class MenuDao implements Parcelable{
         this.nameThai = nameThai;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -123,6 +151,22 @@ public class MenuDao implements Parcelable{
         this.v = v;
     }
 
+    public Double getQuantityRating() {
+        return quantityRating;
+    }
+
+    public void setQuantityRating(Double quantityRating) {
+        this.quantityRating = quantityRating;
+    }
+
+    public List<CommentDao> getReview() {
+        return review;
+    }
+
+    public void setReview(List<CommentDao> review) {
+        this.review = review;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -133,6 +177,7 @@ public class MenuDao implements Parcelable{
         dest.writeString(id);
         dest.writeString(name);
         dest.writeString(nameThai);
+        dest.writeString(type);
         dest.writeString(description);
         dest.writeString(ingredient);
         dest.writeString(imgUrl);
@@ -142,5 +187,12 @@ public class MenuDao implements Parcelable{
             dest.writeByte((byte) 1);
             dest.writeInt(v);
         }
+        if (quantityRating == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(quantityRating);
+        }
+        dest.writeTypedList(review);
     }
 }

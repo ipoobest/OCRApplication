@@ -1,12 +1,12 @@
 package com.android.orc.ocrapplication.result;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.dao.MenuDao;
+import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
-import com.android.orc.ocrapplication.dialogfragment.RatingDialogFragment;
+import com.android.orc.ocrapplication.dialogfragment.CommentDialogFragment;
 import com.bumptech.glide.Glide;
 
 /**
@@ -32,7 +32,10 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     FloatingActionButton floatingActionButton;
     View bottomSheet;
     BottomSheetBehavior bottomSheetBehavior;
-    RatingDialogFragment mRatingDialog;
+    CommentDialogFragment mRatingDialog;
+
+    RecyclerView recyclerView;
+    ReviewListAdapter adapter;
 
     MenuItemDao dao;
 
@@ -45,12 +48,11 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dao = getArguments().getParcelable("dao");
+
 
     }
 
@@ -87,28 +89,26 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         bottomSheet = rootView.findViewById(R.id.bottom_sheet);
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
-        mRatingDialog = new RatingDialogFragment();
+        mRatingDialog = CommentDialogFragment.newInstance(dao.getNameThai());
 
-        bottomSheets();
+        //TODO : Innit Recyclerview
 
-
-    }
-
-    private void bottomSheets() {
-
-        // init the bottom sheet behavior
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
 
-//         set callback for changes
+
+
     }
+
+
 
     @Override
     public void onClick(View v) {
         if (v == floatingActionButton) {
-            mRatingDialog.show(getChildFragmentManager(), RatingDialogFragment.TAG);
+            mRatingDialog.show(getChildFragmentManager(), CommentDialogFragment.TAG);
         }
     }
 
-    //TODO:: REcyclerView review
+
+
 }

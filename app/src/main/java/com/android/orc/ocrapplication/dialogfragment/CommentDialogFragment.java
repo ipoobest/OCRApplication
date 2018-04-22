@@ -24,33 +24,52 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.dao.Rating;
-import com.google.firebase.auth.FirebaseAuth;
+import com.android.orc.ocrapplication.callback.RatingListener;
+import com.android.orc.ocrapplication.dao.CommentDao;
+import com.android.orc.ocrapplication.dao.MenuDao;
+import com.android.orc.ocrapplication.manager.HttpManager;
+
 
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Dialog Fragment containing rating form.
  */
-public class RatingDialogFragment extends DialogFragment implements View.OnClickListener {
+public class CommentDialogFragment extends DialogFragment implements View.OnClickListener {
 
     MaterialRatingBar mRatingBar;
     EditText mRatingText;
     Button btnSubmit;
     Button btnCancel;
 
-    public static final String TAG = "RatingDialog";
+    String nameThai;
+    RatingListener mRatingListener;
 
+    public static CommentDialogFragment newInstance(String nameThai) {
+        CommentDialogFragment commentDialogFragment = new CommentDialogFragment();
 
-    interface RatingListener {
+        Bundle args = new Bundle();
+        args.putString("nameThai", nameThai);
+        commentDialogFragment.setArguments(args);
 
-        void onRating(Rating rating);
+        return commentDialogFragment;
 
     }
 
-    private RatingListener mRatingListener;
+    public static final String TAG = "RatingDialog";
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        nameThai = getArguments().getString("nameThai");
+        Toast.makeText(getContext(), nameThai, Toast.LENGTH_LONG).show();
+    }
 
     @Nullable
     @Override
@@ -63,11 +82,10 @@ public class RatingDialogFragment extends DialogFragment implements View.OnClick
     }
 
     private void initInstances(View rootView) {
-        mRatingBar = rootView.findViewById(R.id.restaurant_form_rating);
-        mRatingText = rootView.findViewById(R.id.restaurant_form_text);
-        btnSubmit = rootView.findViewById(R.id.restaurant_form_button);
-        btnCancel = rootView.findViewById(R.id.restaurant_form_cancel);
-
+        mRatingBar = rootView.findViewById(R.id.menu_form_rating);
+        mRatingText = rootView.findViewById(R.id.menu_form_text);
+        btnSubmit = rootView.findViewById(R.id.menu_form_button);
+        btnCancel = rootView.findViewById(R.id.menu_form_cancel);
 
 
         btnSubmit.setOnClickListener(this);
@@ -97,20 +115,35 @@ public class RatingDialogFragment extends DialogFragment implements View.OnClick
     @Override
     public void onClick(View v) {
         if (v == btnSubmit) {
-            Rating rating = new Rating(
-                    FirebaseAuth.getInstance().getCurrentUser(),
+//            Toast.makeText(getContext(), "Please Comment this menu", Toast.LENGTH_LONG).show();
+            CommentDao comment = new CommentDao("Guest",
                     mRatingBar.getRating(),
-                    mRatingText.getText().toString());
+                    mRatingText.getText().toString()
+            );
 
-            if (mRatingListener != null) {
-                mRatingListener.onRating(rating);
-            }
+            Call<MenuDao> call = HttpManager.getInstance().getService().addComment(nameThai, comment);
+            call.enqueue(new Callback<MenuDao>() {
+                @Override
+                public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
+                    if (response.isSuccessful()) {
+                        dismiss();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<MenuDao> call, Throwable t) {
+                        Toast.makeText(getContext(),t.toString(),Toast.LENGTH_LONG).show();
+                }
+            });
 
             dismiss();
         } else if (v == btnCancel) {
             dismiss();
         }
 
-    }
 
+    }
 }
+
+
+
