@@ -71,5 +71,8 @@ dependencies {
 
     // Third-party libraries
     implementation 'me.zhanghai.android.materialratingbar:library:1.2.0'
+
+    // Progressbar
+    implementation 'com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE'
 }
 apply plugin: 'com.google.gms.google-services'
