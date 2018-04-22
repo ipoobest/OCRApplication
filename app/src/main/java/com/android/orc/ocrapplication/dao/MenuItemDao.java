@@ -7,6 +7,8 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 /**
  * Created by j.poobest on 21/3/2018 AD.
  */
@@ -40,6 +42,13 @@ public class MenuItemDao implements Parcelable{
     @SerializedName("__v")
     @Expose
     private Integer v;
+    @SerializedName("quantity")
+    @Expose
+    private Double quantityRating;
+
+    @SerializedName("review")
+    @Expose
+    private List<CommentDao> review = null;
 
     protected MenuItemDao(Parcel in) {
         id = in.readString();
@@ -53,6 +62,12 @@ public class MenuItemDao implements Parcelable{
         } else {
             v = in.readInt();
         }
+        if (in.readByte() == 0) {
+            quantityRating = null;
+        } else {
+            quantityRating = in.readDouble();
+        }
+        review = in.createTypedArrayList(CommentDao.CREATOR);
     }
 
     public static final Creator<MenuItemDao> CREATOR = new Creator<MenuItemDao>() {
@@ -123,6 +138,22 @@ public class MenuItemDao implements Parcelable{
         this.v = v;
     }
 
+    public Double getQuantityRating() {
+        return quantityRating;
+    }
+
+    public void setQuantityRating(Double quantityRating) {
+        this.quantityRating = quantityRating;
+    }
+
+    public List<CommentDao> getReview() {
+        return review;
+    }
+
+    public void setReview(List<CommentDao> review) {
+        this.review = review;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -142,5 +173,12 @@ public class MenuItemDao implements Parcelable{
             dest.writeByte((byte) 1);
             dest.writeInt(v);
         }
+        if (quantityRating == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(quantityRating);
+        }
+        dest.writeTypedList(review);
     }
 }

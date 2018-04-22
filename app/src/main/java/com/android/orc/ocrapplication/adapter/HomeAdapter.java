@@ -21,7 +21,7 @@ import java.util.List;
  * Created by j.poobest on 19/3/2018 AD.
  */
 
-public class HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
+public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
 
     Context context;
     List<MenuItemDao> dao;

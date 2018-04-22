@@ -12,5 +12,8 @@
     <color name="greySecondary">#8B000000</color>
     <color name="greyDisabled">#61000000</color>
 
+    <color name="primary_star">#ffffffff</color>
+    <color name="second_star">#F4B400</color>
+
 
 </resources>

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,7 +93,11 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         mRatingDialog = CommentDialogFragment.newInstance(dao.getNameThai());
 
         //TODO : Innit Recyclerview
-
+        recyclerView = rootView.findViewById(R.id.review_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        adapter = new ReviewListAdapter(dao.getReview());
+        adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(adapter);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
 

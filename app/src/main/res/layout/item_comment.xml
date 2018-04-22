@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
@@ -38,6 +39,9 @@
         tools:text="9/27/2017" />
 
     <me.zhanghai.android.materialratingbar.MaterialRatingBar
+        android:progressBackgroundTint="@color/second_star"
+        android:progressTint="@color/primary_star"
+        android:secondaryProgressTint="@color/second_star"
         android:id="@+id/comment_item_rating"
         style="@style/Widget.MaterialRatingBar.RatingBar.Indicator.Small"
         android:layout_width="wrap_content"

@@ -37,7 +37,6 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewHolder> {
     public void onBindViewHolder(@NonNull ReviewHolder holder, int position) {
         CommentDao item = dao.get(position);
         holder.getTvUserName().setText(item.getUserName());
-        holder.getTvDate().setText(item.getDateTime().toString());
         holder.getRatingBar().setNumStars(item.getRating().intValue());
         holder.getTvComment().setText(item.getComment());
 
