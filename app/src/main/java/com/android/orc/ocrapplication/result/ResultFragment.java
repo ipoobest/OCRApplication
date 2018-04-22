@@ -93,6 +93,8 @@ public class ResultFragment extends Fragment implements View.OnClickListener, Ra
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         mRatingDialog = CommentDialogFragment.newInstance(dao.getNameThai());
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
 
         bottomSheets();
 
@@ -102,7 +104,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener, Ra
     private void bottomSheets() {
 
         // init the bottom sheet behavior
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
 
 
 //         set callback for changes

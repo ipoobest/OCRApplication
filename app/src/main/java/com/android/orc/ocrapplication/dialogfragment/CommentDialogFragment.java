@@ -29,9 +29,14 @@ import android.widget.Toast;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.callback.RatingListener;
 import com.android.orc.ocrapplication.dao.CommentDao;
+import com.android.orc.ocrapplication.dao.MenuDao;
+import com.android.orc.ocrapplication.manager.HttpManager;
 
 
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Dialog Fragment containing rating form.
@@ -44,6 +49,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
     Button btnCancel;
 
     String nameThai;
+    RatingListener mRatingListener;
 
     public static CommentDialogFragment newInstance(String nameThai) {
         CommentDialogFragment commentDialogFragment = new CommentDialogFragment();
@@ -58,14 +64,11 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 
     public static final String TAG = "RatingDialog";
 
-
-    public RatingListener mRatingListener;
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         nameThai = getArguments().getString("nameThai");
-        Toast.makeText(getContext(), nameThai,Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), nameThai, Toast.LENGTH_LONG).show();
     }
 
     @Nullable
@@ -118,18 +121,29 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
                     mRatingText.getText().toString()
             );
 
-            if (mRatingListener != null) {
-                mRatingListener.onRating(comment, nameThai);
+            Call<MenuDao> call = HttpManager.getInstance().getService().addComment(nameThai, comment);
+            call.enqueue(new Callback<MenuDao>() {
+                @Override
+                public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
+                    if (response.isSuccessful()) {
+                        dismiss();
+                    }
+                }
 
-                Toast.makeText(getContext(), "sent request" + comment.getComment() + comment.getRating(), Toast.LENGTH_SHORT).show();
-            }
+                @Override
+                public void onFailure(Call<MenuDao> call, Throwable t) {
+                        Toast.makeText(getContext(),t.toString(),Toast.LENGTH_LONG).show();
+                }
+            });
 
-                dismiss();
-            } else if (v == btnCancel) {
-                dismiss();
-            }
-
+            dismiss();
+        } else if (v == btnCancel) {
+            dismiss();
         }
 
 
+    }
 }
+
+
+
