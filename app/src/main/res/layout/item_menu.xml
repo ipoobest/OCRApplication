@@ -33,6 +33,9 @@
     <me.zhanghai.android.materialratingbar.MaterialRatingBar
         android:id="@+id/menu_item_rating"
         style="@style/Widget.MaterialRatingBar.RatingBar.Indicator.Small"
+        android:progressBackgroundTint="@color/second_star"
+        android:progressTint="@color/primary_star"
+        android:secondaryProgressTint="@color/second_star"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/menu_name"

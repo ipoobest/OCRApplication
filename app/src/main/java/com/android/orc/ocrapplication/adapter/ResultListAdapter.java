@@ -53,6 +53,12 @@ public class ResultListAdapter extends RecyclerView.Adapter<MenuItemHolder> {
     public void onBindViewHolder(@NonNull MenuItemHolder holder, int position) {
         MenuDao item = dao.get(position);
         holder.getMenuName().setText(item.getName());
+        if (item.getQuantityRating() == null){
+            holder.getMaterialRatingBar().setNumStars(0);
+        }else {
+            holder.getMaterialRatingBar().setNumStars(item.getQuantityRating().intValue());
+        }
+
 
         Glide.with(context)
                 .load(item.getImgUrl())
