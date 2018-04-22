@@ -13,15 +13,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.callback.RatingListener;
+import com.android.orc.ocrapplication.dao.CommentDao;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.android.orc.ocrapplication.dialogfragment.CommentDialogFragment;
+import com.android.orc.ocrapplication.manager.HttpManager;
 import com.bumptech.glide.Glide;
 
 /**
  * Created by j.poobest on 19/3/2018 AD.
  */
 
-public class ResultFragment extends Fragment implements View.OnClickListener {
+public class ResultFragment extends Fragment implements View.OnClickListener,RatingListener {
 
     ImageView imgMenu;
     TextView tvNameMenu;
@@ -108,5 +111,16 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    //TODO:: REcyclerView review
+    @Override
+    public void onRating(CommentDao rating) {
+        HttpManager.getInstance().getService().addComment(rating.getRequest(), rating);
+
+
+    }
+
+    private void addRating() {
+
+    }
+
+
 }

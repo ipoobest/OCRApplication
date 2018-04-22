@@ -26,9 +26,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.callback.RatingListener;
 import com.android.orc.ocrapplication.dao.CommentDao;
 import com.android.orc.ocrapplication.dao.MenuDao;
-import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.android.orc.ocrapplication.manager.HttpManager;
 
 
@@ -45,10 +45,8 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
     EditText mRatingText;
     Button btnSubmit;
     Button btnCancel;
-    CommentDao rating;
 
     String nameThai;
-    CommentDao dao;
 
     public static CommentDialogFragment newInstance( String nameThia ){
         CommentDialogFragment commentDialogFragment = new CommentDialogFragment();
@@ -63,12 +61,6 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 
     public static final String TAG = "RatingDialog";
 
-
-    interface RatingListener {
-
-        void onRating(CommentDao rating);
-
-    }
 
     private RatingListener mRatingListener;
 
@@ -91,9 +83,9 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 
     private void initInstances(View rootView) {
         mRatingBar = rootView.findViewById(R.id.menu_form_rating);
-        mRatingText = rootView.findViewById(R.id.restaurant_form_text);
-        btnSubmit = rootView.findViewById(R.id.restaurant_form_button);
-        btnCancel = rootView.findViewById(R.id.restaurant_form_cancel);
+        mRatingText = rootView.findViewById(R.id.menu_form_text);
+        btnSubmit = rootView.findViewById(R.id.menu_form_button);
+        btnCancel = rootView.findViewById(R.id.menu_form_cancel);
 
 
         btnSubmit.setOnClickListener(this);
@@ -124,11 +116,14 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
     public void onClick(View v) {
         if (v == btnSubmit) {
 //            Toast.makeText(getContext(), "Please Comment this menu", Toast.LENGTH_LONG).show();
+            CommentDao comment = new CommentDao("Guest",
+                    mRatingBar.getRating(),
+                    mRatingText.getText().toString()
+                    );
 
             if (mRatingListener != null) {
-                mRatingListener.onRating(rating);
+                mRatingListener.onRating(comment, nameThai);
 
-                addComment();
             }
 
             dismiss();
@@ -138,12 +133,5 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 
     }
 
-    private void addComment() {
-        //menu name
-        //Comment
-        Call<MenuDao> call = HttpManager.getInstance().getService().addComment(nameThai,dao);
 
-        //TODO: make call
-
-    }
 }

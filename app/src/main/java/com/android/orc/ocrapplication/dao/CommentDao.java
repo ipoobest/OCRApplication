@@ -2,6 +2,7 @@ package com.android.orc.ocrapplication.dao;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.Editable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -19,7 +20,7 @@ public class CommentDao implements Parcelable {
     private String userName;
     @SerializedName("rate")
     @Expose
-    private Double rating;
+    private Float rating;
     @SerializedName("comment")
     @Expose
     private String comment;
@@ -29,9 +30,11 @@ public class CommentDao implements Parcelable {
     private Date dateTime;
 
 
-    public CommentDao() {
+    public CommentDao(String userName, Float rating, String comment) {
+        this.userName = userName;
+        this.rating = rating;
+        this.comment = comment;
     }
-
 
     protected CommentDao(Parcel in) {
         id = in.readString();
@@ -39,7 +42,7 @@ public class CommentDao implements Parcelable {
         if (in.readByte() == 0) {
             rating = null;
         } else {
-            rating = in.readDouble();
+            rating = in.readFloat();
         }
         comment = in.readString();
     }
@@ -72,11 +75,11 @@ public class CommentDao implements Parcelable {
         this.userName = userName;
     }
 
-    public Double getRating() {
+    public Float getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(Float rating) {
         this.rating = rating;
     }
 
@@ -109,7 +112,7 @@ public class CommentDao implements Parcelable {
             dest.writeByte((byte) 0);
         } else {
             dest.writeByte((byte) 1);
-            dest.writeDouble(rating);
+            dest.writeFloat(rating);
         }
         dest.writeString(comment);
     }
