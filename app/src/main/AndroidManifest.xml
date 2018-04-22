@@ -80,13 +80,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.orc.ocrapplication.dashboard.DashBoardActivity" />
         </activity>
-        <activity android:name=".result.ocrscan.ResultOcrActivity" >
+        <activity android:name=".result.menuocr.ResultOcrActivity" >
 
         </activity>
         <activity android:name=".result.ocrresult.OrcDescriptionActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.android.orc.ocrapplication.result.ocrscan.ResultOcrActivity" />
+                android:value="com.android.orc.ocrapplication.result.menuocr.ResultOcrActivity" />
         </activity>
     </application>
 
