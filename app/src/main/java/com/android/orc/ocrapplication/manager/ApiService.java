@@ -19,10 +19,10 @@ import retrofit2.http.Path;
 
 public interface ApiService {
 
-    @GET("menu")
+    @GET("menu/25")
     Call<List<MenuItemDao>> loadMenuItem();
 
-    @GET("/menu/querymenu/{name}")
+    @GET("menu/querymenu/{name}")
     Call<List<MenuDao>> requestMenu(@Path("name") String menu);
 //
 //    @PUT("/review/add/{namethai}")
@@ -38,7 +38,7 @@ public interface ApiService {
 //                    @Part("rating") Double rating,
 //                    Callback<Rating> serverResponseCallback);
 
-    @PUT("/review/add/{nameThai}")
+    @PUT("review/add/{nameThai}")
     Call<MenuDao> addComment(@Path("nameThai") String name,
                             @Body CommentDao ratingRequest);
 
