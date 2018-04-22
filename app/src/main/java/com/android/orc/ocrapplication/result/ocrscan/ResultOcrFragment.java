@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.ResultListAdapter;
+import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
 import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
 import com.android.orc.ocrapplication.callback.ResultOcrFragmentListener;
 import com.android.orc.ocrapplication.dao.MenuDao;
@@ -37,6 +38,9 @@ public class ResultOcrFragment extends Fragment {
     private RecyclerView recyclerView;
     private ResultListAdapter adapter;
     MenuManager menuManager;
+
+    private RecyclerView recyclerViewComment;
+    private ReviewListAdapter adapterReview;
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {

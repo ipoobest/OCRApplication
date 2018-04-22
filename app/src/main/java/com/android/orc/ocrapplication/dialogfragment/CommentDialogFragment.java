@@ -24,17 +24,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.callback.RatingListener;
 import com.android.orc.ocrapplication.dao.CommentDao;
-import com.android.orc.ocrapplication.dao.MenuDao;
-import com.android.orc.ocrapplication.manager.HttpManager;
-
 
 
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
-import retrofit2.Call;
 
 /**
  * Dialog Fragment containing rating form.
@@ -48,11 +45,11 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 
     String nameThai;
 
-    public static CommentDialogFragment newInstance( String nameThia ){
+    public static CommentDialogFragment newInstance(String nameThai) {
         CommentDialogFragment commentDialogFragment = new CommentDialogFragment();
 
         Bundle args = new Bundle();
-        args.putString("nameThai", nameThia);
+        args.putString("nameThai", nameThai);
         commentDialogFragment.setArguments(args);
 
         return commentDialogFragment;
@@ -62,13 +59,13 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
     public static final String TAG = "RatingDialog";
 
 
-    private RatingListener mRatingListener;
+    public RatingListener mRatingListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //TODO: get bundle
         nameThai = getArguments().getString("nameThai");
+        Toast.makeText(getContext(), nameThai,Toast.LENGTH_LONG).show();
     }
 
     @Nullable
@@ -119,19 +116,20 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
             CommentDao comment = new CommentDao("Guest",
                     mRatingBar.getRating(),
                     mRatingText.getText().toString()
-                    );
+            );
 
             if (mRatingListener != null) {
                 mRatingListener.onRating(comment, nameThai);
 
+                Toast.makeText(getContext(), "sent request" + comment.getComment() + comment.getRating(), Toast.LENGTH_SHORT).show();
             }
 
-            dismiss();
-        } else if (v == btnCancel) {
-            dismiss();
-        }
+                dismiss();
+            } else if (v == btnCancel) {
+                dismiss();
+            }
 
-    }
+        }
 
 
 }

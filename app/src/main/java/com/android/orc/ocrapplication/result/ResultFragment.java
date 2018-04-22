@@ -1,12 +1,10 @@
 package com.android.orc.ocrapplication.result;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +20,6 @@ import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.android.orc.ocrapplication.dialogfragment.CommentDialogFragment;
 import com.android.orc.ocrapplication.manager.HttpManager;
 import com.bumptech.glide.Glide;
-
-import java.io.IOException;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,6 +55,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener, Ra
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dao = getArguments().getParcelable("dao");
+
 
     }
 
@@ -118,6 +114,8 @@ public class ResultFragment extends Fragment implements View.OnClickListener, Ra
             mRatingDialog.show(getChildFragmentManager(), CommentDialogFragment.TAG);
         }
     }
+
+
 
 
     @Override

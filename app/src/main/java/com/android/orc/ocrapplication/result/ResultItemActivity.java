@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.callback.RatingListener;
+import com.android.orc.ocrapplication.dao.CommentDao;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
+import com.android.orc.ocrapplication.dialogfragment.CommentDialogFragment;
 
 
-public class ResultItemActivity extends AppCompatActivity {
+public class ResultItemActivity extends AppCompatActivity  {
 
     Toolbar toolbar;
 
@@ -36,4 +39,6 @@ public class ResultItemActivity extends AppCompatActivity {
                     .commit();
         }
     }
+
+
 }

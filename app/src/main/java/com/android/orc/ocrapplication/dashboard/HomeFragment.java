@@ -183,7 +183,6 @@ public class HomeFragment extends Fragment
         startActivity(intent);
     }
 
-    //TODO
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -206,7 +205,6 @@ public class HomeFragment extends Fragment
         } else if (v == btnClearFilter) {
             mFilterDialog.resetFilters();
 //TODO: Filter
-//            onFilter(Filters.getDefault());
         }
     }
 }

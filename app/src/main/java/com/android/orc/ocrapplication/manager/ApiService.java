@@ -38,7 +38,6 @@ public interface ApiService {
 //                    @Part("rating") Double rating,
 //                    Callback<Rating> serverResponseCallback);
 
-    //TODO: PUT METHODS
     @PUT("/review/add/{nameThai}")
     Call<MenuDao> addComment(@Path("nameThai") String name,
                             @Body CommentDao ratingRequest);
