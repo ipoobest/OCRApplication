@@ -25,7 +25,7 @@ import com.android.orc.cloudvision.CVResponse;
 import com.android.orc.cloudvision.CloudVision;
 import com.android.orc.ocrapplication.BuildConfig;
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.result.ocrscan.ResultOcrActivity;
+import com.android.orc.ocrapplication.result.menuocr.ResultOcrActivity;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.File;

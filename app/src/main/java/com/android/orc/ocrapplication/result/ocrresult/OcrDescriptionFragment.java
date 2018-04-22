@@ -84,20 +84,14 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
         bottomSheet = rootView.findViewById(R.id.bottom_sheet);
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
-        mRatingDialog = new CommentDialogFragment();
-
-        bottomSheets();
-
-
-    }
-
-    private void bottomSheets() {
-        // init the bottom sheet behavior
+        mRatingDialog = CommentDialogFragment.newInstance(dao.getNameThai());
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
 
 
+
     }
+
 
     @Override
     public void onClick(View v) {
