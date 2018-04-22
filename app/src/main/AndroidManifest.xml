@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.android.orc.ocrapplication">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -21,6 +23,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA3cdT7s16tSlcwkmAB6iiGXsTTLG-aIX8" />
+
         <activity
             android:name=".dashboard.DashBoardActivity"
             android:windowSoftInputMode="adjustPan">
@@ -30,6 +36,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -53,7 +62,6 @@
         </activity>
         <activity android:name=".SplashScreenActivity" />
         <activity android:name=".login.LoginActivity" />
-        <activity android:name=".search.SearchActivity" />
         <activity android:name=".description.DescriptionActivity" />
         <activity android:name=".camera.CameraActivity" />
 
@@ -67,7 +75,19 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".result.ResultActivity"></activity>
+        <activity android:name=".result.ResultItemActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.orc.ocrapplication.dashboard.DashBoardActivity" />
+        </activity>
+        <activity android:name=".result.ocrscan.ResultOcrActivity" >
+
+        </activity>
+        <activity android:name=".result.ocrresult.OrcDescriptionActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.orc.ocrapplication.result.ocrscan.ResultOcrActivity" />
+        </activity>
     </application>
 
 </manifest>

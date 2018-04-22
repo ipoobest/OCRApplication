@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
@@ -16,7 +15,6 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,9 +25,8 @@ import com.android.orc.cloudvision.CVResponse;
 import com.android.orc.cloudvision.CloudVision;
 import com.android.orc.ocrapplication.BuildConfig;
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.dashboard.DashBoardActivity;
-import com.android.orc.ocrapplication.description.DescriptionActivity;
-import com.android.orc.ocrapplication.result.ResultActivity;
+import com.android.orc.ocrapplication.result.ocrscan.ResultOcrActivity;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -61,6 +58,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     ImageView ivPreview;
     String mCurrentPhotoPath;
     Bitmap bitmap;
+    Intent CropIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,13 +143,16 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
-
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
+                && resultCode == RESULT_OK
+               ) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
             getContentResolver().notifyChange(Uri.parse(mCurrentPhotoPath), null);
             ContentResolver cr = getContentResolver();
             // Show the thumbnail on ImageView
-            Uri imageUri = Uri.parse(mCurrentPhotoPath);
+            Uri imageUri = result.getUri();
             File file = new File(imageUri.getPath());
+
             try {
                 InputStream ims = new FileInputStream(file);
                 ivPreview.setImageBitmap(BitmapFactory.decodeStream(ims));
@@ -206,6 +207,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         return image;
     }
 
+
+
+
     private void dispatchTakePictureIntent() throws IOException {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -225,10 +229,18 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                         BuildConfig.APPLICATION_ID + ".provider",
                         createImageFile());
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+
+                CropImage.activity(photoURI).start(this);
+
+
+
+
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+
             }
         }
     }
+
 
     @Override
     public void onImageDetectionSuccess(boolean isSuccess, int statusCode, Headers headers, CVResponse cvResponse) {
@@ -265,10 +277,9 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 List<CVResponse.EntityAnnotation> testDao = response.getTexts();
                 String data = testDao.get(0).getDescription();
 
-
-                Intent intent = new Intent(CameraActivity.this,
-                        DescriptionActivity.class);
-                intent.putExtra("DAO", data);
+                Toast.makeText(this,"response ok", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this, ResultOcrActivity.class);
+                intent.putExtra("stringRequest", data);
                 startActivity(intent);
 
 //                textView.setText(testDao.get(0).getDescription());

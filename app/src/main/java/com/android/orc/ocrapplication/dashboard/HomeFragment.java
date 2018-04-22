@@ -9,49 +9,49 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.adapter.MenuListAdapter;
-import com.android.orc.ocrapplication.description.DescriptionActivity;
+import com.android.orc.ocrapplication.adapter.HomeAdapter;
+import com.android.orc.ocrapplication.callback.FragmentListener;
+import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
+import com.android.orc.ocrapplication.dialogfragment.FilterDialogFragment;
 import com.android.orc.ocrapplication.login.LoginActivity;
-import com.android.orc.ocrapplication.model.ItemClickCallback;
-import com.android.orc.ocrapplication.model.dao.MenuListItem;
+import com.android.orc.ocrapplication.manager.HttpManager;
+import com.android.orc.ocrapplication.manager.MenuListManager;
+import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.arlib.floatingsearchview.FloatingSearchView;
-import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by j.poobest on 9/24/2017 AD.
  */
 
 public class HomeFragment extends Fragment
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private RecyclerView recyclerView;
-    private List<MenuListItem> listResult;
-    private MenuListAdapter adapter;
+    private HomeAdapter adapter;
+    MenuListManager menuListManager;
+    CardView filterBar;
+    ImageView btnClearFilter;
 
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
+    private FilterDialogFragment mFilterDialog;
 
-    FloatingSearchView mSearchView;
     DrawerLayout mDrawer;
-    NavigationView navigationView;
-    CardView cardView;
 
     public HomeFragment() {
         super();
@@ -71,12 +71,14 @@ public class HomeFragment extends Fragment
 
         if (savedInstanceState != null)
             onRestoreInstanceState(savedInstanceState);
+
+        mFilterDialog = new FilterDialogFragment();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home_dashboard, container, false);
+        View rootView = inflater.inflate(R.layout.activity_main, container, false);
         initInstances(rootView, savedInstanceState);
         return rootView;
     }
@@ -84,52 +86,67 @@ public class HomeFragment extends Fragment
     @SuppressWarnings("UnusedParameters")
     private void init(Bundle savedInstanceState) {
         // Init Fragment level's variable(s) here
+        menuListManager = new MenuListManager();
+
     }
 
     @SuppressWarnings("UnusedParameters")
     private void initInstances(View rootView, Bundle savedInstanceState) {
-
-        // set firebase
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("menu");
-
         // set floatingView
-        mDrawer = rootView.findViewById(R.id.drawer_layout);
-        mSearchView = rootView.findViewById(R.id.floating_search_view);
-        navigationView = rootView.findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        // set cardView
-        cardView = rootView.findViewById(R.id.card_view);
-
-        setupDrawerLayout();
-        setupSearchBar();
 
 
-        // Init 'View' instance(s) with rootView.findViewById here
-        // Note: State of variable initialized here could not be saved
-        //       in onSavedInstanceState
-
-        listResult = new ArrayList<>();
-
+        filterBar = rootView.findViewById(R.id.filter_bar);
+        btnClearFilter = rootView.findViewById(R.id.button_clear_filter);
+        filterBar.setOnClickListener(this);
+        btnClearFilter.setOnClickListener(this);
         recyclerView = rootView.findViewById(R.id.recycler_view_dashboard);
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        RecyclerViewClickListener listener = (view, position) -> {
 
-        ItemClickCallback listener = (view, position) -> {
-            Intent intent = new Intent(getActivity(),DescriptionActivity.class);
-//            Toast.makeText(getContext(),""+listResult.get(position).getName(),Toast.LENGTH_LONG).show();
-            intent.putExtra("recyclerMenu", listResult.get(position).getName());
-            startActivity(intent);
+            MenuItemDao dao = menuListManager.getDao().get(position);
+            FragmentListener fragmentListener = (FragmentListener) getActivity();
+            fragmentListener.onMenuItemClick(dao);
 
         };
 
-        adapter = new MenuListAdapter(getContext(), listResult, listener);
+        adapter = new HomeAdapter(getContext(), listener);
         recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
-        updateList();
+        loadData();
 
+    }
+
+    public void loadData() {
+        Call<List<MenuItemDao>> call = HttpManager.getInstance().getService().loadMenuItem();
+        call.enqueue(new Callback<List<MenuItemDao>>() {
+            @Override
+            public void onResponse(Call<List<MenuItemDao>> call, Response<List<MenuItemDao>> response) {
+
+                if (response.isSuccessful()) {
+                    List<MenuItemDao> dao = response.body();
+                    //ดึง dao
+                    menuListManager.setDao(dao);
+                    adapter.setDao(dao);
+                    adapter.notifyDataSetChanged();
+
+                } else {
+                    try {
+                        Toast.makeText(getContext(),
+                                response.errorBody().string(),
+                                Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<MenuItemDao>> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
@@ -143,82 +160,6 @@ public class HomeFragment extends Fragment
         }
 
         return super.onContextItemSelected(item);
-    }
-
-    private void updateList() {
-        myRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                listResult.add(dataSnapshot.getValue(MenuListItem.class));
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                MenuListItem listItem = dataSnapshot.getValue(MenuListItem.class);
-
-                int index = getItemIndex(listItem);
-
-                listResult.set(index, listItem);
-                adapter.notifyItemChanged(index);
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                MenuListItem listItem = dataSnapshot.getValue(MenuListItem.class);
-
-                int index = getItemIndex(listItem);
-
-                listResult.remove(index);
-                adapter.notifyItemRemoved(index);
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    private int getItemIndex(MenuListItem menu) {
-
-        int index = -1;
-
-        for (int i = 0; i < listResult.size(); i++) {
-            if (listResult.get(i).key.equals(menu.key)) {
-                index = i;
-                break;
-            }
-        }
-        return index;
-    }
-
-    private void setupSearchBar() {
-
-        mSearchView.setOnSearchListener(new FloatingSearchView.OnSearchListener() {
-            @Override
-            public void onSuggestionClicked(SearchSuggestion searchSuggestion) {
-
-            }
-
-            @Override
-            public void onSearchAction(String result) {
-                if (result != null) {
-//                    Toast.makeText(getContext(), ""+result, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(), DescriptionActivity.class);
-                    intent.putExtra("result", result);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(getContext(), "please", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
     }
 
 
@@ -238,10 +179,6 @@ public class HomeFragment extends Fragment
         mSearchView.attachNavigationDrawerToMenuButton(mDrawer);
     }
 
-    private void setupDrawerLayout() {
-        attachSearchViewActivityDrawer(mSearchView);
-    }
-
 
     private void goLoginScreen() {
         Intent intent = new Intent(getContext(), LoginActivity.class);
@@ -249,7 +186,6 @@ public class HomeFragment extends Fragment
         startActivity(intent);
     }
 
-    //TODO
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -263,5 +199,15 @@ public class HomeFragment extends Fragment
         }
         return true;
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == filterBar){
+            mFilterDialog.show(getChildFragmentManager(), FilterDialogFragment.TAG);
+        } else if (v == btnClearFilter) {
+            mFilterDialog.resetFilters();
+//TODO: Filter
+        }
     }
 }
