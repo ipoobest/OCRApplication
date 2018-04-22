@@ -21,11 +21,6 @@ public class ResultItemActivity extends AppCompatActivity  {
         toolbar = findViewById(R.id.result_toolbar);
         setSupportActionBar(toolbar);
 
-        ActionBar ab = getSupportActionBar();
-
-        // Enable the Up button
-        ab.setDisplayHomeAsUpEnabled(true);
-
         MenuItemDao dao = getIntent().getParcelableExtra("dao");
 
 
