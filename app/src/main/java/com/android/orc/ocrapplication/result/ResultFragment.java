@@ -57,6 +57,11 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
 
     @Nullable
     @Override
@@ -90,21 +95,21 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         bottomSheet = rootView.findViewById(R.id.bottom_sheet);
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
         mRatingDialog = CommentDialogFragment.newInstance(dao.getNameThai());
 
-        //TODO : Innit Recyclerview
+        //TODO : set notfifysetchange
         recyclerView = rootView.findViewById(R.id.review_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
         adapter = new ReviewListAdapter(dao.getReview());
-        adapter.notifyDataSetChanged();
         recyclerView.setAdapter(adapter);
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-
-
+        adapter.updateUI(dao.getReview());
+        adapter.notifyDataSetChanged();
 
 
     }
-
 
 
     @Override
@@ -113,7 +118,5 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
             mRatingDialog.show(getChildFragmentManager(), CommentDialogFragment.TAG);
         }
     }
-
-
 
 }

@@ -121,21 +121,27 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
                     mRatingText.getText().toString()
             );
 
-            Call<MenuDao> call = HttpManager.getInstance().getService().addComment(nameThai, comment);
-            call.enqueue(new Callback<MenuDao>() {
-                @Override
-                public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
-                    if (response.isSuccessful()) {
-                        dismiss();
+            if (comment.getRating() == null || comment.getComment() == null) {
+                Toast.makeText(getContext(), "PLEASE add rating and comment", Toast.LENGTH_LONG).show();
+
+            } else {
+                Call<MenuDao> call = HttpManager.getInstance().getService().addComment(nameThai, comment);
+                call.enqueue(new Callback<MenuDao>() {
+                    @Override
+                    public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
+                        if (response.isSuccessful()) {
+
+                            dismiss();
+
+                        }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<MenuDao> call, Throwable t) {
-                        Toast.makeText(getContext(),t.toString(),Toast.LENGTH_LONG).show();
-                }
-            });
-
+                    @Override
+                    public void onFailure(Call<MenuDao> call, Throwable t) {
+                        Toast.makeText(getContext(), t.toString(), Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
             dismiss();
         } else if (v == btnCancel) {
             dismiss();

@@ -1,6 +1,5 @@
 package com.android.orc.ocrapplication.adapter;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,12 +14,15 @@ import java.util.List;
 
 public class ReviewListAdapter extends RecyclerView.Adapter<ReviewHolder> {
 
-    private List<CommentDao> dao;
-    Context context;
-
+     List<CommentDao> dao;
 
     public ReviewListAdapter(List<CommentDao> dao) {
         this.dao = dao;
+    }
+
+    public void updateUI(List<CommentDao> dataset){
+        this.dao = dataset;
+
     }
 
 
@@ -39,7 +41,6 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewHolder> {
         holder.getTvUserName().setText(item.getUserName());
         holder.getRatingBar().setNumStars(item.getRating().intValue());
         holder.getTvComment().setText(item.getComment());
-
     }
 
     @Override

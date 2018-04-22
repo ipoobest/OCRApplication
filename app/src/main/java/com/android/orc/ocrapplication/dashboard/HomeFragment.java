@@ -86,11 +86,12 @@ public class HomeFragment extends Fragment
     @SuppressWarnings("UnusedParameters")
     private void init(Bundle savedInstanceState) {
         // Init Fragment level's variable(s) here
+        menuListManager = new MenuListManager();
+
     }
 
     @SuppressWarnings("UnusedParameters")
     private void initInstances(View rootView, Bundle savedInstanceState) {
-        menuListManager = new MenuListManager();
         // set floatingView
 
 
@@ -111,6 +112,7 @@ public class HomeFragment extends Fragment
 
         adapter = new HomeAdapter(getContext(), listener);
         recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
         loadData();
 
@@ -128,6 +130,7 @@ public class HomeFragment extends Fragment
                     menuListManager.setDao(dao);
                     adapter.setDao(dao);
                     adapter.notifyDataSetChanged();
+
                 } else {
                     try {
                         Toast.makeText(getContext(),
