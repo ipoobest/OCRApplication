@@ -96,6 +96,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
         mRatingDialog = CommentDialogFragment.newInstance(dao.getNameThai());
 
         //TODO : set notfifysetchange
@@ -105,8 +106,6 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
 
         adapter = new ReviewListAdapter(dao.getReview());
         recyclerView.setAdapter(adapter);
-        adapter.updateUI(dao.getReview());
-        adapter.notifyDataSetChanged();
 
 
     }

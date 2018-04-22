@@ -1,4 +1,4 @@
-package com.android.orc.ocrapplication.result.ocrscan;
+package com.android.orc.ocrapplication.result.menuocr;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

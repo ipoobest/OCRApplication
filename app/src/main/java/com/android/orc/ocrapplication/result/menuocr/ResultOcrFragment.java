@@ -1,4 +1,4 @@
-package com.android.orc.ocrapplication.result.ocrscan;
+package com.android.orc.ocrapplication.result.menuocr;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.ResultListAdapter;
-import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
 import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
 import com.android.orc.ocrapplication.callback.ResultOcrFragmentListener;
 import com.android.orc.ocrapplication.dao.MenuDao;
@@ -39,8 +38,6 @@ public class ResultOcrFragment extends Fragment {
     private ResultListAdapter adapter;
     MenuManager menuManager;
 
-    private RecyclerView recyclerViewComment;
-    private ReviewListAdapter adapterReview;
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
@@ -102,12 +99,10 @@ public class ResultOcrFragment extends Fragment {
             ResultOcrFragmentListener fragmentListener = (ResultOcrFragmentListener) getActivity();
             fragmentListener.onMenuItemClick(dao);
 
-//            Toast.makeText(getContext(), "Position " + position, Toast.LENGTH_SHORT).show();
-
         };
 
         adapter = new ResultListAdapter(getContext(), listener);
-//        adapter.setDao(menuManager.getDao());
+        adapter.setDao(menuManager.getDao());
         recyclerView.setAdapter(adapter);
 
 
