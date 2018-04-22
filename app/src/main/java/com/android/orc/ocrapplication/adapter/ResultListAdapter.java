@@ -56,7 +56,7 @@ public class ResultListAdapter extends RecyclerView.Adapter<MenuItemHolder> {
         if (item.getQuantityRating() == null){
             holder.getMaterialRatingBar().setNumStars(0);
         }else {
-            holder.getMaterialRatingBar().setNumStars(item.getQuantityRating().intValue());
+            holder.getMaterialRatingBar().setNumStars(item.getRating().intValue());
         }
 
 

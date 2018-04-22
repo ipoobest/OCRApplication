@@ -70,7 +70,7 @@ public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
         if (item.getQuantityRating() == null){
             holder.getMaterialRatingBar().setNumStars(1 );
         }else {
-            holder.getMaterialRatingBar().setNumStars(item.getQuantityRating().intValue());
+            holder.getMaterialRatingBar().setNumStars(item.getRating().intValue());
         }
 
         Glide.with(context)

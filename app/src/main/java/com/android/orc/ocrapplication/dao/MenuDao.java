@@ -48,7 +48,9 @@ public class MenuDao implements Parcelable {
     @SerializedName("quantity")
     @Expose
     private Double quantityRating;
-
+    @SerializedName("rating")
+    @Expose
+    private Double rating;
     @SerializedName("review")
     @Expose
     private List<CommentDao> review = null;
@@ -71,6 +73,11 @@ public class MenuDao implements Parcelable {
             quantityRating = null;
         } else {
             quantityRating = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            rating = null;
+        } else {
+            rating = in.readDouble();
         }
         review = in.createTypedArrayList(CommentDao.CREATOR);
     }
@@ -159,6 +166,14 @@ public class MenuDao implements Parcelable {
         this.quantityRating = quantityRating;
     }
 
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
     public List<CommentDao> getReview() {
         return review;
     }
@@ -192,6 +207,12 @@ public class MenuDao implements Parcelable {
         } else {
             dest.writeByte((byte) 1);
             dest.writeDouble(quantityRating);
+        }
+        if (rating == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(rating);
         }
         dest.writeTypedList(review);
     }
