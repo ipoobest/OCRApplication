@@ -11,9 +11,9 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="?android:attr/colorPrimary"
         android:theme="@style/AppTheme"
-        app:logo="@drawable/ic_restaurant_white_24px"
+        app:logo="@drawable/ic_logo"
         app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
         app:title="@string/app_name"
         app:titleMarginStart="24dp"
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
-        android:background="?attr/colorPrimary"
+        android:background="?android:attr/colorPrimary"
         android:paddingBottom="12dp"
         android:paddingLeft="12dp"
         android:paddingRight="12dp">
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:elevation="8dp"
-            android:foreground="?attr/selectableItemBackground">
+            android:foreground="?android:attr/selectableItemBackground">
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
 
+import me.zhanghai.android.materialratingbar.MaterialRatingBar;
+
 
 /**
  * Created by j.poobest on 19/3/2018 AD.
@@ -19,6 +21,11 @@ public class MenuListHolder extends RecyclerView.ViewHolder implements View.OnCl
     TextView menuName;
     ImageView star;
     TextView nameThai;
+    MaterialRatingBar materialRatingBar;
+
+    public MaterialRatingBar getMaterialRatingBar() {
+        return materialRatingBar;
+    }
 
     public TextView getNameThai() {
         return nameThai;
@@ -46,6 +53,7 @@ public class MenuListHolder extends RecyclerView.ViewHolder implements View.OnCl
         menuName = itemView.findViewById(R.id.menu_name);
         nameThai = itemView.findViewById(R.id.menu_item_namethai);
         star = itemView.findViewById(R.id.star);
+        materialRatingBar = itemView.findViewById(R.id.menu_item_rating);
         itemView.setOnClickListener(this);
 
     }
