@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
 import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dialogfragment.CommentDialogFragment;
 import com.bumptech.glide.Glide;
@@ -34,6 +37,8 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
     View bottomSheet;
     BottomSheetBehavior bottomSheetBehavior;
     CommentDialogFragment mRatingDialog;
+    RecyclerView recyclerView;
+    ReviewListAdapter adapter;
 
     MenuDao dao;
 
@@ -97,6 +102,13 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         mRatingDialog = CommentDialogFragment.newInstance(dao.getNameThai());
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
+        recyclerView = rootView.findViewById(R.id.review_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        adapter = new ReviewListAdapter(dao.getReview());
+        recyclerView.setAdapter(adapter);
 
 
     }

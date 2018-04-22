@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <ImageVieww
             android:id="@+id/icon_sort"
             style="@style/AppTheme.FilterIcon"
             android:layout_centerVertical="true"
