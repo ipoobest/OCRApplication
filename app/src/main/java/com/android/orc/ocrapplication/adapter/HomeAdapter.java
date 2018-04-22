@@ -66,6 +66,7 @@ public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
 
         MenuItemDao item = dao.get(position);
         holder.getMenuName().setText(item.getName());
+        holder.getNameThai().setText(item.getNameThai());
 
         Glide.with(context)
                 .load(item.getImgUrl())

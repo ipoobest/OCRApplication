@@ -18,7 +18,11 @@ public class MenuListHolder extends RecyclerView.ViewHolder implements View.OnCl
     ImageView menuImage;
     TextView menuName;
     ImageView star;
+    TextView nameThai;
 
+    public TextView getNameThai() {
+        return nameThai;
+    }
 
     private RecyclerViewClickListener mListener;
 
@@ -40,6 +44,7 @@ public class MenuListHolder extends RecyclerView.ViewHolder implements View.OnCl
         mListener = listener;
         menuImage = itemView.findViewById(R.id.menu_image);
         menuName = itemView.findViewById(R.id.menu_name);
+        nameThai = itemView.findViewById(R.id.menu_item_namethai);
         star = itemView.findViewById(R.id.star);
         itemView.setOnClickListener(this);
 

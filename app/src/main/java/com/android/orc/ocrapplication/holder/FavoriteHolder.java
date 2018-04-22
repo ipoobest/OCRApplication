@@ -13,7 +13,12 @@ public class FavoriteHolder extends RecyclerView.ViewHolder implements View.OnCl
     private ItemClickCallback mListener;
     ImageView menuImage;
     TextView menuName;
+    TextView menuNameThai;
     ImageView star;
+
+    public TextView getMenuNameThai() {
+        return menuNameThai;
+    }
 
     public ItemClickCallback getmListener() {
         return mListener;
@@ -39,6 +44,7 @@ public class FavoriteHolder extends RecyclerView.ViewHolder implements View.OnCl
 
         menuImage = itemView.findViewById(R.id.menu_image);
         menuName = itemView.findViewById(R.id.menu_name);
+        menuNameThai = itemView.findViewById(R.id.menu_item_namethai);
         star = itemView.findViewById(R.id.star);
     }
 
