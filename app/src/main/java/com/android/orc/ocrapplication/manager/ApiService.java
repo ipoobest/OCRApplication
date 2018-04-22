@@ -2,7 +2,6 @@ package com.android.orc.ocrapplication.manager;
 
 
 import com.android.orc.ocrapplication.dao.MenuDao;
-import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.android.orc.ocrapplication.dao.CommentDao;
 
 import java.util.List;
@@ -20,7 +19,7 @@ import retrofit2.http.Path;
 public interface ApiService {
 
     @GET("menu/25")
-    Call<List<MenuItemDao>> loadMenuItem();
+    Call<List<MenuDao>> loadMenuItem();
 
     @GET("menu/querymenu/{name}")
     Call<List<MenuDao>> requestMenu(@Path("name") String menu);

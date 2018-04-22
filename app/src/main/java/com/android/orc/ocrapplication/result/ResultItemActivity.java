@@ -1,12 +1,11 @@
 package com.android.orc.ocrapplication.result;
 
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.dao.MenuItemDao;
+import com.android.orc.ocrapplication.dao.MenuDao;
 
 
 public class ResultItemActivity extends AppCompatActivity  {
@@ -21,7 +20,7 @@ public class ResultItemActivity extends AppCompatActivity  {
         toolbar = findViewById(R.id.result_toolbar);
         setSupportActionBar(toolbar);
 
-        MenuItemDao dao = getIntent().getParcelableExtra("dao");
+        MenuDao dao = getIntent().getParcelableExtra("dao");
 
 
         if (savedInstanceState == null) {

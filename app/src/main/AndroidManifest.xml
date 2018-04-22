@@ -60,7 +60,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".SplashScreenActivity" />
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".description.DescriptionActivity" />
         <activity android:name=".camera.CameraActivity" />

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dao.FavoriteItemDao;
-import com.android.orc.ocrapplication.dao.MenuItemDao;
+import com.android.orc.ocrapplication.dao.MenuDao;
 import com.bumptech.glide.Glide;
 
 /**
@@ -25,7 +25,7 @@ public class DescriptionFragment extends Fragment {
     TextView tvDescription;
     TextView tvIngredient;
 
-    MenuItemDao dao;
+    MenuDao dao;
     FavoriteItemDao favoriteItemDao;
 
     public DescriptionFragment() {
