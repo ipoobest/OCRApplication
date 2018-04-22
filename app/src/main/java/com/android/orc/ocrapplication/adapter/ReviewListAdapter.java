@@ -19,9 +19,8 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewHolder> {
     Context context;
 
 
-    public ReviewListAdapter(List<CommentDao> dao, Context context) {
+    public ReviewListAdapter(List<CommentDao> dao) {
         this.dao = dao;
-        this.context = context;
     }
 
 

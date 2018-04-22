@@ -1,35 +1,29 @@
 package com.android.orc.ocrapplication.result;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.callback.RatingListener;
-import com.android.orc.ocrapplication.dao.CommentDao;
-import com.android.orc.ocrapplication.dao.MenuDao;
+import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
 import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.android.orc.ocrapplication.dialogfragment.CommentDialogFragment;
-import com.android.orc.ocrapplication.manager.HttpManager;
 import com.bumptech.glide.Glide;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * Created by j.poobest on 19/3/2018 AD.
  */
 
-public class ResultFragment extends Fragment implements View.OnClickListener, RatingListener {
+public class ResultFragment extends Fragment implements View.OnClickListener {
 
     ImageView imgMenu;
     TextView tvNameMenu;
@@ -39,6 +33,9 @@ public class ResultFragment extends Fragment implements View.OnClickListener, Ra
     View bottomSheet;
     BottomSheetBehavior bottomSheetBehavior;
     CommentDialogFragment mRatingDialog;
+
+    RecyclerView recyclerView;
+    ReviewListAdapter adapter;
 
     MenuItemDao dao;
 
@@ -93,22 +90,17 @@ public class ResultFragment extends Fragment implements View.OnClickListener, Ra
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         mRatingDialog = CommentDialogFragment.newInstance(dao.getNameThai());
+
+        //TODO : Innit Recyclerview
+
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
 
-        bottomSheets();
 
 
     }
 
-    private void bottomSheets() {
 
-        // init the bottom sheet behavior
-
-
-
-//         set callback for changes
-    }
 
     @Override
     public void onClick(View v) {
@@ -118,28 +110,5 @@ public class ResultFragment extends Fragment implements View.OnClickListener, Ra
     }
 
 
-
-
-    @Override
-    public void onRating(CommentDao rating, String request) {
-        Call<MenuDao> call = HttpManager.getInstance().getService().addComment(request, rating);
-        call.enqueue(new Callback<MenuDao>() {
-            @Override
-            public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
-                if (response.isSuccessful()) {
-                    MenuDao dao = response.body();
-                    Toast.makeText(getContext(), dao.getReview().get(0).toString(),
-                            Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MenuDao> call, Throwable t) {
-                Toast.makeText(getContext(), "cannot put", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-    }
 
 }
