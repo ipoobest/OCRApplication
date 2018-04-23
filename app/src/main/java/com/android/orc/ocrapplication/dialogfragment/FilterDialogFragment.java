@@ -16,9 +16,7 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
 
 
     Spinner mCategorySpinner;
-    Spinner mCitySpinner;
     Spinner mSortSpinner;
-    Spinner mPriceSpinner;
     Button btnSearch;
     Button btnCancel;
 
@@ -50,9 +48,7 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
 
     private void initInstances(View mRootView) {
         mCategorySpinner = rootView.findViewById(R.id.spinner_category);
-//        mCitySpinner = rootView.findViewById(R.id.spinner_city);
         mSortSpinner = rootView.findViewById(R.id.spinner_sort);
-//        mPriceSpinner = rootView.findViewById(R.id.spinner_price);
         btnSearch = rootView.findViewById(R.id.button_search);
         btnCancel = rootView.findViewById(R.id.button_cancel);
 
@@ -110,28 +106,6 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         }
     }
 
-    @Nullable
-    private String getSelectedCity() {
-        String selected = (String) mCitySpinner.getSelectedItem();
-        if (getString(R.string.value_any_limit).equals(selected)) {
-            return null;
-        } else {
-            return selected;
-        }
-    }
-
-    private int getSelectedPrice() {
-        String selected = (String) mPriceSpinner.getSelectedItem();
-        if (selected.equals(getString(R.string.price_1))) {
-            return 1;
-        } else if (selected.equals(getString(R.string.price_2))) {
-            return 2;
-        } else if (selected.equals(getString(R.string.price_3))) {
-            return 3;
-        } else {
-            return -1;
-        }
-    }
 
 //    @Nullable
 //    private String getSelectedSortBy() {
@@ -168,8 +142,6 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
     public void resetFilters() {
         if (rootView != null) {
             mCategorySpinner.setSelection(0);
-            mCitySpinner.setSelection(0);
-            mPriceSpinner.setSelection(0);
             mSortSpinner.setSelection(0);
         }
     }

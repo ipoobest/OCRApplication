@@ -49,6 +49,10 @@ public class HomeFragment extends Fragment
     CardView filterBar;
     ImageView btnClearFilter;
 
+    String filter = "all";
+    String sort = "rating";
+    int limit = 30;
+
     private FilterDialogFragment mFilterDialog;
 
     DrawerLayout mDrawer;
@@ -72,7 +76,6 @@ public class HomeFragment extends Fragment
         if (savedInstanceState != null)
             onRestoreInstanceState(savedInstanceState);
 
-        mFilterDialog = new FilterDialogFragment();
     }
 
     @Override
@@ -87,6 +90,7 @@ public class HomeFragment extends Fragment
     private void init(Bundle savedInstanceState) {
         // Init Fragment level's variable(s) here
         menuListManager = new MenuListManager();
+        mFilterDialog = new FilterDialogFragment();
 
     }
 
@@ -119,7 +123,7 @@ public class HomeFragment extends Fragment
     }
 
     public void loadData() {
-        Call<List<MenuDao>> call = HttpManager.getInstance().getService().loadMenuItem();
+        Call<List<MenuDao>> call = HttpManager.getInstance().getService().loadMenuItem(filter, sort, limit);
         call.enqueue(new Callback<List<MenuDao>>() {
             @Override
             public void onResponse(Call<List<MenuDao>> call, Response<List<MenuDao>> response) {

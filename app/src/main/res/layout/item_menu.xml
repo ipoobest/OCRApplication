@@ -43,7 +43,7 @@
         android:layout_marginBottom="4dp" />
 
     <TextView
-        android:id="@+id/menu_item_num_ratings"
+        android:id="@+id/menu_item_num_comment"
         style="@style/AppTheme.Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

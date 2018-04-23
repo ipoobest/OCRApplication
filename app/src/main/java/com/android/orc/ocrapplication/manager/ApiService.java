@@ -18,8 +18,11 @@ import retrofit2.http.Path;
 
 public interface ApiService {
 
-    @GET("menu/25")
-    Call<List<MenuDao>> loadMenuItem();
+    @GET("menu/filter-sort/{filter}/{sort}/{limit}")
+    Call<List<MenuDao>> loadMenuItem(@Path("filter") String filter,
+                                     @Path("sort") String sort,
+                                     @Path("limit") int limit);
+//    app.get('/menu/filer-sort/:filter/:sort/:limit'
 
     @GET("menu/querymenu/{name}")
     Call<List<MenuDao>> requestMenu(@Path("name") String menu);
