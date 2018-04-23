@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.android.orc.ocrapplication.result.ResultItemActivity">
+    tools:context="com.android.orc.ocrapplication.result.HomeResultItemActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

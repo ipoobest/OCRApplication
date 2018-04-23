@@ -25,7 +25,7 @@ import me.zhanghai.android.materialratingbar.MaterialRatingBar;
  * Created by j.poobest on 19/3/2018 AD.
  */
 
-public class ResultFragment extends Fragment implements View.OnClickListener {
+public class HomeResultFragment extends Fragment implements View.OnClickListener {
 
     ImageView imgMenu;
     TextView tvNameMenu;
@@ -43,8 +43,8 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
 
     MenuDao dao;
 
-    public static ResultFragment newInstance(MenuDao dao) {
-        ResultFragment fragment = new ResultFragment();
+    public static HomeResultFragment newInstance(MenuDao dao) {
+        HomeResultFragment fragment = new HomeResultFragment();
         Bundle args = new Bundle();
         args.putParcelable("dao", dao);
         fragment.setArguments(args);
@@ -99,7 +99,7 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
             materialRatingBar.setNumStars(dao.getRating().intValue());
         }
 
-        Glide.with(ResultFragment.this)
+        Glide.with(HomeResultFragment.this)
                 .load(dao.getImgUrl())
                 .into(imgMenu);
 
