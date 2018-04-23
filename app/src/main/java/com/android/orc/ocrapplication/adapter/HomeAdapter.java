@@ -80,6 +80,9 @@ public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
         holder.getStar().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //TODO: check
+                // status
                 holder.getStar().setImageResource(R.drawable.ic_toggle_star_24);
 
                 database = FirebaseDatabase.getInstance();
