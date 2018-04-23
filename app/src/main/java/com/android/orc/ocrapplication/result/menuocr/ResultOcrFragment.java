@@ -114,7 +114,6 @@ public class ResultOcrFragment extends Fragment {
                     List<MenuDao> dao = response.body();
                     Log.d("Dao MenuItem", dao.toString());
                     menuManager.setDao(dao);
-
                     adapter.setDao(dao);
                     adapter.notifyDataSetChanged();
                 } else {

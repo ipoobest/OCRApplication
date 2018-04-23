@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.callback.ResultOcrFragmentListener;
@@ -19,9 +20,8 @@ public class ResultOcrActivity extends AppCompatActivity implements ResultOcrFra
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_ocr);
 
-        toolbar = findViewById(R.id.result_ocr_toolbar);
-        toolbar.setTitle("Result Menu");
-        setSupportActionBar(toolbar);
+        initInstance();
+
 
 
 
@@ -33,6 +33,22 @@ public class ResultOcrActivity extends AppCompatActivity implements ResultOcrFra
                     .add(R.id.content_result_ocr, ResultOcrFragment.newInstance(request))
                     .commit();
         }
+    }
+
+    private void initInstance() {
+        toolbar = findViewById(R.id.result_ocr_toolbar);
+        toolbar.setTitle("Result Menu");
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

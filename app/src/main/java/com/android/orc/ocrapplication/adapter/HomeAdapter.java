@@ -69,12 +69,12 @@ public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
         holder.getNameThai().setText(item.getNameThai());
         if (item.getQuantityRating() != null || item.getQuantityRating() != null){
             holder.getMaterialRatingBar().setNumStars(item.getRating().intValue());
-            holder.getReviewNumber().setText(item.getQuantityRating().toString());
+            holder.getReviewNumber().setText("( "+ item.getQuantityRating().intValue()+"" + " )");
 
 
         }else {
-            holder.getMaterialRatingBar().setNumStars(1 );
-            holder.getReviewNumber().setText("0");
+            holder.getMaterialRatingBar().setNumStars(0);
+            holder.getReviewNumber().setText("( 0 )");
         }
 
         Glide.with(context)

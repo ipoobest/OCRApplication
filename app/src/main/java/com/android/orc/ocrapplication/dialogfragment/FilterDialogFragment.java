@@ -46,7 +46,7 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         return rootView;
     }
 
-    private void initInstances(View mRootView) {
+    private void initInstances(View rootView) {
         mCategorySpinner = rootView.findViewById(R.id.spinner_category);
         mSortSpinner = rootView.findViewById(R.id.spinner_sort);
         btnSearch = rootView.findViewById(R.id.button_search);

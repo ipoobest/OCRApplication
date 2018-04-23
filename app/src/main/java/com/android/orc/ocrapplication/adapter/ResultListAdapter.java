@@ -53,10 +53,16 @@ public class ResultListAdapter extends RecyclerView.Adapter<MenuItemHolder> {
     public void onBindViewHolder(@NonNull MenuItemHolder holder, int position) {
         MenuDao item = dao.get(position);
         holder.getMenuName().setText(item.getName());
-        if (item.getQuantityRating() == null){
-            holder.getMaterialRatingBar().setNumStars(0);
-        }else {
+
+
+        if (item.getQuantityRating() != null || item.getQuantityRating() != null){
             holder.getMaterialRatingBar().setNumStars(item.getRating().intValue());
+            holder.getReviewNumber().setText("( "+ item.getQuantityRating().intValue()+"" + " )");
+
+
+        }else {
+            holder.getMaterialRatingBar().setNumStars(0);
+            holder.getReviewNumber().setText(" 0 ");
         }
 
 

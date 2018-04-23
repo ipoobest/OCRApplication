@@ -16,6 +16,12 @@ public class MenuItemHolder extends RecyclerView.ViewHolder implements View.OnCl
     TextView menuName;
     ImageView star;
     MaterialRatingBar materialRatingBar;
+    TextView reviewNumber;
+
+    public TextView getReviewNumber() {
+        return reviewNumber;
+    }
+
     RecyclerViewClickListener mListener;
 
     public MaterialRatingBar getMaterialRatingBar() {
@@ -42,6 +48,7 @@ public class MenuItemHolder extends RecyclerView.ViewHolder implements View.OnCl
         menuImage = itemView.findViewById(R.id.menu_image);
         menuName = itemView.findViewById(R.id.menu_name);
         star = itemView.findViewById(R.id.star);
+        reviewNumber = itemView.findViewById(R.id.menu_item_num_comment);
         materialRatingBar = itemView.findViewById(R.id.menu_item_rating);
         itemView.setOnClickListener(this);
     }

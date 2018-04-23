@@ -91,11 +91,11 @@ public class HomeResultFragment extends Fragment implements View.OnClickListener
         tvIngredient.setText(dao.getIngredient());
 
         if (dao.getQuantityRating() == null ) {
-            tvRating.setText("0");
+            tvRating.setText("( 0 )");
             materialRatingBar.setNumStars(0);
 
         } else {
-            tvRating.setText(dao.getQuantityRating().toString());
+            tvRating.setText("( "+ dao.getQuantityRating().intValue()+ "" + " )");
             materialRatingBar.setNumStars(dao.getRating().intValue());
         }
 
