@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
-import com.android.orc.ocrapplication.dao.MenuItemDao;
+import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.holder.MenuListHolder;
 import com.bumptech.glide.Glide;
 import com.facebook.Profile;
@@ -24,7 +24,7 @@ import java.util.List;
 public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
 
     Context context;
-    List<MenuItemDao> dao;
+    List<MenuDao> dao;
 
     private FirebaseDatabase database;
     private DatabaseReference myRef;
@@ -36,14 +36,14 @@ public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
         this.mListener = listener;
     }
 
-    public void updateData(List<MenuItemDao> dataset) {
+    public void updateData(List<MenuDao> dataset) {
         dao.clear();
         dao.addAll(dataset);
         notifyDataSetChanged();
 
     }
 
-    public void setDao(List<MenuItemDao> dao) {
+    public void setDao(List<MenuDao> dao) {
         this.dao = dao;
     }
 
@@ -64,13 +64,13 @@ public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
     @Override
     public void onBindViewHolder(MenuListHolder holder, int position) {
 
-        MenuItemDao item = dao.get(position);
+        MenuDao item = dao.get(position);
         holder.getMenuName().setText(item.getName());
         holder.getNameThai().setText(item.getNameThai());
         if (item.getQuantityRating() == null){
             holder.getMaterialRatingBar().setNumStars(1 );
         }else {
-            holder.getMaterialRatingBar().setNumStars(item.getQuantityRating().intValue());
+            holder.getMaterialRatingBar().setNumStars(item.getRating().intValue());
         }
 
         Glide.with(context)

@@ -65,46 +65,28 @@
     <string-array name="categories">
         <item>@string/value_any_category</item>
 
-        <item>Brunch</item>
-        <item>Burgers</item>
-        <item>Coffee</item>
-        <item>Deli</item>
-        <item>Dim Sum</item>
-        <item>Indian</item>
-        <item>Italian</item>
-        <item>Mediterranean</item>
-        <item>Mexican</item>
-        <item>Pizza</item>
-        <item>Ramen</item>
-        <item>Sushi</item>
+        <item>Soup</item>
+        <item>fries </item>
+        <item>curry</item>
     </string-array>
 
     <!-- 50 most populous cities in the US -->
     <string-array name="type">
         <item>@string/value_any_city</item>
 
-        <item>Albuquerque</item>
-        <item>Arlington</item>
-        <item>Atlanta</item>
-        <item>Austin</item>
-        <item>Baltimore</item>
-        <item>Houston</item>
+        <item>Bangkok</item>
+        <item>Chiang Mai</item>
+        <item>Khon Kaen</item>
+        <item>Hat Yai</item>
+        <item>Korat</item>
     </string-array>
 
-    <!-- Price filters -->
-    <string-array name="prices">
-        <item>@string/value_any_price</item>
 
-        <item>@string/price_1</item>
-        <item>@string/price_2</item>
-        <item>@string/price_3</item>
-    </string-array>
 
     <!-- Ways you can sort restaurants -->
     <string-array name="sort_by">
         <item>@string/sort_by_rating</item>
         <item>@string/sort_by_popularity</item>
-        <item>@string/sort_by_price</item>
     </string-array>
 
 

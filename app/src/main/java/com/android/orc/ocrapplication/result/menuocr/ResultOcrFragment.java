@@ -90,24 +90,17 @@ public class ResultOcrFragment extends Fragment {
 
         //find view by id
         recyclerView = rootView.findViewById(R.id.recycler_view_ocr_fragment);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-
         RecyclerViewClickListener listener = (view, position) -> {
-
             MenuDao dao = menuManager.getDao().get(position);
             ResultOcrFragmentListener fragmentListener = (ResultOcrFragmentListener) getActivity();
             fragmentListener.onMenuItemClick(dao);
 
         };
-
         adapter = new ResultListAdapter(getContext(), listener);
         adapter.setDao(menuManager.getDao());
         recyclerView.setAdapter(adapter);
-
-
         callQuery();
-
 
     }
 

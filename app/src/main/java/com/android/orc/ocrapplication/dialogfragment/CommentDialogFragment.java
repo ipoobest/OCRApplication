@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
 import com.android.orc.ocrapplication.callback.RatingListener;
 import com.android.orc.ocrapplication.dao.CommentDao;
 import com.android.orc.ocrapplication.dao.MenuDao;
@@ -130,7 +131,6 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
                     @Override
                     public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
                         if (response.isSuccessful()) {
-
                             dismiss();
 
                         }

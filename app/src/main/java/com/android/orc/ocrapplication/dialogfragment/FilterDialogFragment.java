@@ -50,9 +50,9 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
 
     private void initInstances(View mRootView) {
         mCategorySpinner = rootView.findViewById(R.id.spinner_category);
-        mCitySpinner = rootView.findViewById(R.id.spinner_city);
+//        mCitySpinner = rootView.findViewById(R.id.spinner_city);
         mSortSpinner = rootView.findViewById(R.id.spinner_sort);
-        mPriceSpinner = rootView.findViewById(R.id.spinner_price);
+//        mPriceSpinner = rootView.findViewById(R.id.spinner_price);
         btnSearch = rootView.findViewById(R.id.button_search);
         btnCancel = rootView.findViewById(R.id.button_cancel);
 

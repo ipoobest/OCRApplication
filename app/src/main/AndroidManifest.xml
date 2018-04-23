@@ -18,7 +18,7 @@
     <application
         android:name=".OrcApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/home_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -60,7 +60,6 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".SplashScreenActivity" />
         <activity android:name=".login.LoginActivity" />
         <activity android:name=".description.DescriptionActivity" />
         <activity android:name=".camera.CameraActivity" />

@@ -22,11 +22,11 @@ import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.HomeAdapter;
 import com.android.orc.ocrapplication.callback.FragmentListener;
 import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
+import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dialogfragment.FilterDialogFragment;
 import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.manager.HttpManager;
 import com.android.orc.ocrapplication.manager.MenuListManager;
-import com.android.orc.ocrapplication.dao.MenuItemDao;
 import com.arlib.floatingsearchview.FloatingSearchView;
 
 import java.io.IOException;
@@ -104,7 +104,7 @@ public class HomeFragment extends Fragment
 
         RecyclerViewClickListener listener = (view, position) -> {
 
-            MenuItemDao dao = menuListManager.getDao().get(position);
+            MenuDao dao = menuListManager.getDao().get(position);
             FragmentListener fragmentListener = (FragmentListener) getActivity();
             fragmentListener.onMenuItemClick(dao);
 
@@ -119,13 +119,13 @@ public class HomeFragment extends Fragment
     }
 
     public void loadData() {
-        Call<List<MenuItemDao>> call = HttpManager.getInstance().getService().loadMenuItem();
-        call.enqueue(new Callback<List<MenuItemDao>>() {
+        Call<List<MenuDao>> call = HttpManager.getInstance().getService().loadMenuItem();
+        call.enqueue(new Callback<List<MenuDao>>() {
             @Override
-            public void onResponse(Call<List<MenuItemDao>> call, Response<List<MenuItemDao>> response) {
+            public void onResponse(Call<List<MenuDao>> call, Response<List<MenuDao>> response) {
 
                 if (response.isSuccessful()) {
-                    List<MenuItemDao> dao = response.body();
+                    List<MenuDao> dao = response.body();
                     //ดึง dao
                     menuListManager.setDao(dao);
                     adapter.setDao(dao);
@@ -143,7 +143,7 @@ public class HomeFragment extends Fragment
             }
 
             @Override
-            public void onFailure(Call<List<MenuItemDao>> call, Throwable t) {
+            public void onFailure(Call<List<MenuDao>> call, Throwable t) {
 
             }
         });

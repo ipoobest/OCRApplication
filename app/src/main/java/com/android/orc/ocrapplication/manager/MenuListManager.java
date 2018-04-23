@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 
 
-import com.android.orc.ocrapplication.dao.MenuItemDao;
+import com.android.orc.ocrapplication.dao.MenuDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,18 +17,18 @@ import java.util.List;
 public class MenuListManager {
 
     private Context mContext;
-    private List<MenuItemDao> dao;
+    private List<MenuDao> dao;
 //    MenuItemDao daoSaveState;
 
     public MenuListManager() {
         mContext = Contextor.getInstance().getContext();
     }
 
-    public List<MenuItemDao> getDao() {
+    public List<MenuDao> getDao() {
         return dao;
     }
 
-    public void setDao(List<MenuItemDao> dao) {
+    public void setDao(List<MenuDao> dao) {
         this.dao = dao;
     }
 

@@ -1,6 +1,5 @@
 package com.android.orc.ocrapplication.result;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
@@ -16,9 +15,11 @@ import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
-import com.android.orc.ocrapplication.dao.MenuItemDao;
+import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dialogfragment.CommentDialogFragment;
 import com.bumptech.glide.Glide;
+
+import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 
 /**
  * Created by j.poobest on 19/3/2018 AD.
@@ -30,6 +31,8 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     TextView tvNameMenu;
     TextView tvDescription;
     TextView tvIngredient;
+    TextView tvRating;
+    MaterialRatingBar materialRatingBar;
     FloatingActionButton floatingActionButton;
     View bottomSheet;
     BottomSheetBehavior bottomSheetBehavior;
@@ -38,9 +41,9 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
     RecyclerView recyclerView;
     ReviewListAdapter adapter;
 
-    MenuItemDao dao;
+    MenuDao dao;
 
-    public static ResultFragment newInstance(MenuItemDao dao) {
+    public static ResultFragment newInstance(MenuDao dao) {
         ResultFragment fragment = new ResultFragment();
         Bundle args = new Bundle();
         args.putParcelable("dao", dao);
@@ -80,10 +83,21 @@ public class ResultFragment extends Fragment implements View.OnClickListener {
         tvNameMenu = rootView.findViewById(R.id.text_name_menu_description);
         tvDescription = rootView.findViewById(R.id.text_description_description);
         tvIngredient = rootView.findViewById(R.id.text_ingredient_menu_description);
+        tvRating = rootView.findViewById(R.id.menu_num_ratings);
+        materialRatingBar = rootView.findViewById(R.id.menu_rating);
 
         tvNameMenu.setText(dao.getName());
         tvDescription.setText(dao.getDescription());
         tvIngredient.setText(dao.getIngredient());
+
+        if (dao.getQuantityRating() == null ) {
+            tvRating.setText("0");
+            materialRatingBar.setNumStars(0);
+
+        } else {
+            tvRating.setText(dao.getQuantityRating().toString());
+            materialRatingBar.setNumStars(dao.getRating().intValue());
+        }
 
         Glide.with(ResultFragment.this)
                 .load(dao.getImgUrl())
