@@ -74,7 +74,7 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".result.ResultItemActivity">
+        <activity android:name=".result.HomeResultItemActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.orc.ocrapplication.dashboard.DashBoardActivity" />

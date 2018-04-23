@@ -9,7 +9,7 @@ import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.dao.MenuDao;
 
 
-public class ResultItemActivity extends AppCompatActivity  {
+public class HomeResultItemActivity extends AppCompatActivity  {
 
     Toolbar toolbar;
 
@@ -17,10 +17,7 @@ public class ResultItemActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_item);
-        toolbar = findViewById(R.id.result_toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        innitInstance();
 
         MenuDao dao = getIntent().getParcelableExtra("dao");
 
@@ -28,9 +25,15 @@ public class ResultItemActivity extends AppCompatActivity  {
         if (savedInstanceState == null) {
 
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.content_container_result, ResultFragment.newInstance(dao))
+                    .add(R.id.content_container_result, HomeResultFragment.newInstance(dao))
                     .commit();
         }
+    }
+
+    private void innitInstance() {
+        toolbar = findViewById(R.id.result_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
