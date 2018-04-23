@@ -33,7 +33,7 @@ public class OrcDescriptionActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.result_ocr_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        
+
     }
 
     @Override
