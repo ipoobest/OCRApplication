@@ -1,6 +1,7 @@
 package com.android.orc.ocrapplication.dialogfragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -11,15 +12,19 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.dao.Filters;
+import com.android.orc.ocrapplication.dashboard.DashBoardActivity;
 
 public class FilterDialogFragment extends DialogFragment implements View.OnClickListener {
 
 
     Spinner mCategorySpinner;
     Spinner mSortSpinner;
-    Button btnSearch;
+    Spinner mLimit;
+    Button btnSort;
     Button btnCancel;
 
+    Filters filters;
 
     public static final String TAG = "FilterDialog";
 
@@ -49,18 +54,29 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
     private void initInstances(View rootView) {
         mCategorySpinner = rootView.findViewById(R.id.spinner_category);
         mSortSpinner = rootView.findViewById(R.id.spinner_sort);
-        btnSearch = rootView.findViewById(R.id.button_search);
+        mLimit = rootView.findViewById(R.id.spinner_limit);
+        btnSort = rootView.findViewById(R.id.button_search);
         btnCancel = rootView.findViewById(R.id.button_cancel);
+//
+//        if (filters == null) {
+//            filters.setFilter("all");
+//            filters.setSort("rating");
+//            filters.setLimit(5);
+//        } else {
+//            filters.setFilter(mCategorySpinner.getSelectedItem().toString());
+//            filters.setSort(mSortSpinner.getSelectedItem().toString());
+//            filters.setLimit(10);
+//        }
 
-        btnSearch.setOnClickListener(this);
+        btnSort.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
-        if (v == btnSearch) {
-            onSearchClicked();
+        if (v == btnSort) {
+            onSortClicked();
         } else if (v == btnCancel) {
             onCancelClicked();
         }
@@ -84,10 +100,27 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
                 ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
-    public void onSearchClicked() {
-        if (mFilterListener != null) {
-            mFilterListener.onFilter(getFilters());
+    public void onSortClicked() {
+
+
+        Intent intent = new Intent(getContext(), DashBoardActivity.class);
+        filters = new Filters();
+        if (mCategorySpinner.getSelectedItem() == null || mSortSpinner.getSelectedItem() == null) {
+            filters.setFilter("all");
+            filters.setSort("rating");
         }
+        filters.setFilter(mCategorySpinner.getSelectedItem().toString());
+        filters.setSort(mSortSpinner.getSelectedItem().toString());
+        filters.setLimit(Integer.parseInt(mLimit.getSelectedItem().toString()));
+        intent.putExtra("filters", filters);
+        startActivity(intent);
+
+
+//        if (mFilterListener != null) {
+//            mFilterListener.onFilter(getFilters());
+//
+//
+//        }
 
         dismiss();
     }

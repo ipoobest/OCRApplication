@@ -74,7 +74,7 @@ public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
 
         }else {
             holder.getMaterialRatingBar().setNumStars(0);
-            holder.getReviewNumber().setText("( 0 )");
+            holder.getReviewNumber().setText("");
         }
 
         Glide.with(context)

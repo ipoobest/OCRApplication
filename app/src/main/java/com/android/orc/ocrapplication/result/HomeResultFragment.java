@@ -91,7 +91,7 @@ public class HomeResultFragment extends Fragment implements View.OnClickListener
         tvIngredient.setText(dao.getIngredient());
 
         if (dao.getQuantityRating() == null ) {
-            tvRating.setText("( 0 )");
+            tvRating.setText("");
             materialRatingBar.setNumStars(0);
 
         } else {

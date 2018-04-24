@@ -14,6 +14,7 @@ import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.PagerAdapter;
 import com.android.orc.ocrapplication.callback.FragmentListener;
 import com.android.orc.ocrapplication.camera.CameraActivity;
+import com.android.orc.ocrapplication.dao.Filters;
 import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.result.HomeResultItemActivity;
@@ -33,12 +34,16 @@ public class DashBoardActivity extends AppCompatActivity
     MapFragment mapFragment;
     //    Button logout_facebook;
 
+    Filters filters;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        Intent intent = getIntent();
+        filters = intent.getParcelableExtra("filters");
 
         initInstance();
 
@@ -104,7 +109,7 @@ public class DashBoardActivity extends AppCompatActivity
     private void setupViewPager(ViewPager viewPager) {
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
         favoriteFragment = new FavoriteFragment();
-        homeFragment = new HomeFragment();
+        homeFragment =  HomeFragment.newInstance(filters);
         mapFragment = new MapFragment();
         adapter.addFragment(favoriteFragment);
         adapter.addFragment(homeFragment);

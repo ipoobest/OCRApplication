@@ -83,7 +83,7 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
         tvIngredient.setText(dao.getIngredient());
 
         if (dao.getQuantityRating() == null ) {
-            tvRating.setText("( 0 )");
+            tvRating.setText("");
             materialRatingBar.setNumStars(0);
 
         } else {
