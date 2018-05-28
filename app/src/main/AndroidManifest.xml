@@ -18,7 +18,7 @@
     <application
         android:name=".OrcApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/home_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -74,7 +74,7 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".result.ResultItemActivity">
+        <activity android:name=".result.HomeResultItemActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.android.orc.ocrapplication.dashboard.DashBoardActivity" />

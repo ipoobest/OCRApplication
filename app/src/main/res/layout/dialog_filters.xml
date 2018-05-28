@@ -36,6 +36,26 @@
 
     </RelativeLayout>
 
+    <!-- Sort by -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/icon_sort"
+            style="@style/AppTheme.FilterIcon"
+            android:layout_centerVertical="true"
+            android:tint="@color/greySecondary"
+            app:srcCompat="@drawable/ic_sort_white_24px" />
+
+        <Spinner
+            android:id="@+id/spinner_sort"
+            style="@style/AppTheme.FilterSpinner"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/icon_sort"
+            android:entries="@array/sort_by" />
+    </RelativeLayout>
+
     <!-- Location -->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -50,7 +70,7 @@
             tools:ignore="VectorDrawableCompat" />
 
         <Spinner
-            android:id="@+id/spinner_city"
+            android:id="@+id/spinner_limit"
             style="@style/AppTheme.FilterSpinner"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/icon_city"
@@ -60,25 +80,7 @@
 
 
 
-    <!-- Sort by -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <ImageVieww
-            android:id="@+id/icon_sort"
-            style="@style/AppTheme.FilterIcon"
-            android:layout_centerVertical="true"
-            android:tint="@color/greySecondary"
-            app:srcCompat="@drawable/ic_sort_white_24px" />
-
-        <Spinner
-            android:id="@+id/spinner_sort"
-            style="@style/AppTheme.FilterSpinner"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/icon_sort"
-            android:entries="@array/sort_by" />
-    </RelativeLayout>
 
     <!-- Cancel and apply buttons -->
     <LinearLayout

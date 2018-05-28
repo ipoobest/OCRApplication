@@ -4,7 +4,7 @@
 
 
     <string name="value_any_category">All food</string>
-    <string name="value_any_city">Anywhere</string>
+    <string name="value_any_limit">limit</string>
     <string name="value_any_price">Any price</string>
 
     <string name="price_1">$</string>
@@ -51,7 +51,7 @@
     <string name="sign_out">Sign Out</string>
     <string name="delete_all">Delete All</string>
     <string name="divider_bullet">•</string>
-    <string name="apply">Apply</string>
+    <string name="apply">OK</string>
     <string name="cancel">Cancel</string>
     <string name="message_no_results">Oops, couldn\'t find any results\nthat matched your filter</string>
     <string name="message_no_reviews">Be the first to leave a review!</string>
@@ -74,13 +74,13 @@
 
     <!-- 50 most populous cities in the US -->
     <string-array name="type">
-        <item>@string/value_any_city</item>
+        <item>@string/value_any_limit</item>
 
-        <item>Bangkok</item>
-        <item>Chiang Mai</item>
-        <item>Khon Kaen</item>
-        <item>Hat Yai</item>
-        <item>Korat</item>
+        <item>5</item>
+        <item>10</item>
+        <item>20</item>
+        <item>30</item>
+        <item>50</item>
     </string-array>
 
 
