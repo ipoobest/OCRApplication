@@ -1,5 +1,6 @@
 package com.android.orc.ocrapplication.result.menuocr;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.ResultListAdapter;
 import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
 import com.android.orc.ocrapplication.callback.ResultOcrFragmentListener;
+import com.android.orc.ocrapplication.camera.CameraActivity;
 import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.manager.HttpManager;
 import com.android.orc.ocrapplication.manager.MenuManager;
@@ -155,6 +157,10 @@ public class ResultOcrFragment extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(getContext(), "onclick", Toast.LENGTH_LONG).show();
+//        Toast.makeText(getContext(), "onclick", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getContext(), CameraActivity.class);
+        startActivity(intent);
+        
+
     }
 }
