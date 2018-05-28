@@ -1,5 +1,9 @@
 package com.android.orc.ocrapplication.manager;
 
+import com.android.orc.ocrapplication.BuildConfig;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -21,14 +25,25 @@ public class HttpManager {
 
     private ApiService service;
 
+
+
     private HttpManager() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://128.199.154.30:3000/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+        if (BuildConfig.DEBUG) {
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addInterceptor(logging)
+                    .build();
 
-        service = retrofit.create(ApiService.class);
 
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://128.199.154.30:3000/")
+                    .client(client)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            service = retrofit.create(ApiService.class);
+        }
     }
 
     public ApiService getService() {

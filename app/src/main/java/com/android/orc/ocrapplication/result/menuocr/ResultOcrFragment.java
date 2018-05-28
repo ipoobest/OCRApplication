@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
@@ -31,12 +33,14 @@ import retrofit2.Response;
  * Created by j.poobest on 19/3/2018 AD.
  */
 
-public class ResultOcrFragment extends Fragment {
+public class ResultOcrFragment extends Fragment implements View.OnClickListener {
 
     String requestMenu;
     private RecyclerView recyclerView;
     private ResultListAdapter adapter;
     MenuManager menuManager;
+    TextView tvNotFound;
+    Button btnTryAgain;
 
 
     @Override
@@ -87,7 +91,10 @@ public class ResultOcrFragment extends Fragment {
 
     private void initInstances(View rootView) {
         menuManager = new MenuManager();
-
+        tvNotFound = rootView.findViewById(R.id.tv_not_found);
+        btnTryAgain = rootView.findViewById(R.id.btn_try_again);
+        btnTryAgain.setVisibility(View.GONE);
+        btnTryAgain.setOnClickListener(this);
         //find view by id
         recyclerView = rootView.findViewById(R.id.recycler_view_ocr_fragment);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
@@ -105,6 +112,8 @@ public class ResultOcrFragment extends Fragment {
     }
 
     //    load data
+
+    //TODO: visible progressbar
     private void callQuery() {
         Call<List<MenuDao>> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
         call.enqueue(new Callback<List<MenuDao>>() {
@@ -112,11 +121,16 @@ public class ResultOcrFragment extends Fragment {
             public void onResponse(Call<List<MenuDao>> call, Response<List<MenuDao>> response) {
                 if (response.isSuccessful()) {
                     List<MenuDao> dao = response.body();
-                    Log.d("Dao MenuItem", dao.toString());
-                    menuManager.setDao(dao);
+                    if (response.body().toString() != "[]") {
+                        menuManager.setDao(dao);
+                        adapter.setDao(dao);
+                        adapter.notifyDataSetChanged();
 
-                    adapter.setDao(dao);
-                    adapter.notifyDataSetChanged();
+                    } else {
+                        tvNotFound.setText(R.string.not_found_menu);
+                        btnTryAgain.setVisibility(View.VISIBLE);
+                        Toast.makeText(getContext(), "this menu not found!!", Toast.LENGTH_LONG).show();
+                    }
                 } else {
                     try {
                         Toast.makeText(getContext(),
@@ -139,4 +153,8 @@ public class ResultOcrFragment extends Fragment {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(getContext(), "onclick", Toast.LENGTH_LONG).show();
+    }
 }

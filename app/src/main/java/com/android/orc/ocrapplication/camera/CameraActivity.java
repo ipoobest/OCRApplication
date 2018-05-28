@@ -109,6 +109,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
         CVRequest request = createCVRequest(data);
         CloudVision.runImageDetection(apiKey, request, this);
+
     }
 
     ////////////
@@ -273,17 +274,21 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             if (response.isTextAvailable()) {
                 List<CVResponse.EntityAnnotation> testDao = response.getTexts();
                 String data = testDao.get(0).getDescription();
-
-                Toast.makeText(this, "response ok", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, ResultOcrActivity.class);
                 intent.putExtra("stringRequest", data);
                 startActivity(intent);
                 circleProgressBar.setVisibility(View.INVISIBLE);
+
 //                textView.setText(testDao.get(0).getDescription());
 //                LabelAdapter adapter = new LabelAdapter(response.getTexts());
 //                lvLabel.setAdapter(adapter);
 //                hideLoading();
             }
+        }
+        else  {
+            Toast.makeText(this, "not found menu", Toast.LENGTH_LONG).show();
+            circleProgressBar.setVisibility(View.INVISIBLE);
+            finish();
         }
     }
 }
