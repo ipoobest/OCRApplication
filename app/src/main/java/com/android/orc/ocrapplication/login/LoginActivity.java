@@ -3,6 +3,7 @@ package com.android.orc.ocrapplication.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     AccessTokenTracker accessTokenTracker;
     ProfileTracker profileTracker;
 
-    TextView tv_name, tv_email, tv_id;
+    TextView tv_name, tv_email, tv_id, login_guest;
     String first_name="", last_name="", email="", id="";
 
     @Override
@@ -45,9 +46,11 @@ public class LoginActivity extends AppCompatActivity {
         tv_name = findViewById(R.id.tv_name);
         tv_email = findViewById(R.id.tv_email);
         tv_id = findViewById(R.id.tv_id);
+        login_guest = findViewById(R.id.login_guest);
 
         login_facebook = findViewById(R.id.login_facebook);
         login_facebook.setReadPermissions("public_profile");
+
 
         callbackManager = CallbackManager.Factory.create();
         setupTokenTracker();
@@ -81,6 +84,16 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), R.string.error_login, Toast.LENGTH_SHORT).show();
             }
         });
+         login_guest.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Intent intent = new Intent(getApplicationContext(),DashBoardActivity.class);
+                 intent.putExtra("login_guest",login_guest.getText().toString());
+                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                 startActivity(intent);
+             }
+         });
+
     }
 
     private String constructWelcomeMessage(Profile profile) {
