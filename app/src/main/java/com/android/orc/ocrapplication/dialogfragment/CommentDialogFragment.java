@@ -28,9 +28,11 @@ import android.widget.Toast;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
+import com.android.orc.ocrapplication.callback.CommentListener;
 import com.android.orc.ocrapplication.callback.RatingListener;
 import com.android.orc.ocrapplication.dao.CommentDao;
 import com.android.orc.ocrapplication.dao.MenuDao;
+import com.android.orc.ocrapplication.manager.CommentManager;
 import com.android.orc.ocrapplication.manager.HttpManager;
 
 
@@ -48,6 +50,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
     EditText mRatingText;
     Button btnSubmit;
     Button btnCancel;
+    CommentManager commentManager;
 
     String nameThai;
     RatingListener mRatingListener;
@@ -70,7 +73,9 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
         super.onCreate(savedInstanceState);
         nameThai = getArguments().getString("nameThai");
         Toast.makeText(getContext(), nameThai, Toast.LENGTH_LONG).show();
+        init();
     }
+
 
     @Nullable
     @Override
@@ -80,6 +85,10 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
         View rootView = inflater.inflate(R.layout.dialog_rating, container, false);
         initInstances(rootView);
         return rootView;
+    }
+
+    private void init() {
+        commentManager = new CommentManager();
     }
 
     private void initInstances(View rootView) {
@@ -119,29 +128,33 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
 //            Toast.makeText(getContext(), "Please Comment this menu", Toast.LENGTH_LONG).show();
             CommentDao comment = new CommentDao("Guest",
                     mRatingBar.getRating(),
-                    mRatingText.getText().toString()
-            );
+                    mRatingText.getText().toString());
 
-            if (comment.getRating() == null || comment.getComment() == null) {
-                Toast.makeText(getContext(), "PLEASE add rating and comment", Toast.LENGTH_LONG).show();
+            CommentListener fragmentListener = (CommentListener) getActivity();
+            fragmentListener.onSubmitComment(comment);
 
-            } else {
-                Call<MenuDao> call = HttpManager.getInstance().getService().addComment(nameThai, comment);
-                call.enqueue(new Callback<MenuDao>() {
-                    @Override
-                    public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
-                        if (response.isSuccessful()) {
-                            dismiss();
 
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<MenuDao> call, Throwable t) {
-                        Toast.makeText(getContext(), t.toString(), Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
+//
+//            if (comment.getRating() == null || comment.getComment() == null) {
+//                Toast.makeText(getContext(), "PLEASE add rating and comment", Toast.LENGTH_LONG).show();
+//
+//            } else {
+//                Call<MenuDao> call = HttpManager.getInstance().getService().addComment(nameThai, comment);
+//                call.enqueue(new Callback<MenuDao>() {
+//                    @Override
+//                    public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
+//                        if (response.isSuccessful()) {
+//                            dismiss();
+//
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<MenuDao> call, Throwable t) {
+//                        Toast.makeText(getContext(), t.toString(), Toast.LENGTH_LONG).show();
+//                    }
+//                });
+//            }
             dismiss();
         } else if (v == btnCancel) {
             dismiss();
