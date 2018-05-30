@@ -40,8 +40,13 @@ public interface ApiService {
 //                    @Part("rating") Double rating,
 //                    Callback<Rating> serverResponseCallback);
 
+    @GET("menu/filer-sort/{filter}/{sort}/{limit}")
+    Call<List<MenuDao>> sortby(@Path("filter") String filter
+            , @Path("sort") String sort
+            , @Path("limit") int limit);
+
     @PUT("review/add/{nameThai}")
     Call<MenuDao> addComment(@Path("nameThai") String name,
-                            @Body CommentDao ratingRequest);
+                             @Body CommentDao ratingRequest);
 
 }

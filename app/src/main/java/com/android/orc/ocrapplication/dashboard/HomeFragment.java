@@ -208,6 +208,8 @@ public class HomeFragment extends Fragment
         } else if (v == btnClearFilter) {
             mFilterDialog.resetFilters();
 //TODO: Filter
+
+
         }
     }
 }
