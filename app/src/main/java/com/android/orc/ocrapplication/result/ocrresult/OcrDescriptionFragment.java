@@ -34,7 +34,7 @@ import retrofit2.Response;
  * Created by j.poobest on 19/3/2018 AD.
  */
 
-public class OcrDescriptionFragment extends Fragment implements View.OnClickListener {
+public class OcrDescriptionFragment extends Fragment implements View.OnClickListener, CommentListener {
 
     ImageView imgMenu;
     TextView tvNameMenu;
@@ -140,4 +140,25 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
     }
 
 
+    @Override
+    public void onSubmitComment(String nameThaiMenu, CommentDao commentDao) {
+        Call<MenuDao> call = HttpManager.getInstance().getService().addComment(nameThaiMenu, commentDao);
+        call.enqueue(new Callback<MenuDao>() {
+            @Override
+            public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
+                if (response.isSuccessful()){
+                    MenuDao dao = response.body();
+                    List<CommentDao> dao1 = dao.getReview();
+                    commentManager.setDao(dao1);
+                    adapter.setDao(dao1);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MenuDao> call, Throwable t) {
+
+            }
+        });
+    }
 }

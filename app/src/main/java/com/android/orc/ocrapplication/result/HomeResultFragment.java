@@ -153,7 +153,6 @@ public class HomeResultFragment extends Fragment implements View.OnClickListener
             @Override
             public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
                 if (response.isSuccessful()){
-//                    loadComment(nameThaiMenu);
                     MenuDao dao = response.body();
                     List<CommentDao> dao1 = dao.getReview();
                     commentManager.setDao(dao1);
@@ -169,27 +168,5 @@ public class HomeResultFragment extends Fragment implements View.OnClickListener
         });
     }
 
-    private void loadComment(String name){
 
-        Call<MenuDao> call = HttpManager.getInstance().getService().loadComment(name);
-        call.enqueue(new Callback<MenuDao>() {
-            @Override
-            public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
-                if (response.isSuccessful()) {
-                    MenuDao dao = response.body();
-                    List<CommentDao> dao1 = dao.getReview();
-                    commentManager.setDao(dao1);
-                    adapter.setDao(dao1);
-                    adapter.notifyDataSetChanged();
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<MenuDao> call, Throwable t) {
-
-            }
-        });
-
-    }
 }
