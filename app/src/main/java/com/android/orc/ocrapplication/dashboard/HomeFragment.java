@@ -46,7 +46,6 @@ public class HomeFragment extends Fragment
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
     MenuListManager menuListManager;
-    CardView filterBar;
     ImageView btnClearFilter;
 
     private FilterDialogFragment mFilterDialog;
@@ -95,9 +94,7 @@ public class HomeFragment extends Fragment
         // set floatingView
 
 
-        filterBar = rootView.findViewById(R.id.filter_bar);
         btnClearFilter = rootView.findViewById(R.id.button_clear_filter);
-        filterBar.setOnClickListener(this);
         btnClearFilter.setOnClickListener(this);
         recyclerView = rootView.findViewById(R.id.recycler_view_dashboard);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -119,7 +116,7 @@ public class HomeFragment extends Fragment
     }
 
     public void loadData() {
-        Call<List<MenuDao>> call = HttpManager.getInstance().getService().loadMenuItem();
+        Call<List<MenuDao>> call = HttpManager.getInstance().getService().sortbyRating("rating", 30);
         call.enqueue(new Callback<List<MenuDao>>() {
             @Override
             public void onResponse(Call<List<MenuDao>> call, Response<List<MenuDao>> response) {
@@ -203,13 +200,8 @@ public class HomeFragment extends Fragment
 
     @Override
     public void onClick(View v) {
-        if (v == filterBar){
-            mFilterDialog.show(getChildFragmentManager(), FilterDialogFragment.TAG);
-        } else if (v == btnClearFilter) {
-            mFilterDialog.resetFilters();
+
 //TODO: Filter
 
-
-        }
     }
 }
