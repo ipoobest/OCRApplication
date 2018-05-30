@@ -8,7 +8,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,7 +22,6 @@ import com.android.orc.ocrapplication.adapter.HomeAdapter;
 import com.android.orc.ocrapplication.callback.FragmentListener;
 import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
 import com.android.orc.ocrapplication.dao.MenuDao;
-import com.android.orc.ocrapplication.dialogfragment.FilterDialogFragment;
 import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.manager.HttpManager;
 import com.android.orc.ocrapplication.manager.MenuListManager;
@@ -46,9 +44,7 @@ public class HomeFragment extends Fragment
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
     MenuListManager menuListManager;
-    ImageView btnClearFilter;
 
-    private FilterDialogFragment mFilterDialog;
 
     DrawerLayout mDrawer;
 
@@ -71,7 +67,6 @@ public class HomeFragment extends Fragment
         if (savedInstanceState != null)
             onRestoreInstanceState(savedInstanceState);
 
-        mFilterDialog = new FilterDialogFragment();
     }
 
     @Override
@@ -94,8 +89,6 @@ public class HomeFragment extends Fragment
         // set floatingView
 
 
-        btnClearFilter = rootView.findViewById(R.id.button_clear_filter);
-        btnClearFilter.setOnClickListener(this);
         recyclerView = rootView.findViewById(R.id.recycler_view_dashboard);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 

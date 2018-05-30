@@ -53,8 +53,6 @@ public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_menu, parent, false);
 
-        int height = parent.getMeasuredHeight() / 4;
-        view.setMinimumHeight(height);
 
         return new MenuListHolder(view, mListener);
 
