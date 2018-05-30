@@ -15,11 +15,20 @@ import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
+import com.android.orc.ocrapplication.callback.CommentListener;
+import com.android.orc.ocrapplication.dao.CommentDao;
 import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dialogfragment.CommentDialogFragment;
+import com.android.orc.ocrapplication.manager.CommentManager;
+import com.android.orc.ocrapplication.manager.HttpManager;
 import com.bumptech.glide.Glide;
 
+import java.util.List;
+
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by j.poobest on 19/3/2018 AD.
@@ -40,6 +49,8 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
     RecyclerView recyclerView;
     ReviewListAdapter adapter;
 
+    CommentManager commentManager;
+
     MenuDao dao;
 
     public static OcrDescriptionFragment newInstance(MenuDao dao) {
@@ -55,8 +66,11 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dao = getArguments().getParcelable("dao");
+        init();
 
     }
+
+
 
 
     @Nullable
@@ -70,6 +84,10 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
 
     }
 
+
+    private void init() {
+        commentManager = new CommentManager();
+    }
     private void initInstances(View rootView) {
         //find view by id
         imgMenu = rootView.findViewById(R.id.image_menu_description);
@@ -121,5 +139,5 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
         }
     }
 
-    //TODO:: REcyclerView review
+
 }

@@ -115,7 +115,6 @@ public class ResultOcrFragment extends Fragment implements View.OnClickListener 
 
     //    load data
 
-    //TODO: visible progressbar
     private void callQuery() {
         Call<List<MenuDao>> call = HttpManager.getInstance().getService().requestMenu(requestMenu);
         call.enqueue(new Callback<List<MenuDao>>() {

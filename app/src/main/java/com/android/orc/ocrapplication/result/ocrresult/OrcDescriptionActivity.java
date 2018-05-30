@@ -6,9 +6,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.callback.CommentListener;
+import com.android.orc.ocrapplication.dao.CommentDao;
 import com.android.orc.ocrapplication.dao.MenuDao;
 
-public class OrcDescriptionActivity extends AppCompatActivity {
+public class OrcDescriptionActivity extends AppCompatActivity
+         {
 
     Toolbar toolbar;
 
@@ -44,4 +47,6 @@ public class OrcDescriptionActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

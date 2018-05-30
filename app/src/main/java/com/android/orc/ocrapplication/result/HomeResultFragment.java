@@ -14,18 +14,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
+import com.android.orc.ocrapplication.adapter.HomeAdapter;
 import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
+import com.android.orc.ocrapplication.callback.CommentListener;
+import com.android.orc.ocrapplication.dao.CommentDao;
 import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dialogfragment.CommentDialogFragment;
+import com.android.orc.ocrapplication.manager.HttpManager;
+import com.android.orc.ocrapplication.manager.MenuListManager;
 import com.bumptech.glide.Glide;
 
+import java.util.List;
+
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by j.poobest on 19/3/2018 AD.
  */
 
-public class HomeResultFragment extends Fragment implements View.OnClickListener {
+public class HomeResultFragment extends Fragment implements View.OnClickListener, CommentListener {
 
     ImageView imgMenu;
     TextView tvNameMenu;
@@ -38,6 +48,7 @@ public class HomeResultFragment extends Fragment implements View.OnClickListener
     BottomSheetBehavior bottomSheetBehavior;
     CommentDialogFragment mRatingDialog;
 
+    MenuListManager menuListManager;
     RecyclerView recyclerView;
     ReviewListAdapter adapter;
 
@@ -56,6 +67,7 @@ public class HomeResultFragment extends Fragment implements View.OnClickListener
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dao = getArguments().getParcelable("dao");
+        menuListManager = new MenuListManager();
 
 
     }
@@ -132,4 +144,43 @@ public class HomeResultFragment extends Fragment implements View.OnClickListener
         }
     }
 
+    @Override
+    public void onSubmitComment(String nameThai, CommentDao commentDao) {
+        Call<MenuDao> call = HttpManager.getInstance().getService().addComment(nameThai, commentDao);
+        call.enqueue(new Callback<MenuDao>() {
+            @Override
+            public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
+                if (response.isSuccessful()){
+                    loadComment();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MenuDao> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void loadComment(){
+        Call<List<MenuDao>> call = HttpManager.getInstance().getService().loadMenuItem();
+        call.enqueue(new Callback<List<MenuDao>>() {
+            @Override
+            public void onResponse(Call<List<MenuDao>> call, Response<List<MenuDao>> response) {
+                if (response.isSuccessful()){
+                    List<MenuDao> dao = response.body();
+                    List<CommentDao> commentDaos = dao.get(0).getReview();
+                    menuListManager.setDao(dao);
+                    adapter.setDao(commentDaos);
+                    adapter.notifyDataSetChanged();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<MenuDao>> call, Throwable t) {
+
+            }
+        });
+    }
 }
