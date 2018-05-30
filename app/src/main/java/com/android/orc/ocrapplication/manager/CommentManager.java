@@ -12,18 +12,18 @@ import java.util.List;
 public class CommentManager {
 
     private Context mContext;
-    private CommentDao dao;
+    private List<CommentDao> dao;
 //    MenuItemDao daoSaveState;
 
     public CommentManager() {
         mContext = Contextor.getInstance().getContext();
     }
 
-    public CommentDao getDao() {
+    public List<CommentDao> getDao() {
         return dao;
     }
 
-    public void setDao(CommentDao dao) {
+    public void setDao(List<CommentDao> dao) {
         this.dao = dao;
     }
 
