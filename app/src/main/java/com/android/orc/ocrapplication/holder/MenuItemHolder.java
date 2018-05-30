@@ -13,7 +13,7 @@ import me.zhanghai.android.materialratingbar.MaterialRatingBar;
 public class MenuItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     ImageView menuImage;
-    TextView menuName;
+    TextView menuName, menuNameThai;
     ImageView star;
     MaterialRatingBar materialRatingBar;
     RecyclerViewClickListener mListener;
@@ -34,6 +34,10 @@ public class MenuItemHolder extends RecyclerView.ViewHolder implements View.OnCl
         return star;
     }
 
+    public TextView getMenuNameThai() {
+        return menuNameThai;
+    }
+
 
     public MenuItemHolder(View itemView, RecyclerViewClickListener listener) {
         super(itemView);
@@ -41,6 +45,7 @@ public class MenuItemHolder extends RecyclerView.ViewHolder implements View.OnCl
         mListener = listener;
         menuImage = itemView.findViewById(R.id.menu_image);
         menuName = itemView.findViewById(R.id.menu_name);
+        menuNameThai = itemView.findViewById(R.id.menu_item_namethai);
         star = itemView.findViewById(R.id.star);
         materialRatingBar = itemView.findViewById(R.id.menu_item_rating);
         itemView.setOnClickListener(this);

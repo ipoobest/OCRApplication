@@ -11,9 +11,7 @@ import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
 import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.holder.MenuItemHolder;
-import com.android.orc.ocrapplication.holder.MenuListHolder;
 import com.bumptech.glide.Glide;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -59,6 +57,7 @@ public class ResultListAdapter extends RecyclerView.Adapter<MenuItemHolder> {
             holder.getMaterialRatingBar().setNumStars(item.getRating().intValue());
         }
 
+        holder.getMenuNameThai().setText(item.getNameThai());
 
         Glide.with(context)
                 .load(item.getImgUrl())
