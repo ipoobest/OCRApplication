@@ -19,6 +19,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,7 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
     CommentManager commentManager;
 
     String nameThai;
-    RatingListener mRatingListener;
+    CommentListener commentListener;
 
     public static CommentDialogFragment newInstance(String nameThai) {
         CommentDialogFragment commentDialogFragment = new CommentDialogFragment();
@@ -107,8 +108,8 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        if (context instanceof RatingListener) {
-            mRatingListener = (RatingListener) context;
+        if (context instanceof CommentListener) {
+            commentListener = (CommentListener) context;
         }
     }
 
@@ -125,13 +126,14 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
     @Override
     public void onClick(View v) {
         if (v == btnSubmit) {
+            Fragment fragment = getParentFragment();
 //            Toast.makeText(getContext(), "Please Comment this menu", Toast.LENGTH_LONG).show();
             CommentDao comment = new CommentDao("Guest",
                     mRatingBar.getRating(),
                     mRatingText.getText().toString());
 
-            CommentListener fragmentListener = (CommentListener) getActivity();
-            fragmentListener.onSubmitComment(comment);
+            commentListener = (CommentListener) fragment;
+            commentListener.onSubmitComment(nameThai, comment);
 
 
 //

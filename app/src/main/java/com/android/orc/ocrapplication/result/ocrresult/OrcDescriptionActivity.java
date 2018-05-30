@@ -11,7 +11,7 @@ import com.android.orc.ocrapplication.dao.CommentDao;
 import com.android.orc.ocrapplication.dao.MenuDao;
 
 public class OrcDescriptionActivity extends AppCompatActivity
-        implements CommentListener {
+         {
 
     Toolbar toolbar;
 
@@ -48,8 +48,5 @@ public class OrcDescriptionActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onSubmitComment(CommentDao commentDao) {
 
-    }
 }
