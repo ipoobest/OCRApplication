@@ -8,7 +8,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,7 +22,6 @@ import com.android.orc.ocrapplication.adapter.HomeAdapter;
 import com.android.orc.ocrapplication.callback.FragmentListener;
 import com.android.orc.ocrapplication.callback.RecyclerViewClickListener;
 import com.android.orc.ocrapplication.dao.MenuDao;
-import com.android.orc.ocrapplication.dialogfragment.FilterDialogFragment;
 import com.android.orc.ocrapplication.login.LoginActivity;
 import com.android.orc.ocrapplication.manager.HttpManager;
 import com.android.orc.ocrapplication.manager.MenuListManager;
@@ -46,10 +44,7 @@ public class HomeFragment extends Fragment
     private RecyclerView recyclerView;
     private HomeAdapter adapter;
     MenuListManager menuListManager;
-    CardView filterBar;
-    ImageView btnClearFilter;
 
-    private FilterDialogFragment mFilterDialog;
 
     DrawerLayout mDrawer;
 
@@ -72,7 +67,6 @@ public class HomeFragment extends Fragment
         if (savedInstanceState != null)
             onRestoreInstanceState(savedInstanceState);
 
-        mFilterDialog = new FilterDialogFragment();
     }
 
     @Override
@@ -95,10 +89,6 @@ public class HomeFragment extends Fragment
         // set floatingView
 
 
-        filterBar = rootView.findViewById(R.id.filter_bar);
-        btnClearFilter = rootView.findViewById(R.id.button_clear_filter);
-        filterBar.setOnClickListener(this);
-        btnClearFilter.setOnClickListener(this);
         recyclerView = rootView.findViewById(R.id.recycler_view_dashboard);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -119,7 +109,7 @@ public class HomeFragment extends Fragment
     }
 
     public void loadData() {
-        Call<List<MenuDao>> call = HttpManager.getInstance().getService().loadMenuItem();
+        Call<List<MenuDao>> call = HttpManager.getInstance().getService().sortbyRating("rating", 30);
         call.enqueue(new Callback<List<MenuDao>>() {
             @Override
             public void onResponse(Call<List<MenuDao>> call, Response<List<MenuDao>> response) {
@@ -203,11 +193,8 @@ public class HomeFragment extends Fragment
 
     @Override
     public void onClick(View v) {
-        if (v == filterBar){
-            mFilterDialog.show(getChildFragmentManager(), FilterDialogFragment.TAG);
-        } else if (v == btnClearFilter) {
-            mFilterDialog.resetFilters();
+
 //TODO: Filter
-        }
+
     }
 }

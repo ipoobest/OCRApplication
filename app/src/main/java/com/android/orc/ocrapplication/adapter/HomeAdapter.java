@@ -53,8 +53,6 @@ public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_menu, parent, false);
 
-        int height = parent.getMeasuredHeight() / 4;
-        view.setMinimumHeight(height);
 
         return new MenuListHolder(view, mListener);
 
@@ -80,6 +78,9 @@ public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
         holder.getStar().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //TODO: check
+                // status
                 holder.getStar().setImageResource(R.drawable.ic_toggle_star_24);
 
                 database = FirebaseDatabase.getInstance();
@@ -93,13 +94,13 @@ public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
     private void addFavoriteList(int position){
         Profile profile = Profile.getCurrentProfile();
         String id = myRef.push().getKey();
-        myRef.child(id).child("name").setValue(dao.get(position).getName());
-        myRef.child(id).child("nameThai").setValue(dao.get(position).getNameThai());
-        myRef.child(id).child("description").setValue(dao.get(position).getDescription());
-        myRef.child(id).child("ingredient").setValue(dao.get(position).getIngredient());
-        myRef.child(id).child("imgUrl").setValue(dao.get(position).getImgUrl());
-        myRef.child(id).child("facebookName").setValue(constructWelcomeMessage(profile));
-        myRef.child(id).child("star").setValue("true");
+        myRef.child(dao.get(position).getName() + " " + constructWelcomeMessage(profile)).child("name").setValue(dao.get(position).getName());
+        myRef.child(dao.get(position).getName() + " " + constructWelcomeMessage(profile)).child("nameThai").setValue(dao.get(position).getNameThai());
+        myRef.child(dao.get(position).getName() + " " + constructWelcomeMessage(profile)).child("description").setValue(dao.get(position).getDescription());
+        myRef.child(dao.get(position).getName() + " " + constructWelcomeMessage(profile)).child("ingredient").setValue(dao.get(position).getIngredient());
+        myRef.child(dao.get(position).getName() + " " + constructWelcomeMessage(profile)).child("imgUrl").setValue(dao.get(position).getImgUrl());
+        myRef.child(dao.get(position).getName() + " " + constructWelcomeMessage(profile)).child("facebookName").setValue(constructWelcomeMessage(profile));
+        myRef.child(dao.get(position).getName() + " " + constructWelcomeMessage(profile)).child("star").setValue("true");
     }
 
     private String constructWelcomeMessage(Profile profile) {

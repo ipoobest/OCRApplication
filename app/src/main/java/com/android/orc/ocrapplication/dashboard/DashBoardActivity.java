@@ -16,7 +16,8 @@ import com.android.orc.ocrapplication.callback.FragmentListener;
 import com.android.orc.ocrapplication.camera.CameraActivity;
 import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.login.LoginActivity;
-import com.android.orc.ocrapplication.result.ResultItemActivity;
+import com.android.orc.ocrapplication.result.HomeResultItemActivity;
+import com.facebook.AccessToken;
 
 
 public class DashBoardActivity extends AppCompatActivity
@@ -32,7 +33,7 @@ public class DashBoardActivity extends AppCompatActivity
     HomeFragment homeFragment;
     MapFragment mapFragment;
     //    Button logout_facebook;
-
+    String guest;
 
 
     @Override
@@ -40,6 +41,7 @@ public class DashBoardActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        guest = getIntent().getStringExtra("login_guest");
         initInstance();
 
     }
@@ -48,9 +50,11 @@ public class DashBoardActivity extends AppCompatActivity
     private void initInstance() {
 
         //Login Facebook
-//        if (AccessToken.getCurrentAccessToken() == null) {
-//            goLoginScreen();
-//        }
+        if (guest == null) {
+            if (AccessToken.getCurrentAccessToken() == null) {
+                goLoginScreen();
+            }
+        }
 
 //        logout_facebook = findViewById(R.id.logout_facebook);
 
@@ -149,7 +153,7 @@ public class DashBoardActivity extends AppCompatActivity
 
     @Override
     public void onClick(View v) {
-        if (v == floatingCameraButton){
+        if (v == floatingCameraButton) {
             Intent intent = new Intent(DashBoardActivity.this,
                     CameraActivity.class);
             startActivity(intent);
@@ -158,7 +162,7 @@ public class DashBoardActivity extends AppCompatActivity
 
     @Override
     public void onMenuItemClick(MenuDao dao) {
-        Intent intent = new Intent(getBaseContext(), ResultItemActivity.class);
+        Intent intent = new Intent(getBaseContext(), HomeResultItemActivity.class);
 
         intent.putExtra("dao", dao);
         startActivity(intent);

@@ -15,17 +15,26 @@ import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
 import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
+import com.android.orc.ocrapplication.callback.CommentListener;
+import com.android.orc.ocrapplication.dao.CommentDao;
 import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dialogfragment.CommentDialogFragment;
+import com.android.orc.ocrapplication.manager.CommentManager;
+import com.android.orc.ocrapplication.manager.HttpManager;
 import com.bumptech.glide.Glide;
 
+import java.util.List;
+
 import me.zhanghai.android.materialratingbar.MaterialRatingBar;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by j.poobest on 19/3/2018 AD.
  */
 
-public class OcrDescriptionFragment extends Fragment implements View.OnClickListener {
+public class OcrDescriptionFragment extends Fragment implements View.OnClickListener, CommentListener {
 
     ImageView imgMenu;
     TextView tvNameMenu;
@@ -39,6 +48,8 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
     CommentDialogFragment mRatingDialog;
     RecyclerView recyclerView;
     ReviewListAdapter adapter;
+
+    CommentManager commentManager;
 
     MenuDao dao;
 
@@ -55,8 +66,11 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dao = getArguments().getParcelable("dao");
+        init();
 
     }
+
+
 
 
     @Nullable
@@ -70,6 +84,10 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
 
     }
 
+
+    private void init() {
+        commentManager = new CommentManager();
+    }
     private void initInstances(View rootView) {
         //find view by id
         imgMenu = rootView.findViewById(R.id.image_menu_description);
@@ -121,5 +139,26 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
         }
     }
 
-    //TODO:: REcyclerView review
+
+    @Override
+    public void onSubmitComment(String nameThaiMenu, CommentDao commentDao) {
+        Call<MenuDao> call = HttpManager.getInstance().getService().addComment(nameThaiMenu, commentDao);
+        call.enqueue(new Callback<MenuDao>() {
+            @Override
+            public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
+                if (response.isSuccessful()){
+                    MenuDao dao = response.body();
+                    List<CommentDao> dao1 = dao.getReview();
+                    commentManager.setDao(dao1);
+                    adapter.setDao(dao1);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MenuDao> call, Throwable t) {
+
+            }
+        });
+    }
 }

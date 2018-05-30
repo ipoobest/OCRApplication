@@ -50,9 +50,7 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
 
     private void initInstances(View mRootView) {
         mCategorySpinner = rootView.findViewById(R.id.spinner_category);
-//        mCitySpinner = rootView.findViewById(R.id.spinner_city);
         mSortSpinner = rootView.findViewById(R.id.spinner_sort);
-//        mPriceSpinner = rootView.findViewById(R.id.spinner_price);
         btnSearch = rootView.findViewById(R.id.button_search);
         btnCancel = rootView.findViewById(R.id.button_cancel);
 
@@ -110,60 +108,8 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         }
     }
 
-    @Nullable
-    private String getSelectedCity() {
-        String selected = (String) mCitySpinner.getSelectedItem();
-        if (getString(R.string.value_any_city).equals(selected)) {
-            return null;
-        } else {
-            return selected;
-        }
-    }
 
-    private int getSelectedPrice() {
-        String selected = (String) mPriceSpinner.getSelectedItem();
-        if (selected.equals(getString(R.string.price_1))) {
-            return 1;
-        } else if (selected.equals(getString(R.string.price_2))) {
-            return 2;
-        } else if (selected.equals(getString(R.string.price_3))) {
-            return 3;
-        } else {
-            return -1;
-        }
-    }
 
-//    @Nullable
-//    private String getSelectedSortBy() {
-//        String selected = (String) mSortSpinner.getSelectedItem();
-//        if (getString(R.string.sort_by_rating).equals(selected)) {
-//            return Restaurant.FIELD_AVG_RATING;
-//        }
-//        if (getString(R.string.sort_by_price).equals(selected)) {
-//            return Restaurant.FIELD_PRICE;
-//        }
-//        if (getString(R.string.sort_by_popularity).equals(selected)) {
-//            return Restaurant.FIELD_POPULARITY;
-//        }
-//
-//        return null;
-//    }
-
-//    @Nullable
-//    private Query.Direction getSortDirection() {
-//        String selected = (String) mSortSpinner.getSelectedItem();
-//        if (getString(R.string.sort_by_rating).equals(selected)) {
-//            return Query.Direction.DESCENDING;
-//        }
-//        if (getString(R.string.sort_by_price).equals(selected)) {
-//            return Query.Direction.ASCENDING;
-//        }
-//        if (getString(R.string.sort_by_popularity).equals(selected)) {
-//            return Query.Direction.DESCENDING;
-//        }
-//
-//        return null;
-//    }
 
     public void resetFilters() {
         if (rootView != null) {
@@ -177,16 +123,9 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
     public Filters getFilters() {
         Filters filters = new Filters();
 
-//        if (rootView != null) {
-//            filters.setCategory(getSelectedCategory());
-//            filters.setCity(getSelectedCity());
-//            filters.setPrice(getSelectedPrice());
-//            filters.setSortBy(getSelectedSortBy());
-//            filters.setSortDirection(getSortDirection());
-//        }
-
+        if (rootView != null) {
+        }
         return filters;
     }
-
 
 }

@@ -25,6 +25,9 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewHolder> {
 
     }
 
+    public void setDao(List<CommentDao> dao) {
+        this.dao = dao;
+    }
 
     @NonNull
     @Override

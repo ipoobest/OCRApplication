@@ -23,9 +23,6 @@ public class ResultOcrActivity extends AppCompatActivity implements ResultOcrFra
         toolbar.setTitle("Result Menu");
         setSupportActionBar(toolbar);
 
-
-
-
         String request = getIntent().getStringExtra("stringRequest");
 
         if (savedInstanceState == null) {
