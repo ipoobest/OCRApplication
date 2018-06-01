@@ -124,6 +124,8 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
         recyclerView = rootView.findViewById(R.id.review_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        //TODO: savecomment
+           List<CommentDao> daoComment = dao.getReview();
 
         adapter = new ReviewListAdapter(dao.getReview());
         recyclerView.setAdapter(adapter);
@@ -142,6 +144,10 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onSubmitComment(String nameThaiMenu, CommentDao commentDao) {
+        loadComment(nameThaiMenu,  commentDao);
+    }
+
+    private void loadComment(String nameThaiMenu, CommentDao commentDao) {
         Call<MenuDao> call = HttpManager.getInstance().getService().addComment(nameThaiMenu, commentDao);
         call.enqueue(new Callback<MenuDao>() {
             @Override
