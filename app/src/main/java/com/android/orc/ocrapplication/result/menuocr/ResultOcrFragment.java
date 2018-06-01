@@ -91,6 +91,12 @@ public class ResultOcrFragment extends Fragment implements View.OnClickListener 
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        callQuery();
+    }
+
     private void initInstances(View rootView) {
         menuManager = new MenuManager();
         tvNotFound = rootView.findViewById(R.id.tv_not_found);

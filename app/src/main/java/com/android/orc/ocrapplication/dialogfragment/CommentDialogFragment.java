@@ -128,36 +128,20 @@ public class CommentDialogFragment extends DialogFragment implements View.OnClic
         if (v == btnSubmit) {
             Fragment fragment = getParentFragment();
 //            Toast.makeText(getContext(), "Please Comment this menu", Toast.LENGTH_LONG).show();
+
             CommentDao comment = new CommentDao("Guest",
                     mRatingBar.getRating(),
                     mRatingText.getText().toString());
 
-            commentListener = (CommentListener) fragment;
-            commentListener.onSubmitComment(nameThai, comment);
+            if (comment.getRating() == null || comment.getComment() == null) {
+                Toast.makeText(getContext(), "PLEASE add rating and comment", Toast.LENGTH_LONG).show();
+            }else {
+                commentListener = (CommentListener) fragment;
+                commentListener.onSubmitComment(nameThai, comment);
+                dismiss();
 
+            }
 
-//
-//            if (comment.getRating() == null || comment.getComment() == null) {
-//                Toast.makeText(getContext(), "PLEASE add rating and comment", Toast.LENGTH_LONG).show();
-//
-//            } else {
-//                Call<MenuDao> call = HttpManager.getInstance().getService().addComment(nameThai, comment);
-//                call.enqueue(new Callback<MenuDao>() {
-//                    @Override
-//                    public void onResponse(Call<MenuDao> call, Response<MenuDao> response) {
-//                        if (response.isSuccessful()) {
-//                            dismiss();
-//
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<MenuDao> call, Throwable t) {
-//                        Toast.makeText(getContext(), t.toString(), Toast.LENGTH_LONG).show();
-//                    }
-//                });
-//            }
-            dismiss();
         } else if (v == btnCancel) {
             dismiss();
         }

@@ -127,7 +127,6 @@ public class HomeResultFragment extends Fragment implements View.OnClickListener
 
         mRatingDialog = CommentDialogFragment.newInstance(dao.getNameThai());
 
-        //TODO : set notfifysetchange
         recyclerView = rootView.findViewById(R.id.review_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 

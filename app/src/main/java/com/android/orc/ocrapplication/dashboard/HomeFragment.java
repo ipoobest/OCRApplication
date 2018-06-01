@@ -77,6 +77,12 @@ public class HomeFragment extends Fragment
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
     @SuppressWarnings("UnusedParameters")
     private void init(Bundle savedInstanceState) {
         // Init Fragment level's variable(s) here
@@ -194,7 +200,6 @@ public class HomeFragment extends Fragment
     @Override
     public void onClick(View v) {
 
-//TODO: Filter
 
     }
 }
