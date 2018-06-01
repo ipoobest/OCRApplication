@@ -1,7 +1,9 @@
 package com.android.orc.ocrapplication.login;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
@@ -154,7 +156,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
         Profile profile = Profile.getCurrentProfile();
         tv_name.setText(constructWelcomeMessage(profile));
+
     }
+
+
 
     @Override
     public void onStop() {
@@ -168,5 +173,6 @@ public class LoginActivity extends AppCompatActivity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 
 }
