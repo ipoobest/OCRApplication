@@ -48,7 +48,7 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public class CameraActivity extends AppCompatActivity implements View.OnClickListener, CloudVision.Callback {
 
-    private final static String apiKey = "AIzaSyA7NoRiu-JttOEg2pJVGuw2jEnalNHRDKY";
+    private final static String apiKey = "AIzaSyDyVu9hR0gs-rRR3nmssuKb2bbURiHjiCQ";
     private static final int REQUEST_TAKE_PHOTO = 1;
     CVRequest.ImageContext.LatLongRect latLongRect;
 
