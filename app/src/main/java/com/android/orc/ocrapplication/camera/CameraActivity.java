@@ -44,19 +44,13 @@ import java.util.List;
 import java.util.Locale;
 
 import okhttp3.Headers;
-import permissions.dispatcher.NeedsPermission;
-import permissions.dispatcher.OnShowRationale;
-import permissions.dispatcher.PermissionRequest;
-import permissions.dispatcher.RuntimePermissions;
 
-@RuntimePermissions
 public class CameraActivity extends AppCompatActivity implements View.OnClickListener, CloudVision.Callback {
 
     private final static String apiKey = "AIzaSyA7NoRiu-JttOEg2pJVGuw2jEnalNHRDKY";
 
     public static final int REQUEST_PERMISSION = 200;
     public static final int REQUEST_IMAGE = 100;
-    private static final int REQUEST_TAKE_PHOTO = 1;
     CVRequest.ImageContext.LatLongRect latLongRect;
 
 
@@ -64,7 +58,6 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     Button btnTakePhoto;
     Button btnProcessPhoto;
     ImageView ivPreview;
-    String mCurrentPhotoPath;
     Bitmap bitmap;
     String imageFilePath = "";
 
@@ -79,8 +72,11 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     REQUEST_PERMISSION);
         }
-        openCameraIntent();
-//        CameraActivityPermissionsDispatcher.startCameraWithCheck(this);
+        try {
+            dispatchTakePictureIntent();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void openCameraIntent() {
@@ -120,7 +116,11 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if (view == btnTakePhoto) {
-            CameraActivityPermissionsDispatcher.startCameraWithCheck(this);
+            try {
+                dispatchTakePictureIntent();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else if (view == btnProcessPhoto) {
             circleProgressBar.setVisibility(View.VISIBLE);
             startDetect();
@@ -149,54 +149,41 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-    @Override
+
+        @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_IMAGE) {
-            if (resultCode == RESULT_OK) {
-                ivPreview.setImageURI(Uri.parse(imageFilePath));
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
+                && resultCode == RESULT_OK
+                ) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            getContentResolver().notifyChange(Uri.parse(imageFilePath), null);
+            ContentResolver cr = getContentResolver();
+            // Show the thumbnail on ImageView
+            Uri imageUri = result.getUri();
+            File file = new File(imageUri.getPath());
 
+            try {
+                InputStream ims = new FileInputStream(file);
+                ivPreview.setImageBitmap(BitmapFactory.decodeStream(ims));
+
+                bitmap = MediaStore.Images.Media.getBitmap(cr, imageUri);
+
+            } catch (FileNotFoundException e) {
+                return;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            else if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(this, "You cancelled the operation", Toast.LENGTH_SHORT).show();
-            }
+
+//             ScanFile so it will be appeared on Gallery
+            MediaScannerConnection.scanFile(com.android.orc.ocrapplication.camera.CameraActivity.this,
+                    new String[]{imageUri.getPath()}, null,
+                    new MediaScannerConnection.OnScanCompletedListener() {
+                        public void onScanCompleted(String path, Uri uri) {
+                        }
+                    });
         }
     }
-
-    //    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
-//                && resultCode == RESULT_OK
-//                ) {
-//            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-//            getContentResolver().notifyChange(Uri.parse(mCurrentPhotoPath), null);
-//            ContentResolver cr = getContentResolver();
-//            // Show the thumbnail on ImageView
-//            Uri imageUri = result.getUri();
-//            File file = new File(imageUri.getPath());
-//
-//            try {
-//                InputStream ims = new FileInputStream(file);
-//                ivPreview.setImageBitmap(BitmapFactory.decodeStream(ims));
-//
-//                bitmap = MediaStore.Images.Media.getBitmap(cr, imageUri);
-//
-//            } catch (FileNotFoundException e) {
-//                return;
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
-            // ScanFile so it will be appeared on Gallery
-//            MediaScannerConnection.scanFile(com.android.orc.ocrapplication.camera.CameraActivity.this,
-//                    new String[]{imageUri.getPath()}, null,
-//                    new MediaScannerConnection.OnScanCompletedListener() {
-//                        public void onScanCompleted(String path, Uri uri) {
-//                        }
-//                    });
-//        }
-//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -209,52 +196,37 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private File c() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DCIM), "Camera");
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
 
-        // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
-        return image;
+
+
+    private void dispatchTakePictureIntent() throws IOException {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFileClone();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                return;
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                //Uri photoURI = Uri.fromFile(createImageFile());
+                Uri photoURI = FileProvider.getUriForFile(com.android.orc.ocrapplication.camera.CameraActivity.this,
+                        BuildConfig.APPLICATION_ID + ".provider",
+                        createImageFileClone());
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+
+                CropImage.activity(photoURI).start(this);
+
+
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE);
+
+            }
+        }
     }
-
-
-//    private void dispatchTakePictureIntent() throws IOException {
-//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        // Ensure that there's a camera activity to handle the intent
-//        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-//            // Create the File where the photo should go
-//            File photoFile = null;
-//            try {
-//                photoFile = createImageFile();
-//            } catch (IOException ex) {
-//                // Error occurred while creating the File
-//                return;
-//            }
-//            // Continue only if the File was successfully created
-//            if (photoFile != null) {
-//                //Uri photoURI = Uri.fromFile(createImageFile());
-//                Uri photoURI = FileProvider.getUriForFile(com.android.orc.ocrapplication.camera.CameraActivity.this,
-//                        BuildConfig.APPLICATION_ID + ".provider",
-//                        createImageFile());
-//                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-//
-//                CropImage.activity(photoURI).start(this);
-//
-//
-//                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-//
-//            }
-//        }
-//    }
 
     private File createImageFileClone() throws IOException{
 
@@ -262,7 +234,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         String imageFileName = "IMG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(imageFileName, ".jpg", storageDir);
-        imageFilePath = image.getAbsolutePath();
+        imageFilePath = image.getPath();
 
         return image;
     }
