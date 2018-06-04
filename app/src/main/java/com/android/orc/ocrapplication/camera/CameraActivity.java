@@ -5,12 +5,15 @@ import android.Manifest;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -38,18 +41,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import okhttp3.Headers;
-import permissions.dispatcher.NeedsPermission;
-import permissions.dispatcher.OnShowRationale;
-import permissions.dispatcher.PermissionRequest;
-import permissions.dispatcher.RuntimePermissions;
 
-@RuntimePermissions
 public class CameraActivity extends AppCompatActivity implements View.OnClickListener, CloudVision.Callback {
 
     private final static String apiKey = "AIzaSyA7NoRiu-JttOEg2pJVGuw2jEnalNHRDKY";
-    private static final int REQUEST_TAKE_PHOTO = 1;
+
+    public static final int REQUEST_PERMISSION = 200;
+    public static final int REQUEST_IMAGE = 100;
     CVRequest.ImageContext.LatLongRect latLongRect;
 
 
@@ -57,9 +58,8 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     Button btnTakePhoto;
     Button btnProcessPhoto;
     ImageView ivPreview;
-    String mCurrentPhotoPath;
     Bitmap bitmap;
-    Intent CropIntent;
+    String imageFilePath = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,34 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_camera);
 
         initInstances();
-        CameraActivityPermissionsDispatcher.startCameraWithCheck(this);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+                PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    REQUEST_PERMISSION);
+        }
+        try {
+            dispatchTakePictureIntent();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openCameraIntent() {
+        Intent pictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (pictureIntent.resolveActivity(getPackageManager()) != null) {
+
+            File photoFile = null;
+            try {
+                photoFile = createImageFileClone();
+            }
+            catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+            Uri photoUri = FileProvider.getUriForFile(this, getPackageName() +".provider", photoFile);
+            pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+            startActivityForResult(pictureIntent, REQUEST_IMAGE);
+        }
     }
 
     private void initInstances() {
@@ -89,7 +116,11 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
         if (view == btnTakePhoto) {
-            CameraActivityPermissionsDispatcher.startCameraWithCheck(this);
+            try {
+                dispatchTakePictureIntent();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else if (view == btnProcessPhoto) {
             circleProgressBar.setVisibility(View.VISIBLE);
             startDetect();
@@ -116,41 +147,17 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     // Camera //
     ////////////
 
-    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    void startCamera() {
-        try {
-            dispatchTakePictureIntent();
-        } catch (IOException e) {
-        }
-    }
 
-    @OnShowRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    void showRationaleForCamera(final PermissionRequest request) {
-        new AlertDialog.Builder(this)
-                .setMessage("Access to External Storage is required")
-                .setPositiveButton("Allow", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        request.proceed();
-                    }
-                })
-                .setNegativeButton("Deny", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        request.cancel();
-                    }
-                })
-                .show();
-    }
 
-    @Override
+
+        @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
                 && resultCode == RESULT_OK
                 ) {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            getContentResolver().notifyChange(Uri.parse(mCurrentPhotoPath), null);
+            getContentResolver().notifyChange(Uri.parse(imageFilePath), null);
             ContentResolver cr = getContentResolver();
             // Show the thumbnail on ImageView
             Uri imageUri = result.getUri();
@@ -162,21 +169,13 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
                 bitmap = MediaStore.Images.Media.getBitmap(cr, imageUri);
 
-//                BitmapFactory.Options options = new BitmapFactory.Options();
-//                options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-
-//                bitmap = BitmapFactory.decodeFile(imageUri.getPath(), options);
-
-
-                //CODE BELOW USE WITH VISION CLOUD
-//                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(file,imageUri);
             } catch (FileNotFoundException e) {
                 return;
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            // ScanFile so it will be appeared on Gallery
+//             ScanFile so it will be appeared on Gallery
             MediaScannerConnection.scanFile(com.android.orc.ocrapplication.camera.CameraActivity.this,
                     new String[]{imageUri.getPath()}, null,
                     new MediaScannerConnection.OnScanCompletedListener() {
@@ -189,25 +188,15 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        CameraActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+//        CameraActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+        if (requestCode == REQUEST_PERMISSION && grantResults.length > 0){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Thanks for granting Permission", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DCIM), "Camera");
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
 
-        // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
-        return image;
-    }
 
 
     private void dispatchTakePictureIntent() throws IOException {
@@ -217,7 +206,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             // Create the File where the photo should go
             File photoFile = null;
             try {
-                photoFile = createImageFile();
+                photoFile = createImageFileClone();
             } catch (IOException ex) {
                 // Error occurred while creating the File
                 return;
@@ -227,16 +216,27 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 //Uri photoURI = Uri.fromFile(createImageFile());
                 Uri photoURI = FileProvider.getUriForFile(com.android.orc.ocrapplication.camera.CameraActivity.this,
                         BuildConfig.APPLICATION_ID + ".provider",
-                        createImageFile());
+                        createImageFileClone());
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
                 CropImage.activity(photoURI).start(this);
 
 
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE);
 
             }
         }
+    }
+
+    private File createImageFileClone() throws IOException{
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        String imageFileName = "IMG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
+        imageFilePath = image.getPath();
+
+        return image;
     }
 
 
