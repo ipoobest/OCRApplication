@@ -51,6 +51,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
 
     public static final int REQUEST_PERMISSION = 200;
     public static final int REQUEST_IMAGE = 100;
+
     CVRequest.ImageContext.LatLongRect latLongRect;
 
 
