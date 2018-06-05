@@ -18,6 +18,7 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -70,7 +71,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         initInstances();
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
                 PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     REQUEST_PERMISSION);
         }
         try {
@@ -78,24 +79,14 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Toast.makeText(this, "open", Toast.LENGTH_SHORT).show();
     }
 
-    private void openCameraIntent() {
-        Intent pictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (pictureIntent.resolveActivity(getPackageManager()) != null) {
 
-            File photoFile = null;
-            try {
-                photoFile = createImageFileClone();
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-                return;
-            }
-            Uri photoUri = FileProvider.getUriForFile(this, getPackageName() +".provider", photoFile);
-            pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-            startActivityForResult(pictureIntent, REQUEST_IMAGE);
-        }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Toast.makeText(this, "onresume", Toast.LENGTH_SHORT).show();
     }
 
     private void initInstances() {
@@ -125,19 +116,12 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         } else if (view == btnProcessPhoto) {
             circleProgressBar.setVisibility(View.VISIBLE);
             startDetect();
-//            Intent intent = new Intent(CameraActivity.this,
-//                    ResultActivity.class);
 
-
-//            Toast.makeText(this, data, Toast.LENGTH_LONG).show();
-//            intent.putExtra("BitmapImage", data);
-//            startActivity(intent);
         }
     }
 
     private void startDetect() {
         String data = CloudVision.convertBitmapToBase64String(bitmap);
-
 
         CVRequest request = createCVRequest(data);
         CloudVision.runImageDetection(apiKey, request, this);
@@ -149,14 +133,12 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     ////////////
 
 
-
-
-        @Override
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE
-                && resultCode == RESULT_OK
-                ) {
+                && resultCode == RESULT_OK) {
+
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             getContentResolver().notifyChange(Uri.parse(imageFilePath), null);
             ContentResolver cr = getContentResolver();
@@ -177,12 +159,15 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
             }
 
 //             ScanFile so it will be appeared on Gallery
-            MediaScannerConnection.scanFile(com.android.orc.ocrapplication.camera.CameraActivity.this,
-                    new String[]{imageUri.getPath()}, null,
-                    new MediaScannerConnection.OnScanCompletedListener() {
-                        public void onScanCompleted(String path, Uri uri) {
-                        }
-                    });
+//            MediaScannerConnection.scanFile(com.android.orc.ocrapplication.camera.CameraActivity.this,
+//                    new String[]{imageUri.getPath()}, null,
+//                    new MediaScannerConnection.OnScanCompletedListener() {
+//                        public void onScanCompleted(String path, Uri uri) {
+//                        }
+//                    });
+        } else if (resultCode == RESULT_CANCELED) {
+            Toast.makeText(this, "cancel", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 
@@ -190,14 +175,12 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 //        CameraActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
-        if (requestCode == REQUEST_PERMISSION && grantResults.length > 0){
+        if (requestCode == REQUEST_PERMISSION && grantResults.length > 0) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "Thanks for granting Permission", Toast.LENGTH_SHORT).show();
             }
         }
     }
-
-
 
 
     private void dispatchTakePictureIntent() throws IOException {
@@ -210,6 +193,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 photoFile = createImageFileClone();
             } catch (IOException ex) {
                 // Error occurred while creating the File
+
                 return;
             }
             // Continue only if the File was successfully created
@@ -229,7 +213,7 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-    private File createImageFileClone() throws IOException{
+    private File createImageFileClone() throws IOException {
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         String imageFileName = "IMG_" + timeStamp + "_";
@@ -280,16 +264,18 @@ public class CameraActivity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent);
                 circleProgressBar.setVisibility(View.INVISIBLE);
 
-//                textView.setText(testDao.get(0).getDescription());
-//                LabelAdapter adapter = new LabelAdapter(response.getTexts());
-//                lvLabel.setAdapter(adapter);
-//                hideLoading();
             }
-        }
-        else  {
+        } else {
             Toast.makeText(this, "not found menu", Toast.LENGTH_LONG).show();
             circleProgressBar.setVisibility(View.INVISIBLE);
             finish();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this, "finish", Toast.LENGTH_SHORT).show();
+        finish();
     }
 }
