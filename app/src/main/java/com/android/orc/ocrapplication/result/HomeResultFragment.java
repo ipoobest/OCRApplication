@@ -110,7 +110,7 @@ public class HomeResultFragment extends Fragment implements View.OnClickListener
             materialRatingBar.setNumStars(0);
 
         } else {
-            tvRating.setText(dao.getQuantityRating().toString());
+            tvRating.setText(dao.getQuantityRating().intValue()+" comments");
             materialRatingBar.setNumStars(dao.getRating().intValue());
         }
 

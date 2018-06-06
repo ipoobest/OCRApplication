@@ -66,7 +66,7 @@ public class  HomeAdapter extends RecyclerView.Adapter<MenuListHolder> {
         holder.getMenuName().setText(item.getName());
         holder.getNameThai().setText(item.getNameThai());
         if (item.getQuantityRating() == null){
-            holder.getMaterialRatingBar().setNumStars(1 );
+            holder.getMaterialRatingBar().setNumStars(0 );
         }else {
             holder.getMaterialRatingBar().setNumStars(item.getRating().intValue());
         }
