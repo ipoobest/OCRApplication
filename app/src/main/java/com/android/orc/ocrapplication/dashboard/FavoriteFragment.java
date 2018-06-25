@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -77,6 +79,11 @@ public class FavoriteFragment extends Fragment {
 
     @SuppressWarnings("UnusedParameters")
     private void initInstances(View rootView, Bundle savedInstanceState) {
+
+        //TODO toolsbar
+        Toolbar myToolbar = rootView.findViewById(R.id.my_toolbar);
+        myToolbar.setTitle("Favorite Menu");
+        ((AppCompatActivity) getActivity()).setSupportActionBar(myToolbar);
         //set firebase recyclerview
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference("favorite");
