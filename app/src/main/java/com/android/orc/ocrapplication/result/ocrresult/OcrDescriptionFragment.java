@@ -41,6 +41,7 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
     TextView tvDescription;
     TextView tvIngredient;
     TextView tvRating;
+    TextView tvType;
     MaterialRatingBar materialRatingBar;
     FloatingActionButton floatingActionButton;
     View bottomSheet;
@@ -95,10 +96,12 @@ public class OcrDescriptionFragment extends Fragment implements View.OnClickList
         tvDescription = rootView.findViewById(R.id.text_description_description);
         tvIngredient = rootView.findViewById(R.id.text_ingredient_menu_description);
         tvRating = rootView.findViewById(R.id.menu_num_ratings);
+        tvType = rootView.findViewById(R.id.menu_category);
         materialRatingBar = rootView.findViewById(R.id.menu_rating);
         tvNameMenu.setText(dao.getName());
         tvDescription.setText(dao.getDescription());
         tvIngredient.setText(dao.getIngredient());
+        tvType.setText(dao.getType());
 
         if (dao.getQuantityRating() == null ) {
             tvRating.setText("0");

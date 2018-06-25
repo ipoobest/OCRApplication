@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.orc.ocrapplication.R;
-import com.android.orc.ocrapplication.adapter.HomeAdapter;
 import com.android.orc.ocrapplication.adapter.ReviewListAdapter;
 import com.android.orc.ocrapplication.callback.CommentListener;
 import com.android.orc.ocrapplication.dao.CommentDao;
@@ -22,7 +21,6 @@ import com.android.orc.ocrapplication.dao.MenuDao;
 import com.android.orc.ocrapplication.dialogfragment.CommentDialogFragment;
 import com.android.orc.ocrapplication.manager.CommentManager;
 import com.android.orc.ocrapplication.manager.HttpManager;
-import com.android.orc.ocrapplication.manager.MenuListManager;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -43,6 +41,7 @@ public class HomeResultFragment extends Fragment implements View.OnClickListener
     TextView tvDescription;
     TextView tvIngredient;
     TextView tvRating;
+    TextView tvType;
     MaterialRatingBar materialRatingBar;
     FloatingActionButton floatingActionButton;
     View bottomSheet;
@@ -99,17 +98,19 @@ public class HomeResultFragment extends Fragment implements View.OnClickListener
         tvIngredient = rootView.findViewById(R.id.text_ingredient_menu_description);
         tvRating = rootView.findViewById(R.id.menu_num_ratings);
         materialRatingBar = rootView.findViewById(R.id.menu_rating);
+        tvType = rootView.findViewById(R.id.menu_category);
 
         tvNameMenu.setText(dao.getName());
         tvDescription.setText(dao.getDescription());
         tvIngredient.setText(dao.getIngredient());
+        tvType.setText(dao.getType());
 
         if (dao.getQuantityRating() == null ) {
             tvRating.setText("0");
             materialRatingBar.setNumStars(0);
 
         } else {
-            tvRating.setText(dao.getQuantityRating().toString());
+            tvRating.setText(dao.getQuantityRating().intValue()+" comments");
             materialRatingBar.setNumStars(dao.getRating().intValue());
         }
 

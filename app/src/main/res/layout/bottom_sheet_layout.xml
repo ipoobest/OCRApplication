@@ -17,7 +17,7 @@
         android:background="@color/colorAccent"
         android:backgroundTint="@color/colorPrimary"
         android:gravity="center"
-        android:text="Review This Menu"
+        android:text="Review of This Menu"
         android:textColor="@android:color/white" />
 
 
